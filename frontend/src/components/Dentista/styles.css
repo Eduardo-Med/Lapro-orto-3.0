@@ -1,0 +1,90 @@
+
+.row {
+    display: flex;
+}
+
+/*Todo el perfil */
+
+.perfil-container {
+    background-color: #E6FFF6;
+    font-family: 'Montserrat', sans-serif;
+    padding: 1% 2%;
+    width: 100%;
+}
+
+/*Image container*/
+
+.perfil-image-container {
+    height: 100%;
+    margin-right: 30px;
+}
+
+.perfil-image {
+    height: 200px;
+    border-radius: 100%;
+}
+
+/*perfil-info-container*/
+
+.perfil-info-container {
+    height: 100%;
+}
+
+.column {
+    margin-left: 30px;
+}
+
+.info {
+    align-self: center;
+    color: black;
+    font-size: 1.3rem;
+    margin-left:  10px;
+    margin-top: 10px;
+}
+
+
+@media (max-width: 1100px) {
+
+    .info {
+        font-size: 1.1rem;
+    }
+}
+
+
+@media (max-width: 1000px) {
+    .info {
+        font-size: 1.0rem;
+    }
+}
+
+@media (max-width: 960px) {
+
+    .info {
+        font-size: 1.1rem;
+    }
+
+    .perfil-image-container {
+        text-align: center;
+    }
+
+    .perfil-container {
+        padding: 1% 2%;
+        display: inline-block;
+    }
+}
+
+@media (max-width: 680px) {
+
+    .perfil-container {
+        text-align: center;
+    }
+
+    .perfil-image-container{
+        margin: 0;
+    }
+
+    .row {
+        display: block;
+    }
+
+}

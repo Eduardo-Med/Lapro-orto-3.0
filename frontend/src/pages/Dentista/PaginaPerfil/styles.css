@@ -1,0 +1,46 @@
+.ordenesContainer{
+    margin-top: 100px;
+}
+
+.OrdenesTitulos{
+    justify-content : center;
+    font-family: inherit;
+}
+
+.textt{
+    font-size: 30px  !important;
+    font-weight: 900 !important;
+}
+
+.division{
+    background: #31425A;
+    -webkit-box-shadow: 9px -9px 28px -11px rgba(0,0,0,0.75);
+-moz-box-shadow: 9px -9px 28px -11px rgba(0,0,0,0.75);
+box-shadow: 17px 16px 28px -16px rgba(0,0,0,0.75);
+}
+
+
+.division .nav a{
+ 
+
+}
+
+
+
+.division .nav a:hover{
+    background-color: #17a2b8!important;
+    transition: 0.9s;
+    transition-property: background;
+
+}
+
+.fondo2{
+    background: url(https://responsivemart.com/wp-content/uploads/form-header.svg) no-repeat;
+    background-size: cover;
+}
+
+.nav-pills .nav-link.active{
+    color: #fff!important;
+    background-color: #17a2b8!important;
+}
+

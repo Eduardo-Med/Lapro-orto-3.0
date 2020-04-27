@@ -1,0 +1,90 @@
+
+.soli{
+    border: solid 2px black;
+}
+
+
+h3 {
+    margin-bottom: 0;
+}
+
+.precio {
+    align-self: center;
+}
+
+p {
+    margin-top: 0;
+   
+}
+
+/*Toda la lista*/
+
+.items-list {
+    padding: 1% 10%;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/*El item (imagen y texto)*/
+
+.item-container {
+    display: flex;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: 15px 0;
+    margin: 30px auto;
+    padding: 1% 2%;
+}
+
+/*Image*/
+
+.item-image-container {
+
+}
+
+.producto-image {
+    border-radius: 10px;
+    height: 100%;
+    width: 230px;
+
+    
+}
+
+/*Info del producto*/
+
+.item-info-container {
+    padding: 2% 2%;
+    text-align: justify;
+    text-justify: inter-word;
+    min-width:1000px;
+}
+
+.precio-contenedor {
+    text-align: right;
+    margin-top: 50px;
+}
+
+.precio {
+    margin: 0;
+}
+
+/*Botones de salida*/
+.botones-salida{
+    text-align: right;
+}
+
+.boton {
+    background-color:#5c87d1;
+	border-radius:28px;
+	border:1px solid #ffffff;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-size:17px;
+	padding:16px 31px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2f6627;
+}
+
+.boton:hover {
+    background-color:#7df0a2;
+}

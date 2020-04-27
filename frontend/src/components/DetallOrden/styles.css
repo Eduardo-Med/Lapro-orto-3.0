@@ -1,0 +1,19 @@
+.modalDetalle{
+    width: 1000px;
+}
+
+.modalContenedor{
+    min-height: 175px;
+    width: 100vh !important;
+    max-width: 1000px !important;
+}
+
+.fondoModal{
+    background: url(https://responsivemart.com/wp-content/uploads/form-header.svg) no-repeat;
+    background-size: cover;
+}
+
+.headermodal{
+    color:white;
+    background: #19212d;
+}

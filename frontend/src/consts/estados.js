@@ -1,0 +1,6 @@
+export const ESTADO_ORDEN_PENDIENTE = 0
+export const ESTADO_ORDEN_ACEPTADA  = 1
+export const ESTADO_ORDEN_PROCESO   = 2
+export const ESTADO_ORDEN_TERMINADA = 3
+export const ESTADO_ORDEN_PAGADA    = 4
+export const ESTADO_ORDEN_CANCELADA = 5

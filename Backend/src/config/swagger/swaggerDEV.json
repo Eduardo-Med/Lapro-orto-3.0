@@ -1,0 +1,732 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Backend ::ShareYourIdea:: App",
+    "version": "1.0.0",
+    "title": "Swagger ShareYourIdea"
+  },
+  "host": "localhost:4000",
+  "basePath": "/api/v1",
+  "tags": [
+    {
+      "name": "Usuario",
+      "description": "Everything about users"
+    }
+  ],
+  "paths": {
+    "/aparato": {
+      "get": {
+        "tags": ["Aparato"],
+        "summary": "Obtener todos los aparatos",
+        "description": "Peticion get para obtener todos los aparatos",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Aparatos desplagados correctamente",
+            "content": "application/json",
+            "examples":{
+              "application/json": {
+                "Usuario": {
+                  "$ref":"#/definitions/Aparato"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "A ocurrido un error",
+            "examples":{
+              "application/json":{"message": "A ocurrido un error", "error": "Informacion sobre el error"}
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Aparato"],
+        "summary": "Agregar un Aparato",
+        "description": "Peticion post para agregar un nuevo aparato",
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "Aparato agregado correctamente",
+            "examples":{
+              "application/json": {
+                "message": "Aparato agregado correctamente",
+                "Aparato": {
+                  "$ref":"#/definitions/Aparato"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Ocurrio un error",
+            "examples":{
+              "application/json":{"message": "A ocurrido un error", "error": "Informacion sobre el error"}
+            }
+          }
+        }
+      }
+    },
+    "/aparato/{id}": {
+      "put": {
+        "tags": ["Aparato"],
+        "summary": "Actualizar Aparato",
+        "description": "peticion put para actualizar un aparato",
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "Aparato actualizado correctamente",
+            "examples":{
+              "application/json": {
+                "message": "Aparato Actualizado Correctamente"
+              }
+            }
+          },
+          "400": {
+            "description": "Ocurrio un error",
+            "examples":{
+              "application/json":{"error": "Informacion sobre el error"}
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Aparato"],
+        "summary": "Eliminar Aparato",
+        "description": "Uso de la peticion delete para eliminar un aparato de la base de datos",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Aparato Eliminado Correctamente",
+            "examples":{
+              "application/json": {
+                "message": "Aparato Eliminado"
+              }
+            }
+          },
+          "400": {
+            "description": "Ocurrio un error",
+            "examples":{
+              "application/json":{"message": "A ocurrido un error", "error": "Informacion sobre el error"}
+            }
+          }
+        }
+      }
+    },
+    "/authenticate/login": {
+      "post": {
+        "tags": ["Autentificacion"],
+        "summary": "Autentificar Al Usuario",
+        "description": "peticion post para que el usuario pueda iniciar sesion obteniendo su token",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "mail",
+            "in": "path",
+            "type": "string",
+            "description": "Correo del usuario",
+            "required": true
+          },
+          {
+            "name": "password",
+            "in": "path",
+            "type": "string",
+            "description": "Contraseña del usuario",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Autentificacion correcta",
+            "examples":{
+              "application/json": {
+                "auth": true,
+                "message": "Autentificacion correcta",
+                "token": "",
+                "userId": "",
+                "tipoUsuario": ""
+              }
+            }
+          },
+          "400": {
+            "description": "Ocurrio un error",
+            "examples":{
+              "application/json":{
+                "auth":false,
+                "message": "Este correo no existe"
+              }
+            }
+          },
+          "404": {
+            "description": "Ocurrio un error",
+            "examples":{
+              "application/json":{
+                "auth":false,
+                "message": "Contraseña incorrecta"
+              }
+            }
+          },
+          "401": {
+            "description": "Ocurrio un error",
+            "examples":{
+              "application/json":{"message": "A ocurrido un error", "error": "Informacion sobre el error"}
+            }
+          }
+        }
+      }
+    },
+    "/orden": {
+      "get": {
+        "tags": ["Orden"],
+        "summary": "Obtener todos las ordenes",
+        "description": "Peticion get para obtener todos los usuarios",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Ordenes obtenidas correctamente",
+            "content": "application/json",
+            "examples":{
+              "application/json": {
+                "Usuario": {
+                  "$ref":"#/definitions/Orden"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "A ocurrido un error",
+            "examples":{
+              "application/json":{"message": "A ocurrido un error", "error": "Informacion sobre el error"}
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Orden"],
+        "summary": "Agregar una orden",
+        "description": "Peticion post para agregar un nueva orden de trabajo",
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "Orden agregada correctamente",
+            "examples":{
+              "application/json": {
+                "message": "Orden agregada correctamente",
+                "Usuario": {
+                  "$ref":"#/definitions/Orden"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Ocurrio un error",
+            "examples":{
+              "application/json":{"message": "A ocurrido un error", "error": "Informacion sobre el error"}
+            }
+          }
+        }
+      }
+    },
+    "/aparato/{idOrden}": {
+      "get": {
+        "tags": ["Orden"],
+        "summary": "Obtener una sola orden",
+        "description": "Obtener una orden por su id",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Orden obtenida correctamente",
+            "examples":{
+              "application/json": {
+                "Usuario": {
+                  "$ref":"#/definitions/Orden"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Ocurrio un error",
+            "examples":{
+              "application/json":{"message": "A ocurrido un error", "error": "Informacion sobre el error"}
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Orden"],
+        "summary": "Eliminar Orden",
+        "description": "Uso de la peticion delete para eliminar una orden de la base de datos",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "idOrden",
+            "in": "path",
+            "type": "string",
+            "description": "Id de la orden",
+            "required": true
+          },
+          {
+            "in": "header",
+            "name": "Autorizacion",
+            "description": "token de autorizacion para eliminar",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Orden Eliminada",
+            "examples":{
+              "application/json": {
+                "message": "Orden Eliminada"
+              }
+            }
+          },
+          "400": {
+            "description": "Ocurrio un error",
+            "examples":{
+              "application/json":{"message": "A ocurrido un error", "error": "Informacion sobre el error"}
+            }
+          }
+        }
+      }
+    },
+    "/cambiarPrecio/{idOrden}/{precio}": {
+      "put": {
+        "tags": ["Orden"],
+        "summary": "Agregar precio a la orden",
+        "description": "peticion put para agregar el precio a la orden",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Precio agregado correctamente",
+            "examples":{
+              "application/json": {
+                "message": "Precio Agregado"
+              }
+            }
+          },
+          "400": {
+            "description": "Ocurrio un error",
+            "examples":{
+              "application/json":{"message": "A ocurrido un error", "error": "Informacion sobre el error"}
+            }
+          }
+        }
+      }
+    },
+    "/sendemail/": {
+      "post": {
+        "tags": ["Email"],
+        "summary": "Enviar correo para solicitar cuenta",
+        "description": "peticion post para solicitar una cuenta al administrador",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Correo Enviado de manera correcta",
+            "examples":{
+              "application/json": {
+                "message": "Correo Enviado de manera correcta"
+              }
+            }
+          },
+          "400": {
+            "description": "Ocurrio un error",
+            "examples":{
+              "application/json":{"message": "A ocurrido un error con el envio del mensaje", "error": "Informacion sobre el error"}
+            }
+          }
+        }
+      }
+    },
+    "/ticket/": {
+      "get": {
+        "tags": ["Ticket"],
+        "summary": "Impresion PDF del ticket",
+        "description": "peticion get para obtner un pdf del ticket",
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "PDF Creado correctamente",
+            "examples":{
+              "application/json": {
+                "PDF": "Envia el archivo pdf creado"
+              }
+            }
+          },
+          "400": {
+            "description": "Ocurrio un error",
+            "examples":{
+              "application/json":{"message": "A ocurrido un error con la impresion","error": "Informacion sobre el error"}
+            }
+          }
+        }
+      }
+    },
+    "/venta/": {
+      "get": {
+        "tags": ["Venta"],
+        "summary": "Obtener todas las ventas que se han realizado",
+        "description": "peticion get para obtener las ventas",
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "Ventas desplagadas correctamente",
+            "examples":{
+              "application/json": {
+                "Usuario": {
+                  "$ref":"#/definitions/Venta"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Ocurrio un error",
+            "examples":{
+              "application/json":{"message": "A ocurrido un error","error": "Informacion sobre el error"}
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Venta"],
+        "summary": "Crear una nueva venta",
+        "description": "Se crea una venta de manera automatica",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Usuario actualizado correctamente",
+            "examples":{
+              "application/json": {
+                "message": "Venta creada correctamente",
+                "Aparato": {
+                  "$ref":"#/definitions/Venta"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Ocurrio un error",
+            "examples":{
+              "application/json":{"message": "A ocurrido un error","error": "Informacion sobre el error"}
+            }
+          }
+        }
+      }
+    },
+    "/usuario": {
+      "get": {
+        "tags": ["Usuario"],
+        "summary": "Obtener todos los usuarios",
+        "description": "Peticion get para obtener todos los usuarios",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Usuarios desplagados correctamente",
+            "content": "application/json",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Usuario"
+              }
+            }
+          },
+          "400": {
+            "description": "A ocurrido un error"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Usuario"],
+        "summary": "Agregar un usuario",
+        "description": "Peticion post para agregar un nuevo usuario",
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "Usuario creado correctamente",
+            "examples":{
+              "application/json": {
+                "message": "usuario agregado correctamente",
+                "Usuario": {
+                  "$ref":"#/definitions/Usuario"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Ocurrio un error",
+            "examples":{
+              "application/json":{"error": "Informacion sobre el error"}
+            }
+          }
+        }
+      }
+    },
+    "/usuario/{id}": {
+      "get": {
+        "tags": ["Usuario"],
+        "summary": "Obtener Usuario por correo",
+        "description": "peticion get para obtener un usuario por su correo",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Id del usuario",
+            "required": true
+          },
+          {
+            "in": "header",
+            "name": "Autorizacion",
+            "description": "token para la autorizacion",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Usuario Obtenido Correctamente",
+            "examples":{
+              "application/json": {
+                "$ref": "#/definitions/Usuario"
+              }
+            }
+          },
+          "400": {
+            "description": "Ocurrio un error",
+            "examples":{
+              "application/json":{"message": "A ocurrido un error", "error": "Informacion sobre el error"}
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": ["Usuario"],
+        "summary": "Actualizar Usuario",
+        "description": "peticion put para actualizar un usuario",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Id del usuario",
+            "required": true
+          },
+          {
+            "in": "header",
+            "name": "Autorizacion",
+            "description": "token para la autorizacion",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Usuario actualizado correctamente",
+            "examples":{
+              "application/json": {
+                "message": "Usuario Actualizado Correctamente"
+              }
+            }
+          },
+          "400": {
+            "description": "Ocurrio un error",
+            "examples":{
+              "application/json":{"error": "Informacion sobre el error"}
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Usuario"],
+        "summary": "Eliminar Usuario",
+        "description": "Uso de la peticion delete para eliminar un usuario de la base de datos",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Id del usuario",
+            "required": true
+          },
+          {
+            "in": "header",
+            "name": "Autorizacion",
+            "description": "token de autorizacion para eliminar",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Usuario Eliminado Correctamente",
+            "examples":{
+              "application/json": {
+                "message": "Usuario Eliminado"
+              }
+            }
+          },
+          "400": {
+            "description": "Ocurrio un error",
+            "examples":{
+              "application/json":{"message": "A ocurrido un error", "error": "Informacion sobre el error"}
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Usuario": {
+      "type": "object",
+      "properties": {
+        "idCliente": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "nombre": {
+          "type": "string",
+          "format": "varchar(35)"
+        },
+        "apellidoPaterno": {
+          "type": "string",
+          "format": "varchar(35)"
+        },
+        "apellidoMaterno": {
+          "type": "string",
+          "format": "varchar(35)"
+        },
+        "direccion": {
+          "type": "string",
+          "format": "varchar(50)"
+        },
+        "telefono": {
+          "type": "string",
+          "format": "varchar(12)"
+        },
+        "correo": {
+          "type": "string",
+          "format": "varchar(50)"
+        },
+        "tipoUsuario": {
+          "type": "string",
+          "format": "varchar(20)"
+        },
+        "password": {
+          "type": "string",
+          "format": "varchar(100)"
+        },
+        "fotoPerfil": {
+          "type": "blob",
+          "format": "longblob"
+        }
+      }
+    },
+    "Orden": {
+      "type": "object",
+      "properties": {
+        "idOrden": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "clinica": {
+          "type": "string",
+          "format": "varchar(40)"
+        },
+        "paciente": {
+          "type": "string",
+          "format": "varchar(60)"
+        },
+        "fechaSalida": {
+          "type": "date"
+        },
+        "doctor": {
+          "type": "string",
+          "format": "varchar(60)"
+        },
+        "fechaEntrada": {
+          "type": "date"
+        },
+        "nombreAparato": {
+          "type": "string",
+          "format": "varchar(60)"
+        },
+        "trabajoRealizar": {
+          "type": "string",
+          "format": "varchar(2048)"
+        },
+        "material": {
+          "type": "string",
+          "format": "varchar(40)"
+        },
+        "color": {
+          "type": "string",
+          "format": "varchar(25)"
+        },
+        "imagen": {
+          "type": "blob",
+          "format": "longblob"
+        },
+        "observaciones": {
+          "type": "string",
+          "format": "varchar(40)"
+        },
+        "estado": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "precio": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "idCliente": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "Venta": {
+      "type": "object",
+      "properties": {
+        "idVenta": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "precioTotal": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "fechaVenta": {
+          "type": "date"
+        },
+        "idOrden": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "Aparato": {
+      "type": "object",
+      "properties": {
+        "idAparato": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "titulo": {
+          "type": "string",
+          "format": "varchar()"
+        },
+        "descripcion": {
+          "type": "string",
+          "format": "varchar(650)"
+        },
+        "imagen": {
+          "type": "blob",
+          "format": "longblob"
+        }
+      }
+    }
+  }
+}

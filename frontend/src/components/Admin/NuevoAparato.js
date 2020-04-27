@@ -1,0 +1,57 @@
+import React , { useState } from "react";
+import {useForm} from "react-hook-form";
+
+import logo from '../../images/logo.png'
+
+export default function NuevoAparato( {enviar} ) {
+  const {register, handleSubmit,errors} = useForm({mode: "onChange"})
+    const [imagen, setImagen] = useState({enviar});
+
+    const handleInputImagenChange = (event) => {
+      event.persist();
+      setImagen({...imagen, [event.target.name]: event.target.files[0]});
+    }
+
+    const onSubmit =(data)=>{
+      enviar(data,imagen)
+    }
+    
+    return (
+      <div className="modal fade bd-example-modal-lg" tabIndex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+      <div className="modal-dialog modal-lg">
+        <div className="modal-content">
+          <div className="authentication-wrapper">
+           <div className="registration registrationOrden">
+             <div className="registration-header">
+               <img src={logo} alt="" className="registration-logo"/>
+             </div>
+             <div className="registration-body">
+               <h3 className="registration-title">Agregar Producto</h3>
+               <form action="" onSubmit={handleSubmit(onSubmit)} className="registration-form">
+               {errors.titulo 
+                       ? <label className="registration-label text-danger" style={{fontSize:"22px"}}>{errors.titulo.message}</label> 
+                       : <label className="registration-label">Titulo</label>}
+             <input type="text" id="titulo" name="titulo"
+             ref={register({required: {value:true,message:'Este campo es obligatorio'}})} 
+             className="registration-input"  placeholder="Titulo" />
+ 
+             {errors.descripcion 
+                       ? <label className="registration-label text-danger" style={{fontSize:"22px"}}>{errors.descripcion.message}</label> 
+                       : <label className="registration-label">Descrpicion</label>}
+             <textarea type="text" id="descripcion" name="descripcion" 
+             ref={register({required: {value:true,message:'Este campo es obligatorio'}})} 
+             className="registration-input"  placeholder="Descripcion" />
+             
+             <label className="registration-label">Adjuntar Foto</label>
+	  		     <input type="file" id="imagen" name="imagen" className="registration-input" placeholder="Imagen" onChange={handleInputImagenChange}/>
+ 
+                     <button type="submit" className="registration-btn">Agregar Aparato</button>
+                   </form>
+             </div>
+           </div>
+          </div>
+       </div>
+      </div>
+     </div>
+    )
+}

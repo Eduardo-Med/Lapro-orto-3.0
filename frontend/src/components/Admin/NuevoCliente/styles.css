@@ -1,0 +1,240 @@
+.authentication-wrapper {
+    margin: auto;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100%;
+    padding: 20px;
+  }
+  
+  .registration {
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    width: 700px;
+    margin-top: 300px;
+  }
+  .registration .registration-header {
+    background: url(https://responsivemart.com/wp-content/uploads/form-header.svg) center center no-repeat;
+    background-size: cover;
+    min-height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .registration .registration-header .registration-logo {
+    width: 170px;
+  }
+  .registration .registration-body {
+    background: #31425A;
+    color: white;
+    padding: 40px 40px;
+  }
+  .registration .registration-body .registration-title {
+    font-size: 28px;
+    font-weight: 300;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+    text-align: center;
+  }
+  .registration .registration-body .registration-subtitle {
+    font-weight: 300;
+    font-size: 14px;
+    color: #1FD5B9;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+    text-align: center;
+  }
+  .registration .registration-form .registration-label {
+    font-size: 12px;
+    font-weight: 200;
+    display: inline-block;
+    margin-bottom: 7px;
+  }
+  .registration .registration-form .registration-input {
+    display: block;
+    width: 100%;
+    padding: 12px 7px;
+    font-size: 14px;
+    background: transparent;
+    color: #99B0BC;
+    border: 1px solid #99B0BC;
+    margin-bottom: 13px;
+    font-weight: 100;
+    letter-spacing: 1px;
+  }
+  .registration .registration-form .registration-input::placeholder {
+    color: #99B0BC;
+  }
+  .registration .registration-form .registration-input:focus {
+    border-color: #1FD5B9;
+  }
+  .registration .registration-form .registration-checkbox-holder {
+    display: flex;
+    align-items: flex-start;
+    margin: 25px 0;
+  }
+  .registration .registration-form .registration-checkbox-holder .registration-checkbox {
+    display: inline-block;
+    position: relative;
+    border: 1px solid #99B0BC;
+    min-width: 22px;
+    min-height: 22px;
+    max-width: 22px;
+    max-height: 22px;
+    overflow: hidden;
+  }
+  .registration .registration-form .registration-checkbox-holder .registration-checkbox .checkbox-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    opacity: 0;
+  }
+  .registration .registration-form .registration-checkbox-holder .registration-checkbox .checkbox-toggle {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: url(https://responsivemart.com/wp-content/uploads/form-check.svg) center center no-repeat;
+    background-size: 12px 12px;
+    z-index: 1;
+    opacity: 0;
+    transition: 0.3s;
+    transform: rotate(-25deg) scale(2);
+  }
+  .registration .registration-form .registration-checkbox-holder .registration-checkbox .checkbox-input:checked ~ .checkbox-toggle {
+    transform: rotate(0deg) scale(1);
+    opacity: 1;
+  }
+  .registration .registration-form .registration-checkbox-holder .registration-checkbox-label {
+    font-size: 12px;
+    color: #99B0BC;
+    padding-left: 15px;
+    font-weight: 300;
+  }
+  .registration .registration-form .registration-btn {
+    display: block;
+    padding: 14px 7px;
+    background: #1FD5B9;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 100;
+    text-transform: uppercase;
+    border: none;
+    width: 100%;
+    margin-bottom: 25px;
+  }
+  .registration .registration-form .registration-btn:hover {
+    background: #1cc3aa;
+  }
+  .registration .registration-form .registration-btn:active {
+    background: #1ab19a;
+  }
+  .registration .registration-form .registration-link {
+    display: block;
+    text-align: center;
+    color: #99B0BC;
+    text-decoration: none;
+    font-weight: 300;
+  }
+  .registration .registration-form .registration-link:after {
+    content: '';
+    display: block;
+    margin: auto;
+    height: 1px;
+    width: 200px;
+    background: #99B0BC;
+    margin-top: 4px;
+  }
+  
+  @media screen and (min-width: 800px) {
+    .registration {
+      display: flex;
+      max-width: 900px;
+    }
+    .registration .registration-header,
+    .registration .registration-body {
+      width: 50%;
+    }
+    .registration .registration-body {
+      padding: 50px 50px;
+    }
+    .registration .registration-logo {
+      width: 230px !important;
+    }
+  }
+  .author {
+    font-family: inherit;
+    padding: 3em;
+    text-align: center;
+    width: 100%;
+  }
+  .author a:link,
+  .author a:visited {
+    color: #404040;
+  }
+  .author a:link:hover,
+  .author a:visited:hover {
+    text-decoration: none;
+  }
+  .author .btn:link,
+  .author .btn:visited {
+    margin-top: 1em;
+    text-decoration: none;
+    display: inline-block;
+    font-family: inherit;
+    font-weight: 100;
+    color: white;
+    text-align: center;
+    vertical-align: middle;
+    user-select: none;
+    background-color: black;
+    padding: 1.5em 2rem;
+    border-radius: 1em;
+    transition: .5s all;
+  }
+  .author .btn:link:hover, .author .btn:link:focus, .author .btn:link:active,
+  .author .btn:visited:hover,
+  .author .btn:visited:focus,
+  .author .btn:visited:active {
+    background-color: #1a1a1a;
+  }
+
+.registration-btn {
+    display: block;
+    padding: 14px 7px;
+    background: #1FD5B9;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 100;
+    text-transform: uppercase;
+    border: none;
+    width: 100%;
+  }
+
+  .registrationOrden {
+    width: 100% !important;
+    margin-top: 20px !important;
+    max-width: none;
+  }
+
+
+
+
+  .tablaUsuarios{
+    margin: 30px !important;
+    background-color: #2f334a !important;
+    border: 7px solid #15849e;
+    -webkit-box-shadow: -11px -9px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: -11px -9px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: -11px -9px 5px 0px rgba(0,0,0,0.75);
+  }
+  
