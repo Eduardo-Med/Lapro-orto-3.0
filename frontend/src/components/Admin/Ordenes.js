@@ -15,8 +15,10 @@ export default function Ordenes({ordenesPend,ordenesProc,ordenesT,ordenesC,orden
   async function cambiarEstado(idOrden, estadoCambiado,precio) {
     if(estadoCambiado === Estado.ESTADO_ORDEN_PAGADA){
       await addVentas(idOrden,precio)
+      window.location.reload(false);
     }
     await updateEstado(idOrden, estadoCambiado);  
+    window.location.reload(false);
   }
   
 
@@ -50,7 +52,7 @@ export default function Ordenes({ordenesPend,ordenesProc,ordenesT,ordenesC,orden
       return ordenesPend.length !== 0 ? (
         ordenesPend.map((orden, index) => (
           <div key={index}>
-                <OrdenTarjeta  orden={orden} tipoOrden={Estado.ESTADO_ORDEN_PENDIENTE} usuario={usuario} cambiarEstado={cambiarEstado}   />
+                <OrdenTarjeta index={index} obtenerDetallerOrden={obtenerDetallerOrden} orden={orden} tipoOrden={Estado.ESTADO_ORDEN_PENDIENTE} usuario={usuario} cambiarEstado={cambiarEstado}   />
           </div>
         ))
       ) : (

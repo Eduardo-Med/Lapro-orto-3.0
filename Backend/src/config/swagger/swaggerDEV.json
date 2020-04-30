@@ -10,8 +10,33 @@
   "tags": [
     {
       "name": "Usuario",
-      "description": "Everything about users"
+      "description": "Funciones que se realizan con la ruta de usuarios"
+    },
+    {
+      "name": "Aparato",
+      "description": "Funciones que se realizan con la ruta de aparato"
+    },
+    {
+      "name": "Autentificacion",
+      "description": "Funciones que se realizan con la ruta de autentificacion"
+    },
+    {
+      "name": "Orden",
+      "description": "Funciones que se realizan con la ruta de orden"
+    },
+    {
+      "name": "Email",
+      "description": "Funciones que se realizan con la ruta de email"
+    },
+    {
+      "name": "Ticket",
+      "description": "Funciones que se realizan con la ruta de ticket"
+    },
+    {
+      "name": "Venta",
+      "description": "Funciones que se realizan con la ruta de venta"
     }
+
   ],
   "paths": {
     "/aparato": {

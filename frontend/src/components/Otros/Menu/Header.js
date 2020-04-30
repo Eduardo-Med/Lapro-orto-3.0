@@ -2,7 +2,7 @@ import React from "react";
 import { useCookies } from 'react-cookie';
 import logo from './logo.png'
 
-function Header({usuario}) {
+function Header() {
   const [cookies, , removeCookie] = useCookies(['cookie-name']);
 
   function salir(){

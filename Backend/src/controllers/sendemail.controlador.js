@@ -1,7 +1,11 @@
+/**
+* Controlador para enviar un correo electronico
+*/
 const sendmailCtrl = {};
 const nodemailer = require('nodemailer')
 
 
+//funcion para enviar un correo electronico
 sendmailCtrl.enviarCorreo = async (req, res) => {
   try {
       const {nameContactanos,correo,telefono,descripcion} = req.body

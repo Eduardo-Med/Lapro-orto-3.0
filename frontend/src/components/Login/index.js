@@ -28,7 +28,7 @@ export default function Login() {
       setCookie("userId", response.data.userId, { path: "/", maxAge: 3600 });
       setCookie("tipoUsuario", response.data.tipoUsuario, {path: "/",maxAge: 3600,});
       response.data.tipoUsuario !== 'Admin' ? 
-      window.location.href = "http://localhost:3000/dentista/perfil" :
+      window.location.href = "http://localhost:3000/11/perfil" :
       window.location.href = "http://localhost:3000/admin/ordenes"
       console.log("Inicio de sesion correcto");
       setMensajeError('')

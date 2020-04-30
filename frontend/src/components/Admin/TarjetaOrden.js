@@ -13,7 +13,8 @@ function TarjetaOrden({orden, tipoOrden,usuario, cambiarEstado, obtenerDetallerO
 
 
   async function agregarPrecio(id,precio){
-    await addPrecio(id,precio)
+    const result = await addPrecio(id,precio)
+    console.log(result);
     cambiarEstado(id, Estado.ESTADO_ORDEN_ACEPTADA)
     window.location.reload(false);
   }

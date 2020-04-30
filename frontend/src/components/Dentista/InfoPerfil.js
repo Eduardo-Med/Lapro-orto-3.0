@@ -2,7 +2,7 @@ import React from 'react'
 import foto from './default.jpg'
 import './styles.css'
 
-export default function infoPerfil({usuario, editar}) {
+export default function infoPerfil({usuario}) {
     return (
         <div className="perfil-container row mb-5">
         <div className="perfil-image-container">

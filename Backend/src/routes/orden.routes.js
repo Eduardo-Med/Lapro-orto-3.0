@@ -1,8 +1,8 @@
 const { Router } = require("express");
 const router = Router();
-const verifyToken = require('../middlewares/verifyToken.middleware')
+const verifyToken = require('../middlewares/VerifyToken.middleware')
 
-const {getOrden,getOrdenById,createOrden,updateOrden,deleteOrden,getOrdenTerminadaById,addPrecio} = require("../controllers/orden.controlador");
+const {getOrden,getOrdenById,createOrden,updateOrden,deleteOrden,getOrdenesTerminadasById,addPrecio} = require("../controllers/orden.controlador");
 
 router
   .route("/")
@@ -16,7 +16,7 @@ router
 
 router
   .route("/terminada/:idUsuario")
-  .get(getOrdenTerminadaById)
+  .get(getOrdenesTerminadasById)
 
 router
   .route("/:idOrden/:estado")

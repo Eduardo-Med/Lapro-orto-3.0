@@ -12,7 +12,7 @@ export default function NuevaOrden({enviar}) {
         event.persist();
         setImagen({...imagen, [event.target.name]: event.target.files[0]});
       }
-
+      
       const onSubmit =(data)=>{
         enviar(data,imagen)
       }
@@ -105,7 +105,7 @@ export default function NuevaOrden({enviar}) {
                  ref={register({required: {value:true,message:'Este campo es obligatorio'}})} 
                 className="registration-input" placeholder="Observaciones" />
         
-                <button type="submit" className="registration-btn">Agregar Usuario</button>
+                <button type="submit" className="registration-btn">Crear Orden</button>
                 </form>
 	  		    </div>
 	  	    </div>

@@ -1,7 +1,14 @@
+/**
+ * Clase para la impresion de la pantalla en PDF
+ */
+
+
 const ticketCtrl = {};
 const puppeteer = require('puppeteer');
 const fs = require('fs')
 
+
+//Funcion para imprimir pdf de la pagina seleccionada
 ticketCtrl.crearPDF= async (req, res) => {
   try {
     const browser = await puppeteer.launch();
@@ -20,13 +27,6 @@ ticketCtrl.crearPDF= async (req, res) => {
   } catch (error) {
     res.status(400).json({message: 'A ocurrido un error con la impresion', error})
   }
-
 };
-
-
-
-
-
-
 
 module.exports = ticketCtrl;

@@ -1,8 +1,16 @@
+
+/*
+Clase del controlador de la orden
+En esta clase se encuentran las funciones que se utilizan
+para manejar el modelo de ordenes
+*/
 const ordenCtrl = {};
 const pool = require("../models/database");
 const fs = require('fs')
 
 
+
+//Funcion para obtener todos los ordenes de la base de datos
 ordenCtrl.getOrden = async (req,res) => {
     try {
         const ordenes = await pool.query("call sp_ordenByEstadoAndCliente()");
@@ -12,6 +20,8 @@ ordenCtrl.getOrden = async (req,res) => {
       }
 }
 
+
+//Obtener una orden por su id
 ordenCtrl.getOrdenById = async (req,res) => {
     try {
         const {idOrden} = req.params
@@ -20,10 +30,11 @@ ordenCtrl.getOrdenById = async (req,res) => {
     } catch (error) {
         res.status("404").json({message: "a ocurrido un error", error});
     }
-
 }
 
-ordenCtrl.getOrdenTerminadaById = async (req,res) => {
+
+
+ordenCtrl.getOrdenesTerminadasById = async (req,res) => {
     try {
         const {idUsuario} = req.params
         let total = 0
@@ -39,7 +50,7 @@ ordenCtrl.getOrdenTerminadaById = async (req,res) => {
 }
 
 
-
+//funcion para crear una orden
 ordenCtrl.createOrden = async (req,res) => {
     try {
         const {path } = req.file
@@ -60,12 +71,14 @@ ordenCtrl.createOrden = async (req,res) => {
             idCliente
         }
       await pool.query("INSERT INTO ORDEN set ?", [newOrden]);
-      res.status(201).json({message: "Aparato agregado correctamente", Orden: newOrden});
+      res.status(201).json({message: "Aparato agregado correctamente", orden: newOrden});
     } catch (e) {
       res.status(400).json({code: e.code,message: e.sqlMessage});
       }
 } 
 
+
+//funcion para actualizar una orden
 ordenCtrl.updateOrden = async (req,res) => {
     try {
         const {idOrden,estado} = req.params
@@ -77,10 +90,10 @@ ordenCtrl.updateOrden = async (req,res) => {
     }   
 }
 
+//funcion para agregar el precio a la orden de trabajo
 ordenCtrl.addPrecio = async (req,res) => {
     try {
-        
-        await pool.query(`UPDATE laprorto.orden SET precio = ${req.params.precio} WHERE (idOrden = ${req.params.idOrden})`);
+        await pool.query(`UPDATE heroku_8a0451c7f09a3ab.orden SET precio= ${req.params.precio} WHERE (idOrden = ${req.params.idOrden})`);
         res.status(200).json({message: 'Precio Agregado'})
     } catch (error) {
         res.status(400).json({"message": "A ocurrido un error",error})
@@ -88,6 +101,8 @@ ordenCtrl.addPrecio = async (req,res) => {
 } 
 
 
+
+//funcion para eliminar la orden de trabajo
 ordenCtrl.deleteOrden = async (req,res) => {
     try {
         await pool.query('DELETE FROM ORDEN WHERE idOrden = ?', [req.params.idOrden]);

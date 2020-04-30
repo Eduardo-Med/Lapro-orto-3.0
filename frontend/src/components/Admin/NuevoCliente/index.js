@@ -1,17 +1,26 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import {useForm} from "react-hook-form";
 
 import './styles.css'
 import logo from './../../../images/logo.png'
 
-export default ({enviar}) => {
-  const {register, handleSubmit,errors} = useForm({mode: "onChange"})
 
+/**
+*retorna el componente funcional del formulario para agregar un nuevo cliente 
+*@class NuevoCliente
+*
+*@param {enviar} funcion para enviar los datos del formulario
+*
+*/
+
+
+function NuevoCliente({enviar}) {
+	
+  const {register, handleSubmit,errors} = useForm({mode: "onChange"})
   const onSubmit =(data)=>{
 	enviar(data)
   }
-
-
 
   return (
     <div className="modal fade bd-example-modal-lg" tabIndex="-1" id="modalRegistro" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -85,5 +94,11 @@ export default ({enviar}) => {
     </div>
   );
 };
+
+NuevoCliente.propTypes = {
+	enviar: PropTypes.func.isRequired,
+};
+
+export default NuevoCliente;
 
 

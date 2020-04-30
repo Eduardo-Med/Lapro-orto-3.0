@@ -6,7 +6,6 @@ import { CircularProgress} from "@material-ui/core";
 import './styles.css'
 
 const PaginaAparatos = ({needNuevaAparato}) => {
-
     const [isLoading, setIsLoading] = useState(true);
     const [aparatos, setAparatos] = useState([]);
 
@@ -71,6 +70,7 @@ const PaginaAparatos = ({needNuevaAparato}) => {
             return <CircularProgress />
         }
     }
+    
 
     const renderNuevoAparato=() => {
         if(needNuevaAparato){
@@ -88,7 +88,6 @@ const PaginaAparatos = ({needNuevaAparato}) => {
             [
                 renderAparatos(),
                 renderNuevoAparato()
-                
             ]
        }></Pagina>  
        

@@ -28,9 +28,6 @@ function Ventas() {
       return (
         <div className="items-list">
           {ordenesTerminadas.map((orden, index) => (
-
-
-
             <div className="row mb-5 item-container ">
               <div className="container">
                 <div className="row ">
@@ -97,33 +94,5 @@ function Ventas() {
 
   return <div className="container">{renderOrdenesTerminadas()}</div>;
 }
-
-
-
-// <div key={index} className="item-container">
-// <div className="item-image-container">
-//   <img
-//     className="producto-image"
-//     src={`data:image/png;base64,${Buffer.from(
-//       orden.imagen
-//     ).toString("base64")}`}
-//     alt="productos"
-//   />
-// </div>
-
-// <div className="item-info-container">
-//   <h3>Nombre del producto</h3>
-//   <p>{orden.trabajoRealizar}</p>
-
-//   <h3>Descripción</h3>
-//   <p>{orden.trabajoRealizar}</p>
-
-//   <div className="precio-contenedor">
-//     <p className="precio">
-//       $ <strong>{orden.precio}</strong>
-//     </p>
-//   </div>
-// </div>
-// </div>
 
 export default Ventas;

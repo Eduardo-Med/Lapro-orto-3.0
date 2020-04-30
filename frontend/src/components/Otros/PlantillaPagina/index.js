@@ -2,7 +2,7 @@ import React from "react";
 import SideBar from "../Menu/SideBar";
 import Header from "../Menu/Header";
 
-function PlantillaPagina({contenido,usuario}) {
+function PlantillaPagina({contenido}) {
   return (
     <div className="container-fluid">
       <input type="checkbox" id="check"></input>

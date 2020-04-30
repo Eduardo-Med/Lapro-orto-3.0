@@ -1,9 +1,13 @@
+/**
+ * Controlador para el modelo de usuarios
+ */
 const usuarioCtrl = {};
 const pool = require("../models/database");
-const encryptPassword = require("../helpers/encryptPassword");
+const encryptPassword = require("../helpers/EncryptPassword");
 const fs = require("fs");
 
-//obtener
+
+//Funcion para la obtencion de todos los usuarios de la base de datos
 usuarioCtrl.getUsuarios = async (req, res) => {
   try {
     let clientes = await pool.query("SELECT * FROM CLIENTE");
@@ -24,7 +28,7 @@ usuarioCtrl.getUsuarioByEmail = async (req, res) => {
   };
 
 
-//crear
+//Funcion para la creacion de un usuario en la base de datos
 usuarioCtrl.createUsuario = async (req, res) => {
   try {
     const {nombre, apellidoPaterno, apellidoMaterno, direccion, telefono, correo, password} = req.body
@@ -42,14 +46,14 @@ usuarioCtrl.createUsuario = async (req, res) => {
       )
     };
     await pool.query("INSERT INTO CLIENTE set ?", [newCliente]);
-    res.status(201).json({message: "Usuario agregado correctamente", Usuario: newCliente});
+    res.status(201).json({message: "Usuario agregado correctamente", usuario: newCliente});
     console.log("Cliente Agregado Correctamente")
-  } catch (errrorror) {
+  } catch (error) {
     res.status("400").json({code: error.code,message: error.sqlMessage});
   }
 };
 
-
+//Funcion para la actualizacion de un usuario por su iden la base de datos
 usuarioCtrl.updateUsuario = async (req, res) => {
     try {
         const {idCliente,nombre, apellidoPaterno, apellidoMaterno, direccion, telefono, correo, password} = req.body
@@ -73,7 +77,7 @@ usuarioCtrl.updateUsuario = async (req, res) => {
     
 }
 
-//elminar
+//Funcion para eliminar un usuario por su id
 usuarioCtrl.deleteUsuario = async (req, res) => {
     try {
         await pool.query('DELETE FROM cliente WHERE idCliente = ?', [req.params.id]);

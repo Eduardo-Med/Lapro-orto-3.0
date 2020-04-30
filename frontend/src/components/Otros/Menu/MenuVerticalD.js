@@ -16,12 +16,12 @@ export const menuData = [
 export const menuDataDentista = [
   {
     label: "Incio",
-    url: `${urlBase}/dentista`,
+    url: `${urlBase}/11`,
     icono: 'home'
   },
   {
     label: "Perfil",
-    url: `${urlBase}/dentista/perfil`,
+    url: `${urlBase}/11/perfil`,
     icono: 'user'
   },
   {
@@ -31,12 +31,12 @@ export const menuDataDentista = [
   },
   {
     label: "Hacer Orden",
-    url: `${urlBase}/dentista/orden`,
+    url: `${urlBase}/11/orden`,
     icono: 'clipboard-list'
   },
   {
     label: "Imprimir Ticket",
-    url: `${urlBase}/dentista/ticket`,
+    url: `${urlBase}/11/ticket`,
     icono: 'dollar-sign'
 
   },

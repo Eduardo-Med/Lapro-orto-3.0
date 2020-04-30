@@ -25,6 +25,7 @@ const HacerOrden = () => {
     formData.append('observaciones', datos.observaciones);
     formData.append('idCliente', cookies.userId);
     const rest = await addOrdenes(formData,cookies.token)
+    window.location.reload(false);
     console.log(rest)
   }
 

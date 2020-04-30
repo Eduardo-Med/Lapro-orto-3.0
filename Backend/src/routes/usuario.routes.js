@@ -1,7 +1,7 @@
 const { Router } = require("express");
 const router = Router();
 const {createUsuario,getUsuarios,updateUsuario,deleteUsuario, getUsuarioByEmail} = require('../controllers/usuario.controlador');
-const verifyToken = require('../middlewares/verifyToken.middleware')
+const verifyToken = require('../middlewares/VerifyToken.middleware')
 
 router
   .route("/")

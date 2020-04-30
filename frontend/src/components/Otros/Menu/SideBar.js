@@ -3,7 +3,7 @@ import { useCookies } from 'react-cookie';
 
 import * as menu from './MenuVerticalD'
 import {getUsersById} from '../../../api/users'
-function SideBar({usuario}) {
+function SideBar() {
     const [isLoading, setIsLoading] = useState(true);
     const [cookies] = useCookies(['cookie-name']);
     const [cliente, setCliente] = useState([]);

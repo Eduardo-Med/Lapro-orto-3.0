@@ -1,7 +1,18 @@
+
+/*
+Clase de controlador del aparato
+En esta clase se encuentran las funciones que se utilizan
+para manejar el modelo de aparatos
+*/
+
 const aparatoCtrl = {};
 const pool = require("../models/database");
 const fs = require("fs");
 
+
+/* 
+Funcion para obtener todos los aparatos de la base de datos
+*/
 
 aparatoCtrl.getAparatos = async (req, res) => {
   try {
@@ -13,7 +24,10 @@ aparatoCtrl.getAparatos = async (req, res) => {
 };
 
 
-
+/* 
+Funcion para la creacion de un nuevo aparato
+*/
+//se utiliza libreria fs para convertir la imagen al formato que entiende la bd
 aparatoCtrl.createAparato = async (req, res) => {
   try {
     const {descripcion} = req.body
@@ -21,13 +35,16 @@ aparatoCtrl.createAparato = async (req, res) => {
     const newAparato = {titulo: originalname,descripcion,imagen: fs.readFileSync(path)};
     
     await pool.query("INSERT INTO APARATO set ?", [newAparato]);
-    res.status(201).json({message: "Aparato agregado correctamente", Aparato: newAparato});
+    res.status(201).json({message: "Aparato agregado correctamente", aparato: newAparato});
   } catch (e) {
     res.status(400).json({code: e.code,message: e.sqlMessage});
   }
 };
-//editar
 
+
+
+//Funcion para editar un aparato
+//se utiliza libreria fs para convertir la imagen al formato que entiende la bd
 aparatoCtrl.updateAparato = async (req, res) => {
     try {
         const {titulo, descripcion, imagen} = req.body
@@ -46,7 +63,7 @@ aparatoCtrl.updateAparato = async (req, res) => {
     
 }
 
-//elminar
+//Funcion para eliminar un aparato por su id
 aparatoCtrl.deleteAparato = async (req, res) => {
     try {
         await pool.query('DELETE FROM APARATO WHERE idAparato = ?', [req.params.idAparato]);
