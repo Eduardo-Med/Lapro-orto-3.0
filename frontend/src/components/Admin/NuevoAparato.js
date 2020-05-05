@@ -27,7 +27,7 @@ export default function NuevoAparato( {enviar} ) {
              </div>
              <div className="registration-body">
                <h3 className="registration-title">Agregar Producto</h3>
-               <form action="" onSubmit={handleSubmit(onSubmit)} className="registration-form">
+               <form action=""  autocomplete="off" onSubmit={handleSubmit(onSubmit)} className="registration-form">
                {errors.titulo 
                        ? <label className="registration-label text-danger" style={{fontSize:"22px"}}>{errors.titulo.message}</label> 
                        : <label className="registration-label">Titulo</label>}

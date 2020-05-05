@@ -1,0 +1,46 @@
+.solictarBody{
+    background: url(https://responsivemart.com/wp-content/uploads/form-header.svg) center center no-repeat;
+    background-size: cover;
+    color: black;
+    padding: 40px 40px;
+    height: auto !important;
+}
+
+.solcitarTitulo{
+    font-size: 28px;
+    font-weight: 300;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.solictarLabel{
+    font-size: 16px;
+    font-weight: bold;
+ 
+    display: inline-block;
+    margin-bottom: 7px;
+}
+
+.solicitarInput{
+    display: block;
+    width: 100%;
+    padding: 12px 7px;
+    font-size: 14px;
+    background: white;
+    color: black;
+    border: 1px solid black;
+    margin-bottom: 13px;
+    letter-spacing: 1px;
+}
+
+.solicitarInput:focus {
+    border-color: #1FD5B9;
+}
+
+.solicitarInput::placeholder{
+    color: black;
+    font-size: medium;
+}
+

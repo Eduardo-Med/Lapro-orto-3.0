@@ -47,7 +47,7 @@ const PaginaPerfil = () => {
   }, [cookies]);
 
   async function editarPer(data){
-    const response = await updateUser(data)
+    const response = await updateUser(data,cookies.token)
     console.log(response)
     window.location.reload(false);
   }

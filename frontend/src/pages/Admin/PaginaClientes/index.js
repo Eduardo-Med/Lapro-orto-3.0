@@ -43,7 +43,7 @@ const PaginaClientes = () => {
   }
 
   async function editarPer(data){
-    const response = await updateUser(data)
+    const response = await updateUser(data,cookies.token)
     console.log(response)
     window.location.reload(false);
   }
@@ -58,7 +58,7 @@ const PaginaClientes = () => {
           <button data-toggle="modal" data-target="#modalRegistro" className="registration-btn">Nuevo Cliente</button>,
           <ListaClientes users={clientes} editar={abrirVentanaEdicion} eliminar={handleDeleteCliente} />,
           <NuevoCliente enviar={enviarDatosFormulario}/>,
-          idCliente ? <EditarCliente usuario={clientes[idCliente]} editar={editarPer}/> : null
+          <EditarCliente usuario={clientes[idCliente]} editar={editarPer}/>
         ]}>
         </Plantilla>      
       )

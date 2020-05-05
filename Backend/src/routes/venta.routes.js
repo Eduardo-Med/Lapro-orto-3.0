@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const router = Router();
-const {createVenta,getVentas} = require('../controllers/venta.controlador');
+const {VentaControlador} = require('../controllers/index');
+const {createVenta,getVentas} = new VentaControlador();
 
 router
   .route("/")

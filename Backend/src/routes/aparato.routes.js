@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const router = Router();
-const {getAparatos,createAparato,updateAparato,deleteAparato} = require('../controllers/aparato.controlador');
+const {AparatoControlador} = require('../controllers/index');
+const {getAparatos,createAparato,updateAparato,deleteAparato} = new AparatoControlador();
 
 router
   .route("/")

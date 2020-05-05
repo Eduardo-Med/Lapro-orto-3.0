@@ -31,7 +31,7 @@ export default class Jumbotron extends Component {
 
   render() {
     return (
-      <div className="row">
+      <div className="row" style={{height: '100vh'}}>
         <div className="jumbotron card card-image imagen-jumbotron">
           <div className="text-white text-center py-5 px-4">
             <div>

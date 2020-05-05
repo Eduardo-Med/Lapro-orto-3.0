@@ -4,7 +4,7 @@ import React from "react";
 export default ({ users, eliminar,editar }) => {
   return (
     <div className="row">
-      <table class="table table-hover table-dark tablaUsuarios">
+      <table className="table table-hover table-dark tablaUsuarios">
         <thead>
           <tr>
             <th scope="col">Nombre</th>
@@ -24,7 +24,10 @@ export default ({ users, eliminar,editar }) => {
                  <td align="right">{user.direccion}</td>
                  <td align="right">{user.telefono}</td>
                  <td align="right">{user.correo}</td>
-                 <td align="right"><button className="btn btn-info btn-sm" data-toggle="modal" data-target="#modalEdicion" onClick={()=>editar(index)}>Editar</button><button className="btn btn-dark btn-sm" onClick={() => eliminar(user.idCliente)}>Eliminar</button></td>
+                 <td align="right">
+                    <button className="btn btn-info btn-sm" data-toggle="modal" data-target="#modalEdicion" onClick={()=>editar(index)}>Editar</button>
+                    <button className="btn btn-dark btn-sm" onClick={() => eliminar(user.idCliente)}>Eliminar</button>
+                  </td>
               </tr>
             ))
           }

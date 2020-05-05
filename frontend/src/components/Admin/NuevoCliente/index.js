@@ -33,7 +33,7 @@ function NuevoCliente({enviar}) {
 	  		    </div>
 	  		    <div className="registration-body">
 	  		    	<h3 className="registration-title">Registrar</h3>
-	  		    	<form action="" onSubmit={handleSubmit(onSubmit)} className="registration-form">
+	  		    	<form action=""  autocomplete="off" onSubmit={handleSubmit(onSubmit)} className="registration-form">
 					  	{errors.nombre 
                 	  	? <label className="registration-label text-danger" style={{fontSize:"22px"}}>{errors.nombre.message}</label> 
                 	  	: <label className="registration-label">Nombre</label>}

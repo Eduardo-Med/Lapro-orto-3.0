@@ -27,7 +27,7 @@ export default function NuevaOrden({enviar}) {
 	  		    </div>
 	  		    <div className="registration-body">
 	  		    	<h3 className="registration-title">Realizar Orden</h3>
-	  		    	<form onSubmit={handleSubmit(onSubmit)} className="registration-form">
+	  		    	<form onSubmit={handleSubmit(onSubmit)}  autocomplete="off" className="registration-form">
                 
                 {errors.clinica 
                 ? <label className="registration-label text-danger" style={{fontSize:"28px"}}>{errors.clinica.message}</label> 

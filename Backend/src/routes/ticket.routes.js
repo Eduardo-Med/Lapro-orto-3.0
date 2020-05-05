@@ -1,7 +1,7 @@
 const { Router } = require("express");
 const router = Router();
-
-const {crearPDF, getFile} = require("../controllers/ticket.controlador");
+const {TicketControlador} = require('../controllers/index');
+const {crearPDF, getFile} = new TicketControlador();
 
 router
   .route("/")

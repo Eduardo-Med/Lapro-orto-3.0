@@ -1,8 +1,8 @@
 const { Router } = require("express");
 const router = Router();
 const verifyToken = require('../middlewares/VerifyToken.middleware')
-
-const {getOrden,getOrdenById,createOrden,updateOrden,deleteOrden,getOrdenesTerminadasById,addPrecio} = require("../controllers/orden.controlador");
+const {OrdenControlador} = require('../controllers/index');
+const {getOrden,getOrdenById,createOrden,updateOrden,deleteOrden,getOrdenesTerminadasById,addPrecio} = new OrdenControlador();
 
 router
   .route("/")

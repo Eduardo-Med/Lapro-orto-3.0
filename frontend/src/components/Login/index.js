@@ -45,7 +45,7 @@ export default function Login() {
       <div className="modal-content">
       
  
-      <div className="login-container">
+      <div  autocomplete="off" className="login-container">
       <button type="button" className="close cerrar" data-dismiss="modal">×</button>
         <img className="logo" src={logo} alt="logo" />
         <h4 className="mt-5 text-danger">{mensajeError}</h4>
