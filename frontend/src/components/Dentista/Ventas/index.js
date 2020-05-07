@@ -1,16 +1,31 @@
 import React, { useState, useEffect } from "react";
 import "./styles.css";
-import { getOrdenesTerminadas } from "../../../api/orders";
-import {crearPDF} from '../../../api/ticket'
+import {getOrdenesTerminadas} from  "../../../api/Orden";
+import {crearPDF} from  "../../../api/Ticket";
 import { useCookies } from 'react-cookie';
 
+
+/**
+ * 
+ * Componente funcional que renderiza la vista de ventas
+ *@constructor
+ *
+ * @returns Codigo HTML
+ */
 function Ventas() {
   const [ordenesTerminadas, setOrdenesTerminadas] = useState([]);
   const [isLoading, setisLoading] = useState(true);
   const [precioTotal, setPrecioTotal] = useState(0);
   const [cookies] = useCookies(['cookie-name']);
   
+
+
   useEffect(() => {
+      
+  /**
+   *Funcion que obtiene las ordenes terminadas del servidor
+   *
+   */
     async function loadOrdenes() {
       const responseOrdenes = await getOrdenesTerminadas(cookies.userId);
       if (responseOrdenes.status === 200) {
@@ -47,7 +62,7 @@ function Ventas() {
                           <div className="row">
                            <div className="item-info-container">
                              <h3>Nombre del producto</h3>
-                             <p>{orden.trabajoRealizar}</p>
+                             <p>{orden.nombreAparato}</p>
                            </div>
                           </div>
                           <div className="row">

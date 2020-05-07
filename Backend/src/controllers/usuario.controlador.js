@@ -60,21 +60,20 @@ class UsuarioControlador {
     async updateUsuario(req,res){
       try {
         const {idCliente,nombre, apellidoPaterno, apellidoMaterno, direccion, telefono, correo, password} = req.body
-        const hash = bcrypt.hashSync(password, saltRounds);
-        console.log(hash)
-        // const cliente = {
-        //     nombre,
-        //     apellidoPaterno,
-        //     apellidoMaterno,
-        //     direccion,
-        //     telefono,
-        //     correo,
-        //     password: await encryptPassword(password),
-        //     fotoPerfil: fs.readFileSync(
-        //       "C:\\Users\\lalit\\Desktop\\lapro-orto-2.0\\Backend\\src\\public\\uploads\\logo.png"
-        //     )
-        // };
-        // await pool.query('UPDATE CLIENTE set ? WHERE idCliente = ?', [cliente,idCliente]);
+
+        const cliente = {
+            nombre,
+            apellidoPaterno,
+            apellidoMaterno,
+            direccion,
+            telefono,
+            correo,
+            password: await encryptPassword(password),
+            fotoPerfil: fs.readFileSync(
+              "C:\\Users\\lalit\\Desktop\\lapro-orto-2.0\\Backend\\src\\public\\uploads\\logo.png"
+            )
+        };
+        await pool.query('UPDATE CLIENTE set ? WHERE idCliente = ?', [cliente,idCliente]);
         res.status(201).json({message: "Usuario Actualizado Correctamente"})
       } catch (error) {
         console.log("as")

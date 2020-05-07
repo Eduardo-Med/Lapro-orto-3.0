@@ -1,8 +1,18 @@
 import React, {useState, useEffect} from "react";
 
-import {getOrdenesTerminadas} from '../../../api/orders'
+import {getOrdenesTerminadas} from "../../../api/Orden";
 import logo from "./logo.png";
 import "./styles.css";
+
+
+
+/**
+ *Componente funcional que renderiza el ticket de las ordenes del cliente
+ *
+ * @constructor
+ * 
+ * @returns Codigo HTML
+ */
 
 function Ticket() {
   const today = new Date();
@@ -11,6 +21,10 @@ function Ticket() {
   const [precioTotal, setPrecioTotal] = useState(0);
 
   useEffect(() => {
+    /**
+    *Funcion que carga la informacion del las orden terminadas
+    *
+    */
     async function loadOrdenes() {
       const responseOrdenes = await getOrdenesTerminadas(3);
       if (responseOrdenes.status === 200) {

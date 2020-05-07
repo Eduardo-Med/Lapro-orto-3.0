@@ -94,6 +94,7 @@ class OrdenControlador{
             await pool.query(`UPDATE heroku_8a0451c7f09a3ab.orden SET precio= ${req.params.precio} WHERE (idOrden = ${req.params.idOrden})`);
             res.status(200).json({message: 'Precio Agregado'})
         } catch (error) {
+            console.log(error)
             res.status(400).json({"message": "A ocurrido un error",error})
         }
     } 

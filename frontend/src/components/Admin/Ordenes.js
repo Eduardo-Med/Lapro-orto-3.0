@@ -1,27 +1,56 @@
 import React, {useState} from "react";
 import * as Estado from "../../consts/estados";
-import { updateEstado } from "../../api/orders";
-import { addVentas } from "../../api/sells";
+import {addVentas} from "../../api/Venta";
+import {notificacionActualizacionOrden} from "../../helpers/crearNotificaciones";
+import {updateEstado} from "../../api/Orden";
 import OrdenTarjeta from './TarjetaOrden'
 import DetallaOrden from "../../components/DetallOrden";
 
 
 
+/**
+ * Componente funcional que se utiliza para renderizar la tabla de las ordenes de trabajo
+ * @constructor
+ * 
+ * 
+ * @param {Object} ordenesPend objeto que contiene la informacion de las ordenes pendientes
+ * @param {Object} ordenesProc objeto que contiene la informacion de las ordenes en proceso
+ * @param {Object} ordenesT objeto que contiene la informacion de las ordenes Terminadas
+ * @param {Object} ordenesC objeto que contiene la informacion de las ordenes pendientes
+ * @param {Object} ordenesPag objeto que contiene la informacion de las ordenes pendientes
+ * @param {Object} ordenesA objeto que contiene la informacion de las ordenes pendientes
+ * @param {Object} usuario objeto que contiene la informacion de las ordenes pendientes
+ * @returns Codigo HTML
+ */
+function Ordenes({ordenesPend,ordenesProc,ordenesT,ordenesC,ordenesPag,ordenesA,usuario}) {
 
-
-export default function Ordenes({ordenesPend,ordenesProc,ordenesT,ordenesC,ordenesPag,ordenesA,usuario}) { 
   const [orden, setOrden] = useState();
 
-  async function cambiarEstado(idOrden, estadoCambiado,precio) {
+
+  /**
+   *Funcion que actuliza el estado de la orden
+   *Si el estado de la orden es pagada se crea la venta en BD
+   * @param {Integer} idOrden Identificador de la orden de trabajo
+   * @param {Integer} estadoCambiado Estado de la orden al que se va cambiar
+   * @param {Integer} precio Precio de la orden
+   */
+  async function cambiarEstado(idOrden, estadoCambiado,precio,idCliente) {
     if(estadoCambiado === Estado.ESTADO_ORDEN_PAGADA){
       await addVentas(idOrden,precio)
+      notificacionActualizacionOrden(idCliente,precio,estadoCambiado)
       window.location.reload(false);
     }
-    await updateEstado(idOrden, estadoCambiado);  
+    await updateEstado(idOrden, estadoCambiado);
+    notificacionActualizacionOrden(idCliente,precio,estadoCambiado)  
     window.location.reload(false);
   }
   
 
+  /**
+   *Funcion que obtiene los detalles de la orden apratir del index
+   * @param {Integer} index Numero de la orden en el arreglo
+   * @param {Integer} estado Numero de estado en el que esta la orden de trabajo
+   */
   const obtenerDetallerOrden = (index,estado)=>{
     switch (estado) {
       case Estado.ESTADO_ORDEN_PENDIENTE:
@@ -47,6 +76,11 @@ export default function Ordenes({ordenesPend,ordenesProc,ordenesT,ordenesC,orden
     }
   }
 
+
+  /**
+   *Funcion que se utiliza para redenrizar las tarjetas de las ordenes
+   * @param {Integer} estado Numero de estado en el que esta la orden de trabajo
+   */
   function rendeOrdenes(estado) {
     if (estado === Estado.ESTADO_ORDEN_PENDIENTE) {
       return ordenesPend.length !== 0 ? (
@@ -174,3 +208,7 @@ export default function Ordenes({ordenesPend,ordenesProc,ordenesT,ordenesC,orden
 
   );
 }
+
+
+
+export default Ordenes

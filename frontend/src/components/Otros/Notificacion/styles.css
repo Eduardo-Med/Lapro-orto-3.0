@@ -1,0 +1,34 @@
+.desshow{
+    display: none !important;
+    justify-content: none !important;
+    align-items: none !important;
+    transition: none !important;
+}
+
+.notificacion{
+    transform: translate3d(-390px, 39px, 0px) !important;
+    top: 0px !important;
+    width: 400px !important;
+    overflow-y: scroll;    
+    height: 500px;
+
+}
+
+.fa-bell:hover{
+    cursor: pointer;
+}
+
+.show{
+    align-items: unset !important;
+}
+
+.numPosition{
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    padding-left: 5px;
+    font-weight: bold;
+    background-color: red;
+    border-radius: 15px;
+    margin-left: 15px;
+}

@@ -14,13 +14,13 @@ const baseUrl = process.env.REACT_APP_BASE_URL
 
 
   /**
-  *Funcion para obtener los aparatos del servidor
+  *Funcion para obtener las notificacion del servidor
   *
   */
-  export async function getAparatos(){
+  export async function getNotificacion(idUsuario){
     try{
       const response = await axios({
-        url: `${baseUrl}/aparato`,
+        url: `${baseUrl}/notificacion/usuario/${idUsuario}`,
         method: 'GET'
       })
       return response
@@ -30,14 +30,14 @@ const baseUrl = process.env.REACT_APP_BASE_URL
   }
 
   /**
-  *Funcion para agregar los aparatos al servidor
+  *Funcion para agregar las notificaciones al servidor
   * @param {Object} data Objecto que contiene la informacion del formulario
   *
   */
-  export async function addAparatos (data){
+  export async function crearNotificacion(data){
     try{
       const response = await axios({
-        url: `${baseUrl}/aparato`,
+        url: `${baseUrl}/notificacion`,
         method: 'POST',
         data,
       heders: {
@@ -50,21 +50,19 @@ const baseUrl = process.env.REACT_APP_BASE_URL
     }
   }
 
-  /**
-  *Funcion para solicitar eliminar un aparato al servidor
-  * @param {Integer} id id del usuario a eliminar
-  *
+/**
+  *Funcion para poner la notificacion en vista
+  * @param {Object} data objecto que contiene la informacion de la notificacion
   */
-  export async function deleteAparato (id){
+  export async function actualizarNotificacion(idNotificacion){
+
     try{
       const response = await axios({
-        url: `${baseUrl}/aparato/${id}`,
-        method: 'DELETE'
+        url: `${baseUrl}/notificacion/${idNotificacion}`,
+        method: 'PUT',
       })
-  
       return response
     }catch(error){
-      console.log(error)
+      return error.response
     }
   }
-

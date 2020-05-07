@@ -1,11 +1,21 @@
 import React, { useState, useCallback } from "react";
 
 import "./styles.css";
-import { iniciarSesion } from "../../api/auth";
+import {iniciarSesion} from "../../api/Autentificacion";
 import { useCookies } from "react-cookie";
 import logo from "./tooth.png";
 
-export default function Login() {
+
+
+
+/**
+ *Componente funcional que renderiza el login y sus funciones
+ *
+ * @constructor
+ * 
+ * @returns Codigo HTML
+ */
+function Login() {
   const [informacion, serInformacion] = useState({});
   const [, setCookie, ] = useCookies(["cookie-name"]);
   const [mensajeError, setMensajeError] = useState('')
@@ -21,6 +31,12 @@ export default function Login() {
     [informacion]
   );
 
+
+  /**
+   *Funcion para iniciar sesion
+   *
+   * @returns{string} Mensaje de resultado
+   */
   async function iniciar() {
     const response = await iniciarSesion(informacion);
     if (response.status === 200) {
@@ -97,3 +113,4 @@ export default function Login() {
   );
 }
 
+export default Login

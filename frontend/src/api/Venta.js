@@ -3,7 +3,7 @@ import axios from 'axios'
 const baseUrl = process.env.REACT_APP_BASE_URL
 
 
-export async function getVentas (){
+  export async function getVentas (){
     try{
       const response = await axios({
         url: `${baseUrl}/venta`,
@@ -15,7 +15,7 @@ export async function getVentas (){
     }
   }
 
-export async function addVentas (idOrden, precioTotal){
+  export async function addVentas (idOrden, precioTotal){
 
     try{
       const response = await axios({
@@ -34,3 +34,5 @@ export async function addVentas (idOrden, precioTotal){
       console.log(error.response)
     }
   }
+
+

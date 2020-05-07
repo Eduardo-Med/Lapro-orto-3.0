@@ -4,7 +4,15 @@ import {useForm} from "react-hook-form";
 import logo from '../../images/logo.png'
 
 
-export default function NuevaOrden({enviar}) {
+/**
+ *Componente funcional que renderiza el formulario de agregar nueva orden
+ *
+ * @constructor
+ * 
+ * @param {Function} enviar funcion que se utiliza para la enviar la informacion del formulario al servidor
+ * @returns Codigo HTML
+ */
+function NuevaOrden({enviar}) {
     const {register, handleSubmit,errors} = useForm({mode: "onChange"})
     const [imagen, setImagen] = useState({});
     
@@ -61,7 +69,7 @@ export default function NuevaOrden({enviar}) {
 
                 {errors.fechaSalida 
                 ? <label className="registration-label text-danger" style={{fontSize:"28px"}}>{errors.fechaEntrada.message}</label> 
-                : <label className="registration-label">Fecha De Salida</label>}
+                : <label className="registration-label">Fecha De Entrada</label>}
                 <input type="date" id="fechaEntrada" name="fechaEntrada" 
                  ref={register({required: {value:true,message:'Este campo es obligatorio'}})} 
                 className="registration-input" placeholder="Fecha Entrada" />
@@ -114,3 +122,5 @@ export default function NuevaOrden({enviar}) {
     
   );
 }
+
+export default NuevaOrden

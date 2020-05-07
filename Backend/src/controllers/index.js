@@ -5,5 +5,6 @@ module.exports = {
     OrdenControlador: require("./orden.controlador"),
     SendEmail: require("./sendemail.controlador"),
     TicketControlador: require("./ticket.controlador"),
-    VentaControlador: require("./venta.controlador")
+    VentaControlador: require("./venta.controlador"),
+    NotifiacionControlador: require("./notificacion.controlador")
 }

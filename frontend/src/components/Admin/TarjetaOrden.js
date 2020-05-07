@@ -1,7 +1,21 @@
 import React, {useState} from "react";
 import * as Estado from "../../consts/estados";
-import {addPrecio} from '../../api/orders'
+import {addPrecio} from "../../api/Orden";
 
+
+
+/**
+ *Componente funcional que renderiza una tarjeta con la informacion de la orden
+ *
+ * @constructor
+ * 
+ * @param {Object} orden Objecto que contiene la informacion de la orden a mostrar en la tarjeta
+ * @param {Integer} tipoOrden Variable que contiene el tipo de la orden
+ * @param {Object} usuario Objecto que contiene la informacion del usuario
+ * @param {Function} cambiarEstado Funcion que se utiliza para cambiar el estado de la orden
+ * @param {Function} obtenerDetallerOrden Funcion que se utiliza pra obtener la informacion de la orden
+ * @returns Codigo HTML
+ */
 function TarjetaOrden({orden, tipoOrden,usuario, cambiarEstado, obtenerDetallerOrden, index}) {
   const [datosForm, setDatosForm] = useState({});
   const [idPendiente, setIdPendiente] = useState("");
@@ -11,12 +25,17 @@ function TarjetaOrden({orden, tipoOrden,usuario, cambiarEstado, obtenerDetallerO
       setDatosForm({...datosForm, [event.target.name]: event.target.value});
   }
 
-
-  async function agregarPrecio(id,precio){
+  /**
+   *Funcion para agregar el preacion a la orden
+   *
+   * @param {Integer} id id de la orden
+   * @param {Integer} precio precio de la orden
+   */
+  async function agregarPrecio(id,precio,idCliente){
     const result = await addPrecio(id,precio)
     console.log(result);
-    cambiarEstado(id, Estado.ESTADO_ORDEN_ACEPTADA)
-    window.location.reload(false);
+    cambiarEstado(id, Estado.ESTADO_ORDEN_ACEPTADA,precio,idCliente)
+    // window.location.reload(false);
   }
 
 
@@ -25,14 +44,14 @@ function TarjetaOrden({orden, tipoOrden,usuario, cambiarEstado, obtenerDetallerO
             if(usuario === 'Admin'){
                 return(
                     <div className="card-body">
-                        <button style={{marginRight: '78px'}} onClick={()=>cambiarEstado(orden.idOrden, Estado.ESTADO_ORDEN_CANCELADA)} className="btn btn-danger">Cancelar</button>
+                        <button style={{marginRight: '78px'}} onClick={()=>cambiarEstado(orden.idOrden, Estado.ESTADO_ORDEN_CANCELADA,0,orden.idCliente)} className="btn btn-danger">Cancelar</button>
                         <button className="btn btn-primary"  data-toggle="modal" data-target="#exampleModal" onClick={()=>setIdPendiente(orden.idOrden)} >Aceptar</button>
                     </div>
                 )
             }else{
                 return(
                     <div className="card-body">
-                        <button style={{marginLeft: '80px'}} onClick={()=>cambiarEstado(orden.idOrden, Estado.ESTADO_ORDEN_CANCELADA)} className="btn btn-danger">Cancelar</button>
+                        <button style={{marginLeft: '80px'}} onClick={()=>cambiarEstado(orden.idOrden, Estado.ESTADO_ORDEN_CANCELADA,0,orden.idCliente)} className="btn btn-danger">Cancelar</button>
                     </div>
                 )
             }
@@ -40,8 +59,8 @@ function TarjetaOrden({orden, tipoOrden,usuario, cambiarEstado, obtenerDetallerO
             if(usuario === 'Dentista'){
                 return(
                     <div className="card-body">
-                        <button style={{marginRight: '78px'}} onClick={()=>cambiarEstado(orden.idOrden, Estado.ESTADO_ORDEN_CANCELADA)} className="btn btn-danger">Cancelar</button>
-                        <button onClick={()=>cambiarEstado(orden.idOrden, Estado.ESTADO_ORDEN_PROCESO)} className="btn btn-primary">Aceptar</button>
+                        <button style={{marginRight: '78px'}} onClick={()=>cambiarEstado(orden.idOrden, Estado.ESTADO_ORDEN_CANCELADA,0,orden.idCliente)} className="btn btn-danger">Cancelar</button>
+                        <button onClick={()=>cambiarEstado(orden.idOrden, Estado.ESTADO_ORDEN_PROCESO,0,orden.idCliente)} className="btn btn-primary">Aceptar</button>
                     </div>
                 )
             }else{
@@ -51,7 +70,7 @@ function TarjetaOrden({orden, tipoOrden,usuario, cambiarEstado, obtenerDetallerO
             if(usuario === 'Admin'){
                 return(
                     <div className="card-body">
-                        <button style={{marginLeft: '80px'}}  onClick={()=>cambiarEstado(orden.idOrden, Estado.ESTADO_ORDEN_TERMINADA)} className="btn btn-primary">Terminar</button>
+                        <button style={{marginLeft: '80px'}}  onClick={()=>cambiarEstado(orden.idOrden, Estado.ESTADO_ORDEN_TERMINADA,0,orden.idCliente)} className="btn btn-primary">Terminar</button>
                     </div>
                 )
             }else{
@@ -61,7 +80,7 @@ function TarjetaOrden({orden, tipoOrden,usuario, cambiarEstado, obtenerDetallerO
             if(usuario === 'Admin'){
                 return (
                 <div className="card-body">
-                        <button style={{marginLeft: '80px'}}  onClick={()=>cambiarEstado(orden.idOrden, Estado.ESTADO_ORDEN_PAGADA, orden.precio)} className="btn btn-primary">Pagada</button>
+                        <button style={{marginLeft: '80px'}}  onClick={()=>cambiarEstado(orden.idOrden, Estado.ESTADO_ORDEN_PAGADA, orden.precio,orden.idCliente)} className="btn btn-primary">Pagada</button>
                 </div>
                 )
             }else{
@@ -114,7 +133,7 @@ function TarjetaOrden({orden, tipoOrden,usuario, cambiarEstado, obtenerDetallerO
       </div>
       <div className="modal-footer">
         <button type="button" className="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="button" className="btn btn-primary" onClick={()=>agregarPrecio(idPendiente,datosForm.precio)}>Aceptar</button>
+        <button type="button" className="btn btn-primary" onClick={()=>agregarPrecio(idPendiente,datosForm.precio,orden.idCliente)}>Aceptar</button>
       </div>
     </div>
   </div>

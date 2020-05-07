@@ -2,23 +2,34 @@ import React , { useState, useEffect } from "react";
 import { Button } from "@material-ui/core";
 import logo from '../../images/logo.png'
 
-const EditarPerfil = ({editar, usuario}) => {
- const [datosForm, setDatosForm] = useState({ idCliente:"", nombre:"", apellidoPaterno:"", apellidoMaterno:"", direccion:"", telefono:"", correo:"", password:""});
-useEffect(() => {
-  if(usuario){
-    console.log(usuario)
-    setDatosForm({
-      idCliente: usuario.idCliente,
-      nombre: usuario.nombre,
-      apellidoPaterno: usuario.apellidoPaterno,
-      apellidoMaterno: usuario.apellidoMaterno,
-      direccion: usuario.direccion,
-      telefono: usuario.telefono,
-      correo: usuario.correo,
-      password: usuario.password
-   })
-  }
-}, [usuario])
+
+
+/**
+ *Componente funcional que renderiza el formulario de editar perfil
+ *
+ * @constructor
+ * 
+ * @param {Function} editar funcion que se utiliza para la edicion del usuario
+ * @param {Object} usuario Objecto que contiene la informacion del usuario
+ * @returns Codigo HTML
+ */
+function EditarPerfil({editar, usuario}){
+  const [datosForm, setDatosForm] = useState({ idCliente:"", nombre:"", apellidoPaterno:"", apellidoMaterno:"", direccion:"", telefono:"", correo:"", password:""});
+  useEffect(() => {
+    if(usuario){
+      console.log(usuario)
+      setDatosForm({
+        idCliente: usuario.idCliente,
+        nombre: usuario.nombre,
+        apellidoPaterno: usuario.apellidoPaterno,
+        apellidoMaterno: usuario.apellidoMaterno,
+        direccion: usuario.direccion,
+        telefono: usuario.telefono,
+        correo: usuario.correo,
+        password: usuario.password
+     })
+    }
+  }, [usuario])
 
 
 

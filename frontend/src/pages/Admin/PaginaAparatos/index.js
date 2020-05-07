@@ -1,16 +1,28 @@
 import React, {useState, useEffect} from 'react'
 import NuevoAparato from '../../../components/Admin/NuevoAparato'
-import {addAparatos,getAparatos } from "../../../api/aparato";
+import {addAparatos,getAparatos} from "../../../api/Aparato";
 import Pagina from "../../../components/Otros/PlantillaPagina";
 import { CircularProgress} from "@material-ui/core";
 import './styles.css'
 
+/**
+ *Componente funcional que renderiza una tarjeta con la informacion de la orden
+ *
+ * @constructor
+ * 
+ * @param {Boolean} needNuevaAparato variable para saber si se necesita el formulario de nuevo aparato
+ * @returns Codigo HTML
+ */
 const PaginaAparatos = ({needNuevaAparato}) => {
     const [isLoading, setIsLoading] = useState(true);
     const [aparatos, setAparatos] = useState([]);
 
     
     useEffect(() => {
+        /**
+        *Funcion para cargar los aparatos desde el servidor cada ves que se entra a la pagina
+        *
+        */
         async function loadAparatos() {
           const response = await getAparatos();
           if (response.status === 200) {
@@ -22,7 +34,11 @@ const PaginaAparatos = ({needNuevaAparato}) => {
       }, []);
 
 
-      
+    /**
+    *Funcion para mandar los datos del formulario al servidor
+    * @param {Object} datos objecto con la informacion del formulario
+    * @param {Object} datosImagen objecto con la informacion de la imagen que se agrego en el formulario
+    */  
     async function enviarDatosFormulario(datos,datosImagen){
         const formData = new FormData();
         formData.append('imagen',datosImagen.imagen,datos.titulo);

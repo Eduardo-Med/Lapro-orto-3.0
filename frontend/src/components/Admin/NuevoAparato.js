@@ -3,9 +3,20 @@ import {useForm} from "react-hook-form";
 
 import logo from '../../images/logo.png'
 
-export default function NuevoAparato( {enviar} ) {
+
+/**
+ *Componente Funcional que despliega formulario de aparatos
+ *Funciona para agregar nuevos aparatos
+ *@constructor
+ * 
+ * @param {Function} enviar funcion para enviar la informacion del formulario al servidor
+ * @returns Codigo HTML 
+ */
+
+function NuevoAparato( {enviar} ) {
   const {register, handleSubmit,errors} = useForm({mode: "onChange"})
     const [imagen, setImagen] = useState({enviar});
+
 
     const handleInputImagenChange = (event) => {
       event.persist();
@@ -55,3 +66,6 @@ export default function NuevoAparato( {enviar} ) {
      </div>
     )
 }
+
+
+export default NuevoAparato

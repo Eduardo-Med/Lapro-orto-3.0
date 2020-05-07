@@ -2,8 +2,20 @@ import axios from 'axios'
 
 const baseUrl = process.env.REACT_APP_BASE_URL
 
+/**
+ *Clase Autentificacion en donde se encuentran las peticiones al servidor
+ *
+ * @constructor
+ * 
+ * @returns Codigo HTML
+ */
 
-export async function iniciarSesion (data){
+  /**
+  *Funcion para iniciar sesion
+  * @param {Object} data Objecto que contiene la informacion del formulario de iniciar sesion
+  *
+  */
+   export async function iniciarSesion (data){
     const {correo,password} = data
     console.log(data)
     try{
@@ -21,3 +33,4 @@ export async function iniciarSesion (data){
       
     }
   }
+

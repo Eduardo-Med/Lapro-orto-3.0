@@ -1,15 +1,28 @@
 import React from "react";
 import NuevaOrden from '../../../components/Dentista/NuevaOrden'
-import {addOrdenes} from '../../../api/orders'
+import {addOrdenes} from "../../../api/Orden";
 import Plantilla from "../../../components/Otros/PlantillaPagina"
 import { useCookies } from 'react-cookie';
 import { accessControlDentisa } from "../../../helpers/accessControlDentisa";
+import { notificacionNuevaOrden } from "../../../helpers/crearNotificaciones";
 
 
-
-const HacerOrden = () => {
+/**
+ *Componente funcional que renderiza la pagina en la que se realiza la orden
+ *
+ * @constructor
+ * 
+ * @returns Codigo HTML
+ */
+function HacerOrden(){
   const [cookies] = useCookies(['cookie-name']);
 
+   /**
+   *Funcion para enviar la informacion del formulario de la orden al servidor
+   *
+   * @param {Object} datos Objecto que contiene la informacion del formulario
+   * @param {Object} datosImagen Objecto que contiene la informacion de la imagen que se agrega en el formulario
+   */
   async function enviarDatosFormulario(datos,datosImagen){
     const formData = new FormData();
     formData.append('imagen',datosImagen.imagen);
@@ -25,6 +38,7 @@ const HacerOrden = () => {
     formData.append('observaciones', datos.observaciones);
     formData.append('idCliente', cookies.userId);
     const rest = await addOrdenes(formData,cookies.token)
+    notificacionNuevaOrden()
     window.location.reload(false);
     console.log(rest)
   }

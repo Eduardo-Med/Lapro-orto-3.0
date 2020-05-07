@@ -2,7 +2,17 @@ import React from 'react'
 import foto from './default.jpg'
 import './styles.css'
 
-export default function infoPerfil({usuario}) {
+
+
+/**
+ *Componente funcional que renderiza la informacion del usuario en el perfil
+ *
+ * @constructor
+ * 
+ * @param {Object} usuario Objecto que contiene la informacion del usuario
+ * @returns Codigo HTML
+ */
+function infoPerfil({usuario}) {
     return (
         <div className="perfil-container row mb-5">
         <div className="perfil-image-container">
@@ -45,3 +55,5 @@ export default function infoPerfil({usuario}) {
     </div>
     )
 }
+
+export default infoPerfil

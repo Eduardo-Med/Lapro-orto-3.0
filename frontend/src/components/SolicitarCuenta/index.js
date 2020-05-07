@@ -1,14 +1,28 @@
 import React, {useState} from 'react'
 import {useForm} from "react-hook-form";
-import {enviarCorreo} from '../../api/sendemail'
+import {enviarCorreo} from "../../api/SendEmail";
 import {mensajeRespuesta} from '../../helpers/respuestas'
 import './styles.css'
 
-export default function SolicitarCuenta() {
+
+
+/**
+ *Componente funcional que renderiza el formulario para solicitar una cuenta
+ *
+ * @constructor
+ * 
+ * @returns Codigo HTML
+ */
+function SolicitarCuenta() {
     const [respuesta, setRespuesta] = useState()
     const [activo, setActivo] = useState(false);
     const {register, handleSubmit,errors} = useForm({mode: "onChange"})
 
+    /**
+    *Funcion para enviar la informacion del formulario al servidor
+    *
+    * @param {Object} data objeto con la informacion del formulario
+    */
     const onSubmit = async (data)=>{
         const response = await enviarCorreo(data)
         setRespuesta(response)
@@ -60,3 +74,5 @@ export default function SolicitarCuenta() {
         </row>
     )
 }
+
+export default SolicitarCuenta

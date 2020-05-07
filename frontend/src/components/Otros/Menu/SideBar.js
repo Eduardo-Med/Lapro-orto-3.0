@@ -1,14 +1,25 @@
 import React, {useEffect,useState} from 'react'
 import { useCookies } from 'react-cookie';
-
+import {getUsersById} from  "../../../api/Usuario";
 import * as menu from './MenuVerticalD'
-import {getUsersById} from '../../../api/users'
+
+/**
+ *Componente funcional que renderiza el header de la pagina
+ *
+ * @constructor
+ * 
+ * @returns Codigo HTML
+ */
 function SideBar() {
     const [isLoading, setIsLoading] = useState(true);
     const [cookies] = useCookies(['cookie-name']);
     const [cliente, setCliente] = useState([]);
 
     useEffect(() => {
+          /**
+          *Funcion que carga la informacion del usuario en el sidebar
+          *
+          */
         async function loadUsuario() {
           const responseUsuario = await getUsersById(cookies.userId,cookies.token);
           if (responseUsuario.status === 200) {

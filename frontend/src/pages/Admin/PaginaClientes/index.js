@@ -7,17 +7,28 @@ import EditarCliente from "../../../components/Dentista/EditarPerfil";
 import { CircularProgress } from "@material-ui/core";
 import { useCookies } from 'react-cookie';
 
-import { getUsers, addUsers, deleteUsers,updateUser } from "../../../api/users";
+import { getUsers, addUsers, deleteUsers,updateUser }   from "../../../api/Usuario";
 import {accessControlAdmin} from '../../../helpers/accessControlAdmin'
 
 
-const PaginaClientes = () => {
+/**
+ *Componente funcional que renderiza la pagina de clientes y sus componentes
+ *
+ * @constructor
+ * 
+ * @returns Codigo HTML
+ */
+function PaginaClientes(){
   const [isLoading, setIsLoading] = useState(false);
   const [clientes, setClientes] = useState([]);
   const [cookies] = useCookies(['cookie-name']);
   const [idCliente, setIdCliente] = useState()
 
   useEffect(() => {
+    /**
+    *Funcion para agregar caragr los usuarios del servidor
+    *
+    */
     async function loadUsuarios() {
       const response = await getUsers();
       if (response.status === 200) {
@@ -28,20 +39,33 @@ const PaginaClientes = () => {
     loadUsuarios();
   }, []);
 
+  /**
+  *Funcion para eliminar usuario
+  * @param {Integer} id id del usuario a eliminar
+  */
   function handleDeleteCliente(id) {
     deleteUsers(id,cookies.token);
     window.location.reload(false);
   }
 
+  /**
+  *Funcion para enviar los datos del formulario al servidor
+  * @param {Object} datos objecto que contiene los datos del formulario
+  */
   function enviarDatosFormulario(datos) {
     addUsers(datos,cookies.token);
     window.location.reload(false);
   }
 
+
   function abrirVentanaEdicion(id){
     setIdCliente(id)
   }
 
+  /**
+  *Funcion para enviar los datos del formulario de edicion al servidor
+  * @param {Object} data objecto que contiene los datos del formulario de edicion
+  */
   async function editarPer(data){
     const response = await updateUser(data,cookies.token)
     console.log(response)

@@ -6,11 +6,18 @@ import InfoPerfil from "../../../components/Dentista/InfoPerfil";
 import EditarPerfil from "../../../components/Dentista/EditarPerfil";
 import OrdenesFiltradas from "../../../components/Admin/Ordenes";
 import './styles.css';
-import { getUsersById, updateUser } from "../../../api/users";
-import { getOrdenesById } from "../../../api/orders";
+import {getUsersById, updateUser} from "../../../api/Usuario";
+import {getOrdenesById} from "../../../api/Orden";
 import { accessControlDentisa } from "../../../helpers/accessControlDentisa";
 
 
+/**
+ *Componente funcional que renderiza la pagina del perfil y sus componentes
+ *
+ * @constructor
+ * 
+ * @returns Codigo HTML
+ */
 const PaginaPerfil = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [cookies] = useCookies(['cookie-name']);
@@ -23,6 +30,10 @@ const PaginaPerfil = () => {
   const [ordenesCancelada, setOrdenesCancelada] = useState([])
 
   useEffect(() => {
+    /**
+    *Funcion para cargar las ordenes y los usuarios del servidor
+    *
+    */
     async function loadUsuariosAndOrdens() {
       const responseUsuario = await getUsersById(cookies.userId,cookies.token);
       const responseOrdenes = await getOrdenesById(cookies.userId);
@@ -46,6 +57,11 @@ const PaginaPerfil = () => {
     loadUsuariosAndOrdens();
   }, [cookies]);
 
+  /**
+  *Funcion para editar el perfil con la informacion del formulario de edicion
+  * @param {Object} data Objecto que contiene la informacion del formulario
+  *
+  */
   async function editarPer(data){
     const response = await updateUser(data,cookies.token)
     console.log(response)

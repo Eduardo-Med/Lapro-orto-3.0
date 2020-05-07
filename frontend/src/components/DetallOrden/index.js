@@ -1,6 +1,17 @@
 import React from 'react'
 import './styles.css'
 
+
+
+/**
+ *Componente funcional que renderiza la ventana de informacion de la orden
+ *
+ * @constructor
+ * 
+ * @param {Function} editar funcion que se utiliza para la edicion del usuario
+ * @param {Object} usuario Objecto que contiene la informacion del usuario
+ * @returns Codigo HTML
+ */
 function DetallaOrden({orden}) {
     return (
         <div className="modal fade" id="ModalDetalles" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

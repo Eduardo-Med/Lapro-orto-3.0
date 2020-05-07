@@ -28,7 +28,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "docs": "jsdoc -c ./.jsdoc.json -R README.md -t ./node_modules/ink-docstrap/template ./source –debug"
+    "docs": "./node_modules/.bin/jsdoc -c jsdoc.json"
   },
   "eslintConfig": {
     "extends": "react-app"

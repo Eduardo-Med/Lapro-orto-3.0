@@ -5,19 +5,16 @@ import {useForm} from "react-hook-form";
 import './styles.css'
 import logo from './../../../images/logo.png'
 
-
 /**
-*retorna el componente funcional del formulario para agregar un nuevo cliente 
-*@class NuevoCliente
-*
-*@param {enviar} funcion para enviar los datos del formulario
-*
-*/
-
-
+ *Componente funcional que contiene el formulario para agregar un nuevo usuario
+ *@constructor
+ *
+ * @param {Function} enviar funcion para enviar la informacion del formulario al servidor
+ * @returns Codigo HTML
+ */
 function NuevoCliente({enviar}) {
-	
   const {register, handleSubmit,errors} = useForm({mode: "onChange"})
+
   const onSubmit =(data)=>{
 	enviar(data)
   }

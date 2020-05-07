@@ -1,7 +1,7 @@
 .show{
     display: flex !important;
     justify-content: center !important;
-    align-items: center !important;
+    align-items: center ;
     transition: .3s ease-in !important;
 }
 

@@ -1,12 +1,19 @@
 import React, { useEffect, useState } from "react";
 import OrdenesFiltradas from "../../../components/Admin/Ordenes";
-import { getOrdenes } from "../../../api/orders";
+import {getOrdenes} from "../../../api/Orden";
 import { accessControlAdmin } from "../../../helpers/accessControlAdmin";
 import Plantilla from "../../../components/Otros/PlantillaPagina"
 import { useCookies } from 'react-cookie';
 
 
-const PaginaOrdenes = () => {
+/**
+ *Componente funcional que renderiza la pagina de Ordenes y sus componentes
+ *
+ * @constructor
+ * 
+ * @returns Codigo HTML
+ */
+function PaginaOrdenes(){
   const [isLoading, setIsLoading] = useState(false);
   const [cookies] = useCookies(['cookie-name']);
   const [ordenesPendiente, setOrdenesPendiente] = useState([]);
@@ -17,6 +24,10 @@ const PaginaOrdenes = () => {
   const [ordenesCancelada, setOrdenesCancelada] = useState([]);
 
   useEffect(() => {
+    /**
+    *Funcion para agregar caragr las ordenes desde el servidor
+    *
+    */
     async function loadOrdenes() {
       const response = await getOrdenes(cookies.token);
       console.log(response)

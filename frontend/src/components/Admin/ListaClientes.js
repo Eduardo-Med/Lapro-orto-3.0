@@ -1,7 +1,17 @@
 import React from "react";
 
 
-export default ({ users, eliminar,editar }) => {
+
+ /**
+ *Componente funcional para desplegar la lista de usuarios
+ *@constructor
+ *
+ * @param {Object} users parametro que contiene los datos de los usuarios
+ * @param {Function} eliminar funcion para eliminar un usuario
+ * @param {Function} editar funcion para la edicion de usuario
+ * @returns Codigo HTML con la tabla de los usuarios
+ */
+function ListaClientes ({ users, eliminar,editar }) {
   return (
     <div className="row">
       <table className="table table-hover table-dark tablaUsuarios">
@@ -36,3 +46,6 @@ export default ({ users, eliminar,editar }) => {
     </div>
   );
 };
+
+
+export default ListaClientes

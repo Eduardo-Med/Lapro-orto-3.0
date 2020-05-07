@@ -2,7 +2,21 @@ import axios from 'axios'
 
 const baseUrl = process.env.REACT_APP_BASE_URL
 
-export async function getUsers (token){
+
+
+/**
+ *Clase Usuario en donde se encuentran las peticiones al servidor del usuario
+ *
+ * @constructor
+ * 
+ * @returns Codigo HTML
+ */
+
+  /**
+  *Funcion para obtener todos los usuarios del servidor
+  * @param {String} token token para saber si esta autentificado
+  */
+ export async function getUsers (token){
     try{
       const response = await axios({
         url: `${baseUrl}/usuario`,
@@ -20,25 +34,34 @@ export async function getUsers (token){
   }
 
 
-  
-export async function getUsersById (id,token){
-  try{
-    const response = await axios({
-      url: `${baseUrl}/usuario/${id}`,
-      method: 'GET',
-      headers: {
-        "Content-Type": 'application/json',
-        "x-access-token": token
-        
-      }
-    })
-    return response
-  }catch(error){
-    return error.response
+  /**
+  *Funcion para obtener los usuarios por id
+  * @param {Integer} id identificador del usuario
+  * @param {String} token token para saber si esta autentificado
+  */
+ export async function getUsersById (id,token){
+    try{
+      const response = await axios({
+        url: `${baseUrl}/usuario/${id}`,
+        method: 'GET',
+        headers: {
+          "Content-Type": 'application/json',
+          "x-access-token": token
+          
+        }
+      })
+      return response
+    }catch(error){
+      return error.response
+    }
   }
-}
 
-export async function addUsers (data,token){
+  /**
+  *Funcion para agregar un usuario en el servidor
+  * @param {Object} data objecto que contiene la informacion del formulario
+  * @param {String} token token para saber si esta autentificado
+  */
+ export async function addUsers (data,token){
     const {nombre,apellidoPaterno,apellidoMaterno,direccion,telefono,correo,password} = data
     try{
       const response = await axios({
@@ -66,7 +89,12 @@ export async function addUsers (data,token){
     }
   }
 
-  export async function updateUser(data,token){
+  /**
+  *Funcion para actualizar un usuario
+  * @param {Object} data objecto que contiene la informacion del formulario
+  * @param {String} token token para saber si esta autentificado
+  */
+ export async function updateUser(data,token){
 
     try{
       const response = await axios({
@@ -85,8 +113,12 @@ export async function addUsers (data,token){
     }
   }
 
-
-  export async function deleteUsers (id,token){
+  /**
+  *Funcion para eliminar un usuario por su id
+  * @param {Integer} id id del usuario a eliminar
+  * @param {String} token token para saber si esta autentificado
+  */
+ export async function deleteUsers (id,token){
     try{
       const response = await axios({
         url: `${baseUrl}/usuario/${id}`,
@@ -104,4 +136,3 @@ export async function addUsers (data,token){
       return error.response
     }
   }
-  
