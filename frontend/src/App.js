@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { withCookies } from 'react-cookie';
 
 
@@ -31,7 +31,7 @@ const [cookies] = useCookies(['cookie-name']);
 
   return(
       <Router>
-        <div>
+        <Switch>
           <Route exact path="/" render={() => <Home cookies={cookies}/>} />
           <Route path="/aparatos" exact render={() => <Aparatos needNuevaAparato={false}/>} />
           <Route path={`/${cookies.userId}/perfil`} exact  render={() => <Perfil cookies={cookies}/>} />
@@ -41,8 +41,8 @@ const [cookies] = useCookies(['cookie-name']);
           <Route path={`/admin/ordenes`} exact component={Ordenes} />
           <Route path={`/${cookies.userId}/ticket`} exact component={PaginaPago} />
           <Route path={`/${cookies.userId}/ticket/imprimir`} exact component={Ticket} />
-          <Route  path='*' exact={true} component={PaginaError} />
-        </div>
+          <Route path='*' component={PaginaError} />
+        </Switch>
       </Router>
   )   
         
