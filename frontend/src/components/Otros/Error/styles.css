@@ -7,11 +7,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: 'Montserrat', sans-serif;;
     font-size: 2vw;
 }
 
 .error-container img {
-    height: 25vw;
     height: 25vw;
 }
