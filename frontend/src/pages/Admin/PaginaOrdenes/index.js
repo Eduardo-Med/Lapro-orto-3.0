@@ -30,7 +30,6 @@ function PaginaOrdenes(){
     */
     async function loadOrdenes() {
       const response = await getOrdenes(cookies.token);
-      console.log(response)
       if (response.status === 200) {
         setOrdenesPendiente(
           response.data.ordenes[0].filter((orden) => orden.estado === 0)

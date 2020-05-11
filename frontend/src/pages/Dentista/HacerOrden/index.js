@@ -37,10 +37,9 @@ function HacerOrden(){
     formData.append('material', datos.material);
     formData.append('observaciones', datos.observaciones);
     formData.append('idCliente', cookies.userId);
-    const rest = await addOrdenes(formData,cookies.token)
+    await addOrdenes(formData,cookies.token)
     notificacionNuevaOrden()
     window.location.reload(false);
-    console.log(rest)
   }
 
   return (

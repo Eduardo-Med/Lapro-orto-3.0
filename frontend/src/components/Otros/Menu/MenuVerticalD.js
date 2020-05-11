@@ -1,9 +1,9 @@
-const urlBase = "http://localhost:3000"
+const urlBase = ""
 
 export const menuData = [
   {
     label: "Inicio",
-    url: `${urlBase}`,
+    url: `${urlBase}/`,
     icono: 'home'
   },
   {

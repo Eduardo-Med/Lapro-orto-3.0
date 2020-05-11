@@ -9,8 +9,6 @@ class SendEmail{
     async enviarCorreo(req, res){
     try {
         const {nameContactanos,correo,telefono,descripcion} = req.body
-        console.log(process.env.CORREO)
-        console.log(process.env.PASSWORD)
         const transporter = nodemailer.createTransport({
             service: 'gmail',
             auth:{
@@ -28,11 +26,8 @@ class SendEmail{
   
       transporter.sendMail(mailOptions, (error, info)=>{
           if(error){
-              console.log(error)
-              console.log(info)
               res.status(500).send(error.message);
           } else{
-              console.log("Correo enviado correctamente")
               res.status(200).jsonp(req.body);
           }
       } )

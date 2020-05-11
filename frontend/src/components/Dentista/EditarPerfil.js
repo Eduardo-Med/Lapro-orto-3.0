@@ -17,7 +17,6 @@ function EditarPerfil({editar, usuario}){
   const [datosForm, setDatosForm] = useState({ idCliente:"", nombre:"", apellidoPaterno:"", apellidoMaterno:"", direccion:"", telefono:"", correo:"", password:""});
   useEffect(() => {
     if(usuario){
-      console.log(usuario)
       setDatosForm({
         idCliente: usuario.idCliente,
         nombre: usuario.nombre,

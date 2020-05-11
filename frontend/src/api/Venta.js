@@ -31,7 +31,7 @@ const baseUrl = process.env.REACT_APP_BASE_URL
       })
       return response
     }catch(error){
-      console.log(error.response)
+      return error.response
     }
   }
 

@@ -43,9 +43,8 @@ const PaginaAparatos = ({needNuevaAparato}) => {
         const formData = new FormData();
         formData.append('imagen',datosImagen.imagen,datos.titulo);
         formData.append('descripcion',datos.descripcion);
-        const rest = await addAparatos(formData)
+        await addAparatos(formData)
         window.location.reload(false);
-        console.log(rest)
       }
 
     

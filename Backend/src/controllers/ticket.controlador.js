@@ -20,7 +20,6 @@ class TicketControlador{
       await browser.close()
       res.sendFile(`${__dirname}/result.pdf`)
       setTimeout(function(){ fs.unlinkSync(`${__dirname}/result.pdf`); }, 3600);
-      console.log("ticket creado")
     } catch (error) {
       res.status(400).json({message: 'A ocurrido un error con la impresion', error})
     }

@@ -1,9 +1,8 @@
 import React from 'react';
-import { render } from '@testing-library/react';
-import App from './App';
+import * as Usuario from './api/Usuario'
 
-test('renders learn react link', () => {
-  const { getByText } = render(<App />);
-  const linkElement = getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
-});
+it("Api testing obtener usuarios", async function(){
+  var data = await Usuario.getUsers();
+  expect(data.data.clientes[0].idCliente).toEqual(11)
+})
+

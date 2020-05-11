@@ -9,10 +9,9 @@ const jwt = require("jsonwebtoken");
 
 class AutentificacionControlador {
 //Funcion para que el usuario pueda iniciar seccion
-  loginUser = async (req, res) => {
+   async loginUser (req, res){
     try {
       const { mail, password } = req.body;
-    
       //Verificar si el usuario existe
       const user = await pool.query(`SELECT * FROM ClIENTE WHERE correo = "${mail}"`);
       if (!user[0]) {

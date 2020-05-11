@@ -43,7 +43,6 @@ const PaginaPerfil = () => {
       }
 
       if (responseOrdenes.status === 200) {
-        console.log(responseOrdenes.data)
         setOrdenesPendiente(responseOrdenes.data.ordenes[0].filter((orden) => orden.estado === 0));
         setOrdenesAceptada(responseOrdenes.data.ordenes[0].filter((orden) => orden.estado === 1));
         setOrdenesProceso(responseOrdenes.data.ordenes[0].filter((orden) => orden.estado === 2));
@@ -63,8 +62,7 @@ const PaginaPerfil = () => {
   *
   */
   async function editarPer(data){
-    const response = await updateUser(data,cookies.token)
-    console.log(response)
+    await updateUser(data,cookies.token)
     window.location.reload(false);
   }
 

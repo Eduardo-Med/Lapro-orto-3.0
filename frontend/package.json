@@ -21,6 +21,8 @@
     "react-router-dom": "^5.1.2"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.7.0",
+    "jest-dom": "^4.0.0",
     "react-scripts": "3.4.1"
   },
   "scripts": {

@@ -32,10 +32,9 @@ function TarjetaOrden({orden, tipoOrden,usuario, cambiarEstado, obtenerDetallerO
    * @param {Integer} precio precio de la orden
    */
   async function agregarPrecio(id,precio,idCliente){
-    const result = await addPrecio(id,precio)
-    console.log(result);
+    await addPrecio(id,precio) 
     cambiarEstado(id, Estado.ESTADO_ORDEN_ACEPTADA,precio,idCliente)
-    // window.location.reload(false);
+    window.location.reload(false);
   }
 
 
@@ -45,7 +44,7 @@ function TarjetaOrden({orden, tipoOrden,usuario, cambiarEstado, obtenerDetallerO
                 return(
                     <div className="card-body">
                         <button style={{marginRight: '78px'}} onClick={()=>cambiarEstado(orden.idOrden, Estado.ESTADO_ORDEN_CANCELADA,0,orden.idCliente)} className="btn btn-danger">Cancelar</button>
-                        <button className="btn btn-primary"  data-toggle="modal" data-target="#exampleModal" onClick={()=>setIdPendiente(orden.idOrden)} >Aceptar</button>
+                        <button className="btn btn-primary"  data-toggle="modal" data-target={`#exampleModal${orden.idOrden}`} onClick={()=>setIdPendiente(orden.idOrden)} >Aceptar</button>
                     </div>
                 )
             }else{
@@ -116,7 +115,7 @@ function TarjetaOrden({orden, tipoOrden,usuario, cambiarEstado, obtenerDetallerO
         <li className="list-group-item">Detalles: <button className="btn btn-primary" data-toggle="modal" data-target="#ModalDetalles" onClick={()=>obtenerDetallerOrden(index,tipoOrden)}>Ver</button> </li>
       </ul>
       
-  <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div className="modal fade" id={`exampleModal${orden.idOrden}`} tabIndex="-1" role="dialog" aria-labelledby={`exampleModal${orden.idOrden}Label`} aria-hidden="true">
   <div className="modal-dialog backgroudncolormodal" role="document">
     <div className="modal-content">
       <div className="modal-header">

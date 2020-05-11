@@ -7,13 +7,14 @@ import Clientes from './pages/Admin/PaginaClientes'
 import Aparatos from './pages/Admin/PaginaAparatos'
 import Ordenes from './pages/Admin/PaginaOrdenes'
 import HacerOrden from './pages/Dentista/HacerOrden'
-import { useCookies } from 'react-cookie';
-
 import Perfil from './pages/Dentista/PaginaPerfil'
 import Home from './pages/Home'
+import PaginaError from './pages/PaginaError'
 import PaginaPago from './pages/Dentista/PaginaPagos'
 import Ticket from './components/Otros/Ticket'
 
+
+import { useCookies } from 'react-cookie';
 
 
 /**
@@ -27,6 +28,7 @@ import Ticket from './components/Otros/Ticket'
 
 const App = () => {
 const [cookies] = useCookies(['cookie-name']);
+
   return(
       <Router>
         <div>
@@ -39,6 +41,7 @@ const [cookies] = useCookies(['cookie-name']);
           <Route path={`/admin/ordenes`} exact component={Ordenes} />
           <Route path={`/${cookies.userId}/ticket`} exact component={PaginaPago} />
           <Route path={`/${cookies.userId}/ticket/imprimir`} exact component={Ticket} />
+          <Route  path='*' exact={true} component={PaginaError} />
         </div>
       </Router>
   )   

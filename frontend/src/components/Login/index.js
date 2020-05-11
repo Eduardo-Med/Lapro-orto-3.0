@@ -18,6 +18,7 @@ import logo from "./tooth.png";
 function Login() {
   const [informacion, serInformacion] = useState({});
   const [, setCookie, ] = useCookies(["cookie-name"]);
+
   const [mensajeError, setMensajeError] = useState('')
 
   const handleInputChange = useCallback(
@@ -43,10 +44,9 @@ function Login() {
       setCookie("token", response.data.token, { path: "/", maxAge: 3600 });
       setCookie("userId", response.data.userId, { path: "/", maxAge: 3600 });
       setCookie("tipoUsuario", response.data.tipoUsuario, {path: "/",maxAge: 3600,});
-      response.data.tipoUsuario !== 'Admin' ? 
-      window.location.href = "http://localhost:3000/11/perfil" :
-      window.location.href = "http://localhost:3000/admin/ordenes"
-      console.log("Inicio de sesion correcto");
+      response.data.tipoUsuario !== 'Admin' ?
+      window.location.href = `/${response.data.userId}/perfil`:
+      window.location.href = "admin/ordenes"
       setMensajeError('')
     } else if (response.status === 404) {
       setMensajeError("El correo no existe");

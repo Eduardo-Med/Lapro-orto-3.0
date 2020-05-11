@@ -13,7 +13,6 @@ export function notificacionNuevaOrden(){
 
 export function notificacionActualizacionOrden(idCliente,precio,estado){
     let data,data2;
-    console.log(idCliente)
     switch (estado) {
         case Estado.ESTADO_ORDEN_PENDIENTE:
          data={

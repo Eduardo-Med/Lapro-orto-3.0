@@ -26,8 +26,6 @@ function Header() {
     async function loadNotificacion() {
       const response = await getNotificacion(cookies.userId);
       if (response.status === 200) {
-        console.log("Notificacion: ")
-        console.log(response.data.notificacion)
         setNotificaciones(response.data.notificacion);
       }
     }    

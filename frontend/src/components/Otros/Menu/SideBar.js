@@ -2,6 +2,7 @@ import React, {useEffect,useState} from 'react'
 import { useCookies } from 'react-cookie';
 import {getUsersById} from  "../../../api/Usuario";
 import * as menu from './MenuVerticalD'
+import {Link} from 'react-router-dom'
 
 /**
  *Componente funcional que renderiza el header de la pagina
@@ -56,19 +57,19 @@ function SideBar() {
         if(cookies.tipoUsuario === 'Admin'){
             return(
                 menu.menuDataAdmin.map((opciones,index) =>(
-                    <a key={index} href={opciones.url}><i className={`fas fa-${opciones.icono}`}></i><span>{opciones.label}</span></a>
+                    <Link to={opciones.url} key={index}><i className={`fas fa-${opciones.icono}`}></i><span>{opciones.label}</span></Link>
                 ))
             )
         }else if(cookies.tipoUsuario === 'Dentista'){
             return(
                 menu.menuDataDentista.map((opciones,index) =>(
-                    <a key={index} href={opciones.url}><i className={`fas fa-${opciones.icono}`}></i><span>{opciones.label}</span></a>
+                    <Link key={index} to={opciones.url}><i className={`fas fa-${opciones.icono}`}></i><span>{opciones.label}</span></Link>
                 ))
             )
         }else{
             return(
                 menu.menuData.map((opciones,index) =>(
-                    <a key={index} href={opciones.url}><i className={`fas fa-${opciones.icono}`}></i><span>{opciones.label}</span></a>
+                    <Link key={index} to={opciones.url}><i className={`fas fa-${opciones.icono}`}></i><span>{opciones.label}</span></Link>
                 ))
             )
         }

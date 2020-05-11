@@ -67,8 +67,7 @@ function PaginaClientes(){
   * @param {Object} data objecto que contiene los datos del formulario de edicion
   */
   async function editarPer(data){
-    const response = await updateUser(data,cookies.token)
-    console.log(response)
+    await updateUser(data,cookies.token)
     window.location.reload(false);
   }
 

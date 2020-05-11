@@ -17,7 +17,6 @@ const baseUrl = process.env.REACT_APP_BASE_URL
   */
    export async function iniciarSesion (data){
     const {correo,password} = data
-    console.log(data)
     try{
       const response = await axios({
         url: `${baseUrl}/authenticate/login`,

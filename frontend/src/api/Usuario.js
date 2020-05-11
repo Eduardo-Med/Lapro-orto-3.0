@@ -28,7 +28,6 @@ const baseUrl = process.env.REACT_APP_BASE_URL
       })
       return response
     }catch(error){
-      console.log(error)
       return error.response
     }
   }
@@ -84,7 +83,6 @@ const baseUrl = process.env.REACT_APP_BASE_URL
       })
       return response
     }catch(error){
-      console.log(error)
       return error.response
     }
   }
@@ -132,7 +130,6 @@ const baseUrl = process.env.REACT_APP_BASE_URL
   
       return response
     }catch(error){
-      console.log(error)
       return error.response
     }
   }

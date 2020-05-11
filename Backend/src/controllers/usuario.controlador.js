@@ -15,9 +15,9 @@ class UsuarioControlador {
       try {
         var clientes = await pool.query("SELECT * FROM CLIENTE");
         clientes.shift();
-        res.status("200").send({clientes});
+        res.status("200").json({clientes});
       } catch (error) {
-        res.status("204").send({message:"A ocurrido un error", error});
+        res.status("204").json({message:"A ocurrido un error", error});
       }
     }
 
@@ -50,7 +50,6 @@ class UsuarioControlador {
         };
         await pool.query("INSERT INTO CLIENTE set ?", [newCliente]);
         res.status(201).json({message: "Usuario agregado correctamente", usuario: newCliente});
-        console.log("Cliente Agregado Correctamente")
       } catch (error) {
         res.status("400").json({code: error.code,message: error.sqlMessage});
       }
@@ -76,7 +75,6 @@ class UsuarioControlador {
         await pool.query('UPDATE CLIENTE set ? WHERE idCliente = ?', [cliente,idCliente]);
         res.status(201).json({message: "Usuario Actualizado Correctamente"})
       } catch (error) {
-        console.log("as")
         res.status("400").json({code: error.code,message: error.sqlMessage});
       }
     }

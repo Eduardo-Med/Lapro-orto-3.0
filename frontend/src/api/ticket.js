@@ -6,7 +6,6 @@ const baseUrl = process.env.REACT_APP_BASE_URL
 
 export async function crearPDF(){
     try{
-      console.log()
       const response = await axios({
         url: `${baseUrl}/ticket`,
         method: 'GET',
@@ -18,6 +17,6 @@ export async function crearPDF(){
       
       return response
     }catch(error){
-      console.log(error.response)
+      return error.response
     }
   }

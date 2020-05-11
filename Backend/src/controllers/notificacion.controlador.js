@@ -28,23 +28,18 @@ class NotifiacionControlador{
               fecha: now,
               idCliente
           };
-          console.log(newNotificacion)
           await pool.query("INSERT INTO NOTIFICACION set ?", [newNotificacion]);
           res.status(201).json({message: "Notificacion realizada correctamente", notificacion: newNotificacion});
         } catch (e) {
-          console.log(e)
           res.status(400).json({code: e.code,message: e.sqlMessage});
         }
       };
 
       async actualizarNotificacion(req, res){
         try {
-          console.log(req.params.idNotificacion)
-    
             await pool.query(`UPDATE NOTIFICACION SET visto = 1 WHERE idNotificacion = ${req.params.idNotificacion}`);
             res.status(201).json("Notificacion Actualizado Correctamente")
         } catch (e) {
-          console.log(e)
             res.status("400").json({code: e.code,message: e.sqlMessage});
         }
   
