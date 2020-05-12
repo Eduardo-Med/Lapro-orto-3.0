@@ -3,7 +3,6 @@ import {useForm} from "react-hook-form";
 import {enviarCorreo} from "../../api/SendEmail";
 import {mensajeRespuesta} from '../../helpers/respuestas'
 import './styles.css'
-import {useHistory} from 'react-router-dom'
 
 
 
@@ -18,10 +17,7 @@ function SolicitarCuenta() {
     const [respuesta, setRespuesta] = useState()
     const [activo, setActivo] = useState(false);
     const {register, handleSubmit,errors} = useForm({mode: "onChange"})
-    let history = useHistory();
-    function pruebas(){
-       history.push(`/aparatos`)
-    }
+
   
     /**
     *Funcion para enviar la informacion del formulario al servidor
@@ -37,7 +33,6 @@ function SolicitarCuenta() {
     return (
         <row className>
             <div className="container-fluid solictarBody">
-            <button onClick={pruebas}>hola</button>
                 <div className="row">
                     <div className="col">
                         <h3 className="solcitarTitulo">Solicitar Cuenta</h3>
