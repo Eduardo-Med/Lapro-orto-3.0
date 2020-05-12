@@ -10,7 +10,7 @@ class VentaControlador{
     } catch (error) {
       res.status("400").json({message: "A ocurrido un error",error});
     }
-  };
+  }
   
   
   
@@ -27,7 +27,7 @@ class VentaControlador{
     } catch (e) {
       res.status("400").json({code: e.code,message: e.sqlMessage});
     }
-  };
+  }
 }
 
 

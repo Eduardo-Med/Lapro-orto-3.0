@@ -45,7 +45,7 @@ function ListaClientes ({ users, eliminar,editar }) {
       </table>
     </div>
   );
-};
+}
 
 
 export default ListaClientes

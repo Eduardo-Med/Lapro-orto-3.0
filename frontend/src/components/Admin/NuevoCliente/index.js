@@ -90,7 +90,7 @@ function NuevoCliente({enviar}) {
      </div>
     </div>
   );
-};
+}
 
 NuevoCliente.propTypes = {
 	enviar: PropTypes.func.isRequired,

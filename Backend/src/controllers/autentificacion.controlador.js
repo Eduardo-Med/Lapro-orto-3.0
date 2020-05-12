@@ -32,7 +32,7 @@ class AutentificacionControlador {
     } catch (error) {
       res.json({message: "A ocurrido un error", error})
     }
-  };
+  }
 }
 
 module.exports = AutentificacionControlador;

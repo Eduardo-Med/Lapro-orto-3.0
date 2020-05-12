@@ -33,7 +33,7 @@ class NotifiacionControlador{
         } catch (e) {
           res.status(400).json({code: e.code,message: e.sqlMessage});
         }
-      };
+      }
 
       async actualizarNotificacion(req, res){
         try {

@@ -36,7 +36,7 @@ class SendEmail{
     } catch (error) {
       res.status(500).json({message: 'A ocurrido un error con el envio del mensaje', error })
     }
-  };
+  }
   
 }
 

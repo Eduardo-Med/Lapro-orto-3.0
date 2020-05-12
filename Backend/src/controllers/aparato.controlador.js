@@ -20,7 +20,7 @@ class AparatoControlador{
     } catch (error) {
       res.status("204").json({message:"A ocurrido un error" , error});
     }
-  };
+  }
 
 
   /* 
@@ -38,7 +38,7 @@ class AparatoControlador{
     } catch (e) {
       res.status(400).json({code: e.code,message: e.sqlMessage});
     }
-  };
+  }
 
 
 
@@ -46,7 +46,7 @@ class AparatoControlador{
   //se utiliza libreria fs para convertir la imagen al formato que entiende la bd
   async updateAparato(req, res){
       try {
-          const {titulo, descripcion, imagen} = req.body
+          const {titulo, descripcion} = req.body
           const newAparato = {
             titulo,
             descripcion,
