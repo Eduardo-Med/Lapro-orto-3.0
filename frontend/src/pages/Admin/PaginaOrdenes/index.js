@@ -3,6 +3,7 @@ import OrdenesFiltradas from "../../../components/Admin/Ordenes";
 import {getOrdenes} from "../../../api/Orden";
 import { accessControlAdmin } from "../../../helpers/accessControlAdmin";
 import Plantilla from "../../../components/Otros/PlantillaPagina"
+import VentanaCargaInformacion from "../../../components/Otros/VentanaCargaInformacion"
 import { useCookies } from 'react-cookie';
 
 
@@ -69,7 +70,7 @@ function PaginaOrdenes(){
         />
       );
     } else {
-      return <div>...Cargando</div>;
+      return <VentanaCargaInformacion/>;
     }
   };
 

@@ -9,6 +9,7 @@ import './styles.css';
 import {getUsersById, updateUser} from "../../../api/Usuario";
 import {getOrdenesById} from "../../../api/Orden";
 import { accessControlDentisa } from "../../../helpers/accessControlDentisa";
+import VentanaCargaInformacion from "../../../components/Otros/VentanaCargaInformacion";
 
 
 /**
@@ -94,7 +95,7 @@ const PaginaPerfil = () => {
           </div>
       );
     } else {
-      return <div>...cargando</div>;
+      return <VentanaCargaInformacion/>;
     }
   }
 

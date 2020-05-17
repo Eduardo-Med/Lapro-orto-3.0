@@ -4,12 +4,12 @@ import NuevoCliente from "../../../components/Admin/NuevoCliente";
 import Plantilla from "../../../components/Otros/PlantillaPagina"
 import EditarCliente from "../../../components/Dentista/EditarPerfil";
 
-import { CircularProgress } from "@material-ui/core";
 import { useCookies } from 'react-cookie';
 
 import { getUsers, addUsers, deleteUsers,updateUser }   from "../../../api/Usuario";
 import { enviarCorreoConfirmacion }   from "../../../api/SendEmail";
 import {accessControlAdmin} from '../../../helpers/accessControlAdmin'
+import VentanaCargaInformacion from "../../../components/Otros/VentanaCargaInformacion";
 
 
 /**
@@ -88,7 +88,7 @@ function PaginaClientes(){
         </Plantilla>      
       )
     } else {
-      return <CircularProgress color="secondary" />;
+      return <VentanaCargaInformacion/>;
     }
   };
 

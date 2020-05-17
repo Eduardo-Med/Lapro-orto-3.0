@@ -3,6 +3,7 @@ import "./styles.css";
 import {getOrdenesTerminadas} from  "../../../api/Orden";
 import {crearPDF} from  "../../../api/Ticket";
 import { useCookies } from 'react-cookie';
+import VentanaCargaInformacion from "../../Otros/VentanaCargaInformacion";
 
 
 /**
@@ -127,7 +128,7 @@ function Ventas() {
         </div>
       );
     } else {
-      return <div>cargando...</div>;
+      return <VentanaCargaInformacion/>;
     }
   }
 

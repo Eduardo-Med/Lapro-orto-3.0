@@ -2,8 +2,8 @@ import React, {useState, useEffect} from 'react'
 import NuevoAparato from '../../../components/Admin/NuevoAparato'
 import {addAparatos,getAparatos} from "../../../api/Aparato";
 import Pagina from "../../../components/Otros/PlantillaPagina";
-import { CircularProgress} from "@material-ui/core";
 import './styles.css'
+import VentanaCargaInformacion from '../../../components/Otros/VentanaCargaInformacion';
 
 /**
  *Componente funcional que renderiza una tarjeta con la informacion de la orden
@@ -82,7 +82,7 @@ const PaginaAparatos = ({needNuevaAparato}) => {
                </div>
             )
         }else{
-            return <CircularProgress />
+            return <VentanaCargaInformacion/>;
         }
     }
     
