@@ -3,7 +3,7 @@ const router = Router();
 const {UsuarioControlador} = require('../controllers/index');
 const verifyToken = require('../middlewares/VerifyToken.middleware')
 
-const {createUsuario,getUsuarios,updateUsuario,deleteUsuario, getUsuarioByEmail} = new UsuarioControlador();
+const {createUsuario,getUsuarios,updateUsuario,deleteUsuario, getUsuarioByEmail,cambiarContrasena} = new UsuarioControlador();
 router
   .route("/")
   .get(getUsuarios)
@@ -14,6 +14,10 @@ router
   .get(verifyToken,getUsuarioByEmail)
   .put(verifyToken,updateUsuario)
   .delete(verifyToken,deleteUsuario);
+
+router
+  .route("/contrasena/:idUsuario")
+  .put(cambiarContrasena)
 
 
 module.exports = router;

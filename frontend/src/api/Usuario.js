@@ -111,6 +111,24 @@ const baseUrl = process.env.REACT_APP_BASE_URL
     }
   }
 
+
+ export async function cambiarContrasena(data){
+
+    try{
+      const response = await axios({
+        url: `${baseUrl}/usuario/contrasena/${data.idCliente}`,
+        method: 'PUT',
+        data,
+        headers: {
+          "Content-Type": 'application/json', 
+        }
+      })
+      return response
+    }catch(error){
+      return error.response
+    }
+  }
+
   /**
   *Funcion para eliminar un usuario por su id
   * @param {Integer} id id del usuario a eliminar

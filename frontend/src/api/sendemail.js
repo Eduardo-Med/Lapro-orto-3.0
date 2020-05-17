@@ -31,3 +31,19 @@ const baseUrl = process.env.REACT_APP_BASE_URL
       return error.response
     }
   }
+  export async function enviarCorreoConfirmacion(data){
+
+    try{
+      const response = await axios({
+        url: `${baseUrl}/sendemail/registro`,
+        method: 'POST',
+        data,
+      heders: {
+        'content-type': 'multipart/form-data'
+    }
+      })
+      return response
+    }catch(error){
+      return error.response
+    }
+  }

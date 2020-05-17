@@ -1,5 +1,6 @@
 import React , { useState, useEffect } from "react";
 import { Button } from "@material-ui/core";
+import {cambiarContrasena} from '../../api/Usuario'
 import logo from '../../images/logo.png'
 
 
@@ -15,6 +16,8 @@ import logo from '../../images/logo.png'
  */
 function EditarPerfil({editar, usuario}){
   const [datosForm, setDatosForm] = useState({ idCliente:"", nombre:"", apellidoPaterno:"", apellidoMaterno:"", direccion:"", telefono:"", correo:"", password:""});
+  const [cambiarContra, setCambiarContra] = useState(false)
+  
   useEffect(() => {
     if(usuario){
       setDatosForm({
@@ -37,6 +40,26 @@ function EditarPerfil({editar, usuario}){
     setDatosForm({...datosForm, [event.target.name]: event.target.value});
  }
 
+ const confirmarContrasena = (datosForm)=>{
+      cambiarContrasena(datosForm)
+      window.location.reload(false);
+ }
+
+
+ const renderContrasena=()=>{
+    if(!cambiarContra){
+      return <button type="button" className="registration-btn-danger" onClick={()=>setCambiarContra(true)}>Cambiar Contraseña</button>
+    }else{
+      return(
+        <div>
+          <label className="registration-label">Contraseña</label>
+          <input value={datosForm.password} name="password" className="registration-input" label="Contraseña" variant="filled" type="password" onChange={handleInputChange} />
+          <button type="button" className="registration-btn-danger" onClick={()=>confirmarContrasena(datosForm)}>Confirmar Contraseña</button>
+        </div>
+      )
+    }
+ }
+
 
   return (
     <div className="modal fade bd-example-modal-lg" id="modalEdicion" tabIndex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -49,7 +72,7 @@ function EditarPerfil({editar, usuario}){
            </div>
            <div className="registration-body">
              <h3 className="registration-title">Editar</h3>
-             <form  className="registration-form">
+             <form  className="registration-form" autoComplete="off">
             
                   <label className="registration-label">Nombre</label>
                   <input  value={datosForm.nombre} className="registration-input" name="nombre" label="Nombre" variant="filled" type="text" onChange={handleInputChange} />
@@ -69,13 +92,12 @@ function EditarPerfil({editar, usuario}){
                   <label className="registration-label">Telefono</label>
                   <input value={datosForm.correo} name="correo" disabled className="registration-input" label="Correo" variant="filled" type="text" onChange={handleInputChange} />
 
-                  <label className="registration-label">Contraseña</label>
-                  <input value={datosForm.password} name="password" className="registration-input" label="Contraseña" variant="filled" type="password" onChange={handleInputChange} />
-
-                    <Button type="button" onClick={() => editar(datosForm)} variant="contained">Enviar </Button>
+                  {renderContrasena()}
+                  
+                    <Button type="button" onClick={() => editar(datosForm)}  className="registration-btn mt-3" variant="contained">Enviar </Button>
                  </form>
            </div>
-         </div>
+         </div> 
         </div>
      </div>
     </div>

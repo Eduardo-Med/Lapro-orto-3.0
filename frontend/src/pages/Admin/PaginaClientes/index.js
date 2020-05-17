@@ -8,6 +8,7 @@ import { CircularProgress } from "@material-ui/core";
 import { useCookies } from 'react-cookie';
 
 import { getUsers, addUsers, deleteUsers,updateUser }   from "../../../api/Usuario";
+import { enviarCorreoConfirmacion }   from "../../../api/SendEmail";
 import {accessControlAdmin} from '../../../helpers/accessControlAdmin'
 
 
@@ -55,6 +56,7 @@ function PaginaClientes(){
   function enviarDatosFormulario(datos) {
     addUsers(datos,cookies.token);
     window.location.reload(false);
+    enviarCorreoConfirmacion(datos)
   }
 
 
@@ -81,7 +83,7 @@ function PaginaClientes(){
           <button data-toggle="modal" data-target="#modalRegistro" className="registration-btn">Nuevo Cliente</button>,
           <ListaClientes users={clientes} editar={abrirVentanaEdicion} eliminar={handleDeleteCliente} />,
           <NuevoCliente enviar={enviarDatosFormulario}/>,
-          <EditarCliente usuario={clientes[idCliente]} editar={editarPer}/>
+          <EditarCliente usuario={clientes[idCliente]} editar={editarPer} ocultar={false}/>
         ]}>
         </Plantilla>      
       )

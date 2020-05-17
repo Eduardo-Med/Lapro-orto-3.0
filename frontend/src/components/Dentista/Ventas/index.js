@@ -15,6 +15,8 @@ import { useCookies } from 'react-cookie';
 function Ventas() {
   const [ordenesTerminadas, setOrdenesTerminadas] = useState([]);
   const [isLoading, setisLoading] = useState(true);
+  const [cargaBoton, setCargaBoton] = useState(false);
+  const [mensaje, setMensaje] = useState('Espere un momento, descargando PDF');
   const [precioTotal, setPrecioTotal] = useState(0);
   const [cookies] = useCookies(['cookie-name']);
   
@@ -36,6 +38,31 @@ function Ventas() {
     }
     loadOrdenes();
   }, [cookies]);
+
+  const imprimirPDF = async ()=>{
+    setCargaBoton(true)
+    var result = await crearPDF();
+
+    if(result.status === 200){  
+      setMensaje('PDF Descargado correctamente')
+    }else{
+      setMensaje('A ocurrido un error al descargar el PDF')
+    }
+
+  }
+
+  const renderBotonEnviar=()=>{
+    if(!cargaBoton){
+        return (
+          <button className="boton" onClick={()=>imprimirPDF()}>Imprimir recibo</button>
+        )
+    }
+    return(
+        <div class="alert alert-info" role="alert">
+              {mensaje}
+        </div>
+    )
+  }
   
 
   function renderOrdenesTerminadas() {
@@ -95,7 +122,7 @@ function Ventas() {
 
           <h1>Precio Total: ${precioTotal}</h1>
           <div className="botones-salida">
-            <button className="boton" onClick={()=>crearPDF()}>Imprimir recibo</button>
+            {renderBotonEnviar()}
           </div>
         </div>
       );

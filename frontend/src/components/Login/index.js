@@ -20,6 +20,7 @@ function Login() {
   const [, setCookie, ] = useCookies(["cookie-name"]);
 
   const [mensajeError, setMensajeError] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
 
   const handleInputChange = useCallback(
     (event) => {
@@ -41,6 +42,7 @@ function Login() {
   async function iniciar() {
     const response = await iniciarSesion(informacion);
     if (response.status === 200) {
+      setIsLoading(true)
       setCookie("token", response.data.token, { path: "/", maxAge: 3600 });
       setCookie("userId", response.data.userId, { path: "/", maxAge: 3600 });
       setCookie("tipoUsuario", response.data.tipoUsuario, {path: "/",maxAge: 3600,});
@@ -55,13 +57,30 @@ function Login() {
     }
   }
 
+
+
+  const renderBotonEnviar=()=>{
+    if(!isLoading){
+        return (
+          <button type="button" onClick={()=>iniciar()} className="btn btn-dark float-left mt-5">
+          Iniciar Sesion
+          </button>
+        )
+    }
+    return(
+        <div class="alert alert-info" role="alert">
+              Espere por favor enviando informacion
+        </div>
+    )
+  }
+
   return (
     <div className="modal fade" id="myModal1">
     <div className="modal-dialog">
       <div className="modal-content">
       
  
-      <div  autocomplete="off" className="login-container">
+      <form  autocomplete="off" className="login-container">
       <button type="button" className="close cerrar" data-dismiss="modal">×</button>
         <img className="logo" src={logo} alt="logo" />
         <h4 className="mt-5 text-danger">{mensajeError}</h4>
@@ -90,9 +109,7 @@ function Login() {
             onChange={handleInputChange}
           />
         </div>
-        <button type="submit" onClick={()=>iniciar()} className="btn btn-dark float-left mt-5">
-              Iniciar Sesion
-          </button>
+            {renderBotonEnviar()}
         <div className="input-container">
          
           <label className="recordar-contraseña-lbl mr-3">
@@ -104,7 +121,7 @@ function Login() {
             ¿Haz olvidado tu contraseña?
           </a>
         </div>
-      </div>
+      </form>
       </div>
     </div>
   </div>

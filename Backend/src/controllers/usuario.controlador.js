@@ -58,23 +58,29 @@ class UsuarioControlador {
     //Funcion para actualizar un usuario
     async updateUsuario(req,res){
       try {
-        const {idCliente,nombre, apellidoPaterno, apellidoMaterno, direccion, telefono, correo, password} = req.body
-
-        const cliente = {
-            nombre,
-            apellidoPaterno,
-            apellidoMaterno,
-            direccion,
-            telefono,
-            correo,
-            password: await encryptPassword(password),
-            fotoPerfil: fs.readFileSync(
-              "C:\\Users\\lalit\\Desktop\\lapro-orto-2.0\\Backend\\src\\public\\uploads\\logo.png"
-            )
-        };
-        await pool.query('UPDATE CLIENTE set ? WHERE idCliente = ?', [cliente,idCliente]);
+        const {idCliente,nombre, apellidoPaterno, apellidoMaterno, direccion, telefono} = req.body
+  
+        await pool.query(`UPDATE CLIENTE set nombre = '${nombre}', apellidoPaterno = '${apellidoPaterno}', 
+                                              apellidoMaterno = '${apellidoMaterno}', direccion = '${direccion}', 
+                                              telefono = '${telefono}' WHERE idCliente = ${idCliente}`);
         res.status(201).json({message: "Usuario Actualizado Correctamente"})
       } catch (error) {
+        res.status("400").json({code: error.code,message: error.sqlMessage});
+      }
+    }
+
+
+
+    //Funcion para actualizar un usuario
+    async cambiarContrasena(req,res){
+      try {
+        const {idCliente, password} = req.body
+        var passwordEncrypt =  await encryptPassword(password)
+        await pool.query(`UPDATE CLIENTE set password = '${passwordEncrypt}' WHERE idCliente = ${idCliente}`);
+        console.log(password)
+        res.status(201).json({message: "Contraseña Cambiada Correctamente"})
+      } catch (error) {
+        console.log(error)
         res.status("400").json({code: error.code,message: error.sqlMessage});
       }
     }

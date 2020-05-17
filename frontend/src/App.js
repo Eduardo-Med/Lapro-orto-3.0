@@ -40,7 +40,7 @@ const [cookies] = useCookies(['cookie-name']);
           <Route path={`/admin/clientes`} exact component={Clientes} />
           <Route path={`/admin/ordenes`} exact component={Ordenes} />
           <Route path={`/${cookies.userId}/ticket`} exact component={PaginaPago} />
-          <Route path={`/${cookies.userId}/ticket/imprimir`} exact component={Ticket} />
+          <Route path={`/dentista/ticket/imprimir`} exact  render={() => <Ticket usuario={cookies}/>} />
           <Route path='*' component={PaginaError} />
         </Switch>
       </Router>

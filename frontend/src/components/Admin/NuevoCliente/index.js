@@ -1,8 +1,9 @@
-import React from "react";
+import React, {useState} from "react";
 import PropTypes from 'prop-types';
 import {useForm} from "react-hook-form";
 
 import './styles.css'
+import {generarContrasena} from '../../../helpers/GenerarContrasena'
 import logo from './../../../images/logo.png'
 
 /**
@@ -14,9 +15,28 @@ import logo from './../../../images/logo.png'
  */
 function NuevoCliente({enviar}) {
   const {register, handleSubmit,errors} = useForm({mode: "onChange"})
-
+  const [isLoading, setIsLoading] = useState(false);
+  const [contraGenearad, setContraGeneradoa] = useState()
   const onSubmit =(data)=>{
+	setIsLoading(true)
 	enviar(data)
+  }
+
+  const contrasenaGenerada=()=>{
+	setContraGeneradoa(generarContrasena())
+  }
+
+  const renderBotonEnviar=()=>{
+	if(!isLoading){
+		return (
+			<button type="submit" className="registration-btn">Agregar Usuario</button>
+		)
+	}
+	return(
+		<div class="alert alert-info" role="alert">
+ 			 Espere por favor enviando informacion
+		</div>
+	)
   }
 
   return (
@@ -77,11 +97,11 @@ function NuevoCliente({enviar}) {
 						{errors.password 
                 	  	? <label className="registration-label text-danger" style={{fontSize:"22px"}}>{errors.password.message}</label> 
                 	  	: <label className="registration-label">Contraseña</label>}
-						<input type="password" id="password" name="password" 
+						<input type="password" disabled id="password" name="password" 
 						ref={register({required: {value:true,message:'Este campo es obligatorio'}})} 
-						className="registration-input" placeholder="Contraseña" />
-
-                		<button type="submit" className="registration-btn">Agregar Usuario</button>
+						className="registration-input" placeholder="Contraseña" value={contraGenearad}/>
+						<button type="button" className="registration-btn" onClick={()=>contrasenaGenerada()}>Generar Contraseña</button>
+                		{renderBotonEnviar()}
                 	</form>
 	  		    </div>
 	  	    </div>

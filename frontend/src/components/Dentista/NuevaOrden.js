@@ -15,16 +15,30 @@ import logo from '../../images/logo.png'
 function NuevaOrden({enviar}) {
     const {register, handleSubmit,errors} = useForm({mode: "onChange"})
     const [imagen, setImagen] = useState({});
-    
+    const [isLoading, setIsLoading] = useState(false)
       const handleInputImagenChange = (event) => {
         event.persist();
         setImagen({...imagen, [event.target.name]: event.target.files[0]});
       }
       
       const onSubmit =(data)=>{
+        setIsLoading(true)
         enviar(data,imagen)
       }
 
+      const renderBotonEnviar=()=>{
+        if(!isLoading){
+            return (
+              <button type="submit" className="registration-btn">Crear Orden</button>
+            )
+        }
+        return(
+            <div class="alert alert-info" role="alert">
+                  Espere por favor enviando informacion
+            </div>
+        )
+      }
+    
       
   return (
     <div className="row">
@@ -113,7 +127,7 @@ function NuevaOrden({enviar}) {
                  ref={register({required: {value:true,message:'Este campo es obligatorio'}})} 
                 className="registration-input" placeholder="Observaciones" />
         
-                <button type="submit" className="registration-btn">Crear Orden</button>
+                {renderBotonEnviar()}
                 </form>
 	  		    </div>
 	  	    </div>

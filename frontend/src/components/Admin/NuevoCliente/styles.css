@@ -218,6 +218,33 @@
     text-transform: uppercase;
     border: none;
     width: 100%;
+    cursor: pointer;
+  }
+
+.registration-btn-dark {
+    display: block;
+    padding: 14px 7px;
+    background: #1a1a1a;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 100;
+    text-transform: uppercase;
+    border: none;
+    width: 100%;
+    cursor: pointer;
+  }
+
+  .registration-btn-danger {
+    display: block;
+    padding: 14px 7px;
+    background: #d51f41;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 100;
+    text-transform: uppercase;
+    border: none;
+    width: 100%;
+    cursor: pointer;
   }
 
   .registrationOrden {

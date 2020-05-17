@@ -16,7 +16,7 @@ import logo from '../../images/logo.png'
 function NuevoAparato( {enviar} ) {
   const {register, handleSubmit,errors} = useForm({mode: "onChange"})
     const [imagen, setImagen] = useState({enviar});
-
+    const [isLoading, setIsLoading] = useState(false)
 
     const handleInputImagenChange = (event) => {
       event.persist();
@@ -24,8 +24,23 @@ function NuevoAparato( {enviar} ) {
     }
 
     const onSubmit =(data)=>{
+      setIsLoading(true)
       enviar(data,imagen)
     }
+
+    const renderBotonEnviar=()=>{
+      if(!isLoading){
+          return (
+            <button type="submit" className="registration-btn">Agregar Aparato</button>
+          )
+      }
+      return(
+          <div class="alert alert-info" role="alert">
+                Espere por favor enviando informacion
+          </div>
+      )
+    }
+  
     
     return (
       <div className="modal fade bd-example-modal-lg" tabIndex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -56,7 +71,7 @@ function NuevoAparato( {enviar} ) {
              <label className="registration-label">Adjuntar Foto</label>
 	  		     <input type="file" id="imagen" name="imagen" className="registration-input" placeholder="Imagen" onChange={handleInputImagenChange}/>
  
-                     <button type="submit" className="registration-btn">Agregar Aparato</button>
+                  {renderBotonEnviar()}
                    </form>
              </div>
            </div>

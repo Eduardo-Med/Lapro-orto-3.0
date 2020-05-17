@@ -14,7 +14,7 @@ import "./styles.css";
  * @returns Codigo HTML
  */
 
-function Ticket() {
+function Ticket({usuario}) {
   const today = new Date();
   const [ordenesTerminadas, setOrdenesTerminadas] = useState([]);
   const [isLoading, setisLoading] = useState(true);
@@ -26,7 +26,7 @@ function Ticket() {
     *
     */
     async function loadOrdenes() {
-      const responseOrdenes = await getOrdenesTerminadas(3);
+      const responseOrdenes = await getOrdenesTerminadas(usuario.userId);
       if (responseOrdenes.status === 200) {
         setOrdenesTerminadas(responseOrdenes.data.ordenes[0]);
         setPrecioTotal(responseOrdenes.data.total);
@@ -35,7 +35,7 @@ function Ticket() {
     }
 
     loadOrdenes();
-  }, []);
+  }, [usuario]);
 
   function renderTicket() {
     if (!isLoading) {

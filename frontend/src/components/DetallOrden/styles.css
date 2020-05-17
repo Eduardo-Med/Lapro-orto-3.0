@@ -1,5 +1,6 @@
 .modalDetalle{
     width: 1000px;
+    margin-top: 50%;
 }
 
 .modalContenedor{
@@ -16,4 +17,29 @@
 .headermodal{
     color:white;
     background: #19212d;
+}
+
+
+#main-container {
+    padding: 3% 10%;
+    
+}
+
+#main-container h1{
+    font-size: 1.5rem;
+}
+
+#imagen-orden {
+    height: 200px;
+    width: 200px;
+
+    border-radius: 40px;
+}
+
+.col-left {
+    margin-right: 30px;   
+}
+
+.col-right {
+    margin-left: 30px;   
 }
