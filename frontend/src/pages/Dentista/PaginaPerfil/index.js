@@ -42,7 +42,7 @@ const PaginaPerfil = () => {
       if (responseUsuario.status === 200) {
         setCliente(responseUsuario.data.cliente[0]);
       }
-
+ 
       if (responseOrdenes.status === 200) {
         setOrdenesPendiente(responseOrdenes.data.ordenes[0].filter((orden) => orden.estado === 0));
         setOrdenesAceptada(responseOrdenes.data.ordenes[0].filter((orden) => orden.estado === 1));
@@ -87,10 +87,7 @@ const PaginaPerfil = () => {
                         usuario={'Dentista'}
                       />
                   </div>
-
-
-
-                  <EditarPerfil usuario={cliente} editar={editarPer}/>
+                  <EditarPerfil usuario={cliente} editar={editarPer} ocultar={true}/>
               </div>            
           </div>
       );

@@ -311,3 +311,11 @@ margin-left: -300px; /* Restamos la mitad de la anchura del objeto con un margin
 		transform: translateY(-48vh) scaleY(4);
 	}
 }
+
+
+
+@media (max-width: 559px) {
+  .acomodarModal{
+    margin-left: 32%;
+  }
+}

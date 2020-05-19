@@ -5,6 +5,7 @@ import {notificacionActualizacionOrden} from "../../helpers/crearNotificaciones"
 import {updateEstado} from "../../api/Orden";
 import OrdenTarjeta from './TarjetaOrden'
 import DetallaOrden from "../../components/DetallOrden";
+import { AlertaEspera } from "../../helpers/AlertaEspera";
 
 
 
@@ -40,9 +41,13 @@ function Ordenes({ordenesPend,ordenesProc,ordenesT,ordenesC,ordenesPag,ordenesA,
       notificacionActualizacionOrden(idCliente,precio,estadoCambiado)
       window.location.reload(false);
     }
-    await updateEstado(idOrden, estadoCambiado);
-    notificacionActualizacionOrden(idCliente,precio,estadoCambiado)  
-    window.location.reload(false);
+    const result = await updateEstado(idOrden, estadoCambiado);
+    AlertaEspera(result.status)
+    if(result.status === 201 ){
+      notificacionActualizacionOrden(idCliente,precio,estadoCambiado)  
+      window.location.reload(false);
+    }
+    
   }
   
 

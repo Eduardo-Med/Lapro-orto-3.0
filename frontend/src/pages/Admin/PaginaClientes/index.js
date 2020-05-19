@@ -63,7 +63,7 @@ function PaginaClientes(){
   function abrirVentanaEdicion(id){
     setIdCliente(id)
   }
-
+ 
   /**
   *Funcion para enviar los datos del formulario de edicion al servidor
   * @param {Object} data objecto que contiene los datos del formulario de edicion
@@ -78,9 +78,9 @@ function PaginaClientes(){
       return (
         <Plantilla contenido={[
           <div className="row OrdenesTitulos">
-          <h3 className="textt">Lista de Clientes</h3>
+          <h3 className="textt ml-5">Lista de Clientes</h3>
           </div>,
-          <button data-toggle="modal" data-target="#modalRegistro" className="registration-btn">Nuevo Cliente</button>,
+          <button data-toggle="modal" data-target="#modalRegistro" className="ml-5 registration-btn">Nuevo Cliente</button>,
           <ListaClientes users={clientes} editar={abrirVentanaEdicion} eliminar={handleDeleteCliente} />,
           <NuevoCliente enviar={enviarDatosFormulario}/>,
           <EditarCliente usuario={clientes[idCliente]} editar={editarPer} ocultar={false}/>

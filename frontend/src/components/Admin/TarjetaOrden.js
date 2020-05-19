@@ -1,7 +1,8 @@
 import React, {useState} from "react";
 import * as Estado from "../../consts/estados";
-import {addPrecio} from "../../api/Orden";
-
+import {addPrecio,deleteOrdenes} from "../../api/Orden";
+import {AlertaEspera} from '../../helpers/AlertaEspera';
+import { useCookies } from "react-cookie";
 
 
 /**
@@ -19,7 +20,7 @@ import {addPrecio} from "../../api/Orden";
 function TarjetaOrden({orden, tipoOrden,usuario, cambiarEstado, obtenerDetallerOrden, index}) {
   const [datosForm, setDatosForm] = useState({});
   const [idPendiente, setIdPendiente] = useState("");
-  
+  const [cookies] = useCookies(["cookie-name"]);
   const handleInputChange = (event) => {
       event.persist();
       setDatosForm({...datosForm, [event.target.name]: event.target.value});
@@ -32,9 +33,18 @@ function TarjetaOrden({orden, tipoOrden,usuario, cambiarEstado, obtenerDetallerO
    * @param {Integer} precio precio de la orden
    */
   async function agregarPrecio(id,precio,idCliente){
-    await addPrecio(id,precio) 
-    cambiarEstado(id, Estado.ESTADO_ORDEN_ACEPTADA,precio,idCliente)
-    window.location.reload(false);
+    const result = await addPrecio(id,precio) 
+    AlertaEspera(result.status)
+    if(result.status === 201){
+      cambiarEstado(id, Estado.ESTADO_ORDEN_ACEPTADA,precio,idCliente)
+      window.location.reload(false);
+    }
+  }
+
+  async function EliminarOrden(idOrden){
+    const result = await deleteOrdenes(idOrden,cookies.token)
+    AlertaEspera(result.status)
+    window.location.reload(false)
   }
 
 
@@ -85,12 +95,22 @@ function TarjetaOrden({orden, tipoOrden,usuario, cambiarEstado, obtenerDetallerO
             }else{
                 return(<div></div>)
             }
-        }else if(tipoOrden === Estado.ESTADO_ORDEN_PAGADA || tipoOrden === Estado.ESTADO_ORDEN_CANCELADA ){
+        }else if(tipoOrden === Estado.ESTADO_ORDEN_PAGADA){
             if(usuario === 'Admin'){
                 return(<div></div>)
             }else{
                 return(<div></div>)
             }
+        }else if(tipoOrden === Estado.ESTADO_ORDEN_CANCELADA){
+          if(usuario === 'Admin'){
+            return(<div></div>)
+          }else{
+            return(
+              <div className="card-body">
+                      <button style={{marginLeft: '80px'}}  onClick={()=>EliminarOrden(orden.idOrden)} className="btn btn-danger">Eliminar</button>
+              </div>
+              )
+        }
         }
   }
 

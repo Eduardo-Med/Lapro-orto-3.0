@@ -1,3 +1,13 @@
+.logo {
+    height: 100px;
+    width: 100px;
+}
+.cerrar{
+    margin-left: 0px;
+    position: relative;
+    left: 140px;
+    bottom: 30px;
+}
 .show{
     display: flex !important;
     justify-content: center !important;
@@ -10,22 +20,6 @@
     border: none !important;
 }
 
-
-.cerrar{
-    
-    margin-left: 0px;
-    position: relative;
-    left: 175px;
-   
-
-}
-
-
-.logo {
-    height: 150px;
-    width: 150px;
-}
-
 .login-container {
     background: #7F7FD5;
     /* fallback for old browsers */
@@ -36,8 +30,8 @@
     border-radius: 30px;
     border: 1px solid black;
     font-family: 'Montserrat', sans-serif;
-    height: 100%;
-    width: 60vh;
+    height: 500px;
+    width: 350px;
     align-items: center;
     display: inline-flex;
     flex-direction: column;
@@ -54,7 +48,7 @@
 }
 
 .info-input {
-    padding: 4% 3%;
+    padding: 2% 1%;
     padding-left: 35px;
     height: 30px;
     
@@ -66,7 +60,7 @@
 }
 
 
-.recordar-contraseña-lbl{
+.recordar-contraseña-lbl {
     color: white;
     font-size: 1.5rem;
     margin-top: 15px;
@@ -78,3 +72,69 @@
     font-size: 1.3rem;
     margin-top: 15px;
 }
+
+
+
+.myButton {
+	background-color:#45a9c7;
+	border-radius:28px;
+	border:1px solid #72badb;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:17px;
+	padding:16px 31px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2f6627;
+}
+.myButton:hover {
+	background-color:#82d3ff;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+
+
+@media (max-width: 600px) {
+
+    .logo {
+        height: 120px;
+        width: 120px;
+    }
+
+    .info-input {
+        width: 70%;
+    }
+
+    .login-container {
+        width: 300px;
+    }
+
+    .cerrar{
+        margin-left: 0px;
+        position: relative;
+        left: 120px;
+        bottom: 20px;
+    }
+
+}       
+
+
+@media (max-width: 361px) {
+    .login-container {
+        width: 300px;
+        margin-left: -5px
+    }
+
+    .cerrar{
+        margin-left: 0px;
+        position: relative;
+        left: 120px;
+        bottom: 20px;
+    }
+}
+
+
+

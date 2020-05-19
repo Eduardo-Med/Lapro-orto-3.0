@@ -78,14 +78,11 @@ function Login() {
     <div className="modal fade" id="myModal1">
     <div className="modal-dialog">
       <div className="modal-content">
-      
- 
       <form  autocomplete="off" className="login-container">
       <button type="button" className="close cerrar" data-dismiss="modal">×</button>
         <img className="logo" src={logo} alt="logo" />
         <h4 className="mt-5 text-danger">{mensajeError}</h4>
         <div className="input-container">
-         
           <i className="fas fa-user mr-2 text-white"></i>
           <input
             className="info-input user-input"
@@ -110,17 +107,6 @@ function Login() {
           />
         </div>
             {renderBotonEnviar()}
-        <div className="input-container">
-         
-          <label className="recordar-contraseña-lbl mr-3">
-            Recordar contraseña
-          </label>
-          <input type="checkbox" />
-
-          <a className="olvidado-contraseña" href="#1">
-            ¿Haz olvidado tu contraseña?
-          </a>
-        </div>
       </form>
       </div>
     </div>

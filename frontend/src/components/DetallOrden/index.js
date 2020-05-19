@@ -62,12 +62,12 @@ function DetallaOrden({orden}) {
     
             <div>
                 <h1>Fecha de salida</h1>
-                <p>{orden.fechaSalida}</p>
+                <p>{orden.fechaSalida.substring(0, 10)}</p>
             </div>
 
             <div>
                 <h1>Fecha de entrada</h1>
-                <p>{orden.fechaEntrada}</p>
+                <p>{orden.fechaEntrada.substring(0, 10)}</p>
             </div>
 
             <div>

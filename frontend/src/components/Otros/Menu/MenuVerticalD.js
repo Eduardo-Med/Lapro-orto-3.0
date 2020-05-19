@@ -15,11 +15,6 @@ export const menuData = [
 
 export const menuDataDentista = [
   {
-    label: "Incio",
-    url: `${urlBase}/11`,
-    icono: 'home'
-  },
-  {
     label: "Perfil",
     url: `${urlBase}/11/perfil`,
     icono: 'user'
@@ -43,11 +38,6 @@ export const menuDataDentista = [
 ];
 
 export const menuDataAdmin = [
-  {
-    label: "Inicio",
-    url: `${urlBase}/admin`,
-    icono: 'home'
-  },
   {
     label: "Aparatos",
     url: `${urlBase}/admin/aparatos`,

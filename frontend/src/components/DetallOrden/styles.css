@@ -9,6 +9,36 @@
     max-width: 1000px !important;
 }
 
+@media (min-width: 722px)  and (max-width: 800px){
+    .modalContenedor{
+        min-height: 175px;
+        width: 80vh !important;
+        max-width: 1000px !important;
+        margin-top: 300px !important;
+    }
+  }
+
+
+  @media  (min-height: 1023px){
+    .modalContenedor{
+        min-height: 175px;
+        width: 80vh !important;
+        max-width: 1000px !important;
+        margin-top: -400px !important;
+    }
+  }
+
+
+@media (max-width: 720px) {
+    .modalContenedor{
+        min-height: 175px;
+        width: 50vh !important;
+        max-width: 1000px !important;
+        margin-top: 400px;
+    }
+  }
+
+
 .fondoModal{
     background: url(https://responsivemart.com/wp-content/uploads/form-header.svg) no-repeat;
     background-size: cover;

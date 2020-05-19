@@ -14,10 +14,10 @@ import logo from '../../images/logo.png'
  * @param {Object} usuario Objecto que contiene la informacion del usuario
  * @returns Codigo HTML
  */
-function EditarPerfil({editar, usuario}){
+function EditarPerfil({editar, usuario,ocultar}){
   const [datosForm, setDatosForm] = useState({ idCliente:"", nombre:"", apellidoPaterno:"", apellidoMaterno:"", direccion:"", telefono:"", correo:"", password:""});
   const [cambiarContra, setCambiarContra] = useState(false)
-  
+
   useEffect(() => {
     if(usuario){
       setDatosForm({
@@ -62,9 +62,9 @@ function EditarPerfil({editar, usuario}){
 
 
   return (
-    <div className="modal fade bd-example-modal-lg" id="modalEdicion" tabIndex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div className="modal fade bd-example-modal-lg" style={{overflowX: 'scroll'}} id="modalEdicion" tabIndex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div className="modal-dialog modal-lg">
-      <div className="modal-content">
+      <div className={`modal-content  + ${!ocultar ? "" : "acomodarModal"}`}>
         <div className="authentication-wrapper">
          <div className="registration">
            <div className="registration-header">

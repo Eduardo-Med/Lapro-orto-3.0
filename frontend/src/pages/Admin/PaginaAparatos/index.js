@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from 'react'
 import NuevoAparato from '../../../components/Admin/NuevoAparato'
-import {addAparatos,getAparatos} from "../../../api/Aparato";
+import {addAparatos,getAparatos,deleteAparato} from "../../../api/Aparato";
 import Pagina from "../../../components/Otros/PlantillaPagina";
 import './styles.css'
+import {AlertaEspera} from '../../../helpers/AlertaEspera';
 import VentanaCargaInformacion from '../../../components/Otros/VentanaCargaInformacion';
 
 /**
@@ -47,6 +48,12 @@ const PaginaAparatos = ({needNuevaAparato}) => {
         window.location.reload(false);
       }
 
+      async function eliminarAparato(idAparato){
+        const result = await deleteAparato(idAparato)
+        AlertaEspera(result.status)
+        window.location.reload(false)
+      }
+
     
       
     const renderAparatos=()=>{
@@ -70,9 +77,21 @@ const PaginaAparatos = ({needNuevaAparato}) => {
                                         <p>
                                             {aparato.descripcion}
                                         </p>
+
                                     </div>
                                     <div className="cardd-image-container">
                                         <img className="cardd-image" src={`data:image/png;base64,${Buffer.from(aparato.imagen).toString("base64")}`} alt={aparato.titulo}/>
+                                    </div>
+                                </div>
+                                <div className="row">
+                                    <div className="col-12">
+                                        {
+                                        needNuevaAparato 
+                                        ?
+                                            <button type="button" className="registration-btn-danger mb-5" onClick={()=>eliminarAparato(aparato.idAparato)}>Eliminar</button>
+                                        :
+                                            null
+                                        }
                                     </div>
                                 </div>
                             </div>
