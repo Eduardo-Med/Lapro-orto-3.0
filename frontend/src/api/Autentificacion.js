@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseUrl = process.env.REACT_APP_BASE_URL
+const baseUrl = 'https://backend-lapro-orto.herokuapp.com/api/v1'
 
 /**
  *Clase Autentificacion en donde se encuentran las peticiones al servidor

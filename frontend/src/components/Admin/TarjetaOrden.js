@@ -3,8 +3,9 @@ import * as Estado from "../../consts/estados";
 import {addPrecio,deleteOrdenes} from "../../api/Orden";
 import {AlertaEspera} from '../../helpers/AlertaEspera';
 import { useCookies } from "react-cookie";
+import Imagen from '../../images/sin-imagen.png'
 
-
+ 
 /**
  *Componente funcional que renderiza una tarjeta con la informacion de la orden
  *
@@ -35,7 +36,7 @@ function TarjetaOrden({orden, tipoOrden,usuario, cambiarEstado, obtenerDetallerO
   async function agregarPrecio(id,precio,idCliente){
     const result = await addPrecio(id,precio) 
     AlertaEspera(result.status)
-    if(result.status === 201){
+    if(result.status === 201 || result.status === 200){
       cambiarEstado(id, Estado.ESTADO_ORDEN_ACEPTADA,precio,idCliente)
       window.location.reload(false);
     }
@@ -119,7 +120,13 @@ function TarjetaOrden({orden, tipoOrden,usuario, cambiarEstado, obtenerDetallerO
 
     <div className="card float-left mr-1 my-5" style={{width: '18rem'}}>
       <div style={{height: '35vh', width: '100%'}}>
-      <img className="card-img-top h-100" src={`data:image/png;base64,${Buffer.from(orden.imagen).toString("base64")}`} alt="Card" />
+        {
+          !orden.imagen ?
+          <img className="card-img-top h-100" src={Imagen} alt="Card" />
+          :
+          <img className="card-img-top h-100" src={`data:image/png;base64,${Buffer.from(orden.imagen).toString("base64")}`} alt="Card" />
+        }
+      
       </div>
       
       <div className="card-body">

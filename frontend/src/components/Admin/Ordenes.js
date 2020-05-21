@@ -38,13 +38,13 @@ function Ordenes({ordenesPend,ordenesProc,ordenesT,ordenesC,ordenesPag,ordenesA,
   async function cambiarEstado(idOrden, estadoCambiado,precio,idCliente) {
     if(estadoCambiado === Estado.ESTADO_ORDEN_PAGADA){
       await addVentas(idOrden,precio)
-      notificacionActualizacionOrden(idCliente,precio,estadoCambiado)
+      await notificacionActualizacionOrden(idCliente,precio,estadoCambiado)
       window.location.reload(false);
     }
     const result = await updateEstado(idOrden, estadoCambiado);
     AlertaEspera(result.status)
     if(result.status === 201 ){
-      notificacionActualizacionOrden(idCliente,precio,estadoCambiado)  
+      await notificacionActualizacionOrden(idCliente,precio,estadoCambiado)  
       window.location.reload(false);
     }
     

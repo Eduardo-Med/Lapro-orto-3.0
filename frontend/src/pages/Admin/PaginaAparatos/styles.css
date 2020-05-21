@@ -39,7 +39,23 @@
 }
 
 
-@media (max-width: 1200px) {  
+@media (max-width: 2500px) {  
+    .cardd {
+        font-size: 0.9rem;
+    }
+
+    .cardds-container {
+        text-align: center;
+    }
+
+    .roww { 
+        align-items: center;
+        display: block;
+    }
+}
+
+
+@media (max-width: 1660px) {  
     .cardd {
         font-size: 0.9rem;
     }
@@ -53,6 +69,7 @@
         display: inline-block;
     }
 }
+
 @media (max-width: 1200px) { 
     .cardd {
         height: 300px;

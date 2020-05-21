@@ -51,8 +51,16 @@ class OrdenControlador{
     //funcion para crear una orden
     async createOrden (req,res){
         try {
-            const {path } = req.file
+            var imagenSubida
             const {clinica, paciente, fechaSalida,doctor,fechaEntrada,trabajoRealizar,color,material,observaciones,nombreAparato,idCliente} = req.body
+            console.log(req.file)
+            if(req.file){
+              const {path} = req.file
+             imagenSubida = path
+            }else{
+              imagenSubida = null
+            }
+
             const newOrden = {
                 clinica, 
                 paciente, 
@@ -63,14 +71,16 @@ class OrdenControlador{
                 trabajoRealizar,
                 color,
                 material,
-                imagen: fs.readFileSync(path),
+                imagen: imagenSubida,
                 observaciones,
                 estado: 0,
                 idCliente
             }
+          console.log(newOrden)
           await pool.query("INSERT INTO ORDEN set ?", [newOrden]);
           res.status(201).json({message: "Aparato agregado correctamente", orden: newOrden});
         } catch (e) {
+          console.log(e)
           res.status(400).json({code: e.code,message: e.sqlMessage});
           }
     } 

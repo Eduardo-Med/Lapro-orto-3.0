@@ -42,7 +42,7 @@ function Header() {
     removeCookie('token', {path: '/'});
     removeCookie('userId', {path: '/'});
     removeCookie('tipoUsuario', {path: '/'});
-    window.location.href = "http://localhost:3000/"
+    window.location.href = "/"
   }
 
   function numeroNotifcaciones(){

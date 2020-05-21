@@ -9,6 +9,7 @@ import './styles.css';
 import {getUsersById, updateUser} from "../../../api/Usuario";
 import {getOrdenesById} from "../../../api/Orden";
 import { accessControlDentisa } from "../../../helpers/accessControlDentisa";
+import {AlertaConfirmacion} from '../../../helpers/AlertaEspera';
 import VentanaCargaInformacion from "../../../components/Otros/VentanaCargaInformacion";
 
 
@@ -63,8 +64,12 @@ const PaginaPerfil = () => {
   *
   */
   async function editarPer(data){
-    await updateUser(data,cookies.token)
-    window.location.reload(false);
+    const response = await updateUser(data,cookies.token)
+    AlertaConfirmacion(response.status, "Actualizando Informacion" )
+    if(response.status === 200 || response.status ===201){
+      window.location.reload(false);
+    }
+    
   }
 
   function renderPerfil() {

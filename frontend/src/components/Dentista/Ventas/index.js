@@ -47,7 +47,7 @@ function Ventas() {
     if(result.status === 200){  
       setMensaje('PDF Descargado correctamente')
     }else{
-      setMensaje('A ocurrido un error al descargar el PDF')
+      setMensaje('A ocurrido un error al descargar el PDF, Intentelo de nuevo mas tarde')
     }
 
   }

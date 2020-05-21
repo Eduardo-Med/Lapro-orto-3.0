@@ -1,6 +1,7 @@
 import React , { useState, useEffect } from "react";
 import { Button } from "@material-ui/core";
 import {cambiarContrasena} from '../../api/Usuario'
+import {AlertaConfirmacion} from '../../helpers/AlertaEspera';
 import logo from '../../images/logo.png'
 
 
@@ -40,9 +41,12 @@ function EditarPerfil({editar, usuario,ocultar}){
     setDatosForm({...datosForm, [event.target.name]: event.target.value});
  }
 
- const confirmarContrasena = (datosForm)=>{
-      cambiarContrasena(datosForm)
-      window.location.reload(false);
+ const confirmarContrasena = async (datosForm)=>{
+      const response = await cambiarContrasena(datosForm)
+      AlertaConfirmacion(response.status, "Actualizando Informacion" )
+      if(response.status === 200 || response.status ===201){
+        window.location.reload(false);
+      }
  }
 
 
@@ -86,10 +90,10 @@ function EditarPerfil({editar, usuario,ocultar}){
                   <label className="registration-label">Direccion</label>
                   <input value={datosForm.direccion} name="direccion" className="registration-input" label="Direccion" variant="filled" type="text" onChange={handleInputChange} />
 
-                  <label className="registration-label">Correo</label>
+                  <label className="registration-label">Telefono</label>
                   <input value={datosForm.telefono} name="telefono" className="registration-input" label="Telefono" variant="filled" type="text" onChange={handleInputChange} />
 
-                  <label className="registration-label">Telefono</label>
+                  <label className="registration-label">Correo</label>
                   <input value={datosForm.correo} name="correo" disabled className="registration-input" label="Correo" variant="filled" type="text" onChange={handleInputChange} />
 
                   {renderContrasena()}

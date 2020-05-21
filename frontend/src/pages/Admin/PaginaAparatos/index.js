@@ -2,8 +2,9 @@ import React, {useState, useEffect} from 'react'
 import NuevoAparato from '../../../components/Admin/NuevoAparato'
 import {addAparatos,getAparatos,deleteAparato} from "../../../api/Aparato";
 import Pagina from "../../../components/Otros/PlantillaPagina";
+import Login from '../../../components/Login'
 import './styles.css'
-import {AlertaEspera} from '../../../helpers/AlertaEspera';
+import {AlertaEspera,AlertaConfirmacion} from '../../../helpers/AlertaEspera';
 import VentanaCargaInformacion from '../../../components/Otros/VentanaCargaInformacion';
 
 /**
@@ -44,14 +45,19 @@ const PaginaAparatos = ({needNuevaAparato}) => {
         const formData = new FormData();
         formData.append('imagen',datosImagen.imagen,datos.titulo);
         formData.append('descripcion',datos.descripcion);
-        await addAparatos(formData)
-        window.location.reload(false);
+        const response = await addAparatos(formData)
+        AlertaConfirmacion(response.status, "Enviando Informacion" )
+        if(response.status === 200 || response.status ===201){
+          window.location.reload(false);
+        }
       }
 
       async function eliminarAparato(idAparato){
         const result = await deleteAparato(idAparato)
         AlertaEspera(result.status)
-        window.location.reload(false)
+        if(result.status === 200 || result.status ===201){
+          window.location.reload(false);
+        }
       }
 
     
@@ -71,7 +77,7 @@ const PaginaAparatos = ({needNuevaAparato}) => {
                     {
                         aparatos.map((aparato, index)=>(
                             <div className="roww" key={index} >
-                                <div className="cardd">
+                                <div className="cardd ">
                                     <div className="cardd-info-container">
                                         <h2>{aparato.titulo}</h2>
                                         <p>
@@ -83,8 +89,8 @@ const PaginaAparatos = ({needNuevaAparato}) => {
                                         <img className="cardd-image" src={`data:image/png;base64,${Buffer.from(aparato.imagen).toString("base64")}`} alt={aparato.titulo}/>
                                     </div>
                                 </div>
-                                <div className="row">
-                                    <div className="col-12">
+                                <div className="row justify-content-center">
+                                    <div className="col-6">
                                         {
                                         needNuevaAparato 
                                         ?
@@ -98,6 +104,7 @@ const PaginaAparatos = ({needNuevaAparato}) => {
                         ))
                     }
                    </div>
+                   <Login/>
                </div>
             )
         }else{

@@ -5,7 +5,7 @@ import Plantilla from "../../../components/Otros/PlantillaPagina"
 import { useCookies } from 'react-cookie';
 import { accessControlDentisa } from "../../../helpers/accessControlDentisa";
 import { notificacionNuevaOrden } from "../../../helpers/crearNotificaciones";
-
+import {AlertaConfirmacion} from '../../../helpers/AlertaEspera'
 
 /**
  *Componente funcional que renderiza la pagina en la que se realiza la orden
@@ -37,9 +37,13 @@ function HacerOrden(){
     formData.append('material', datos.material);
     formData.append('observaciones', datos.observaciones);
     formData.append('idCliente', cookies.userId);
-    await addOrdenes(formData,cookies.token)
-    notificacionNuevaOrden()
-    window.location.reload(false);
+    const response = await addOrdenes(formData,cookies.token)
+    AlertaConfirmacion(response.status, "Enviando Inforamacion" )
+    if(response.status === 200 || response.status ===201){
+      notificacionNuevaOrden()
+      window.location.reload(false);
+    }
+
   }
 
   return (

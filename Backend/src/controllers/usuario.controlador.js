@@ -43,10 +43,7 @@ class UsuarioControlador {
           telefono,
           correo,
           tipoUsuario:"Dentista",
-          password: await encryptPassword(password),
-          fotoPerfil: fs.readFileSync(
-            "C:\\Users\\lalit\\Desktop\\lapro-orto-2.0\\Backend\\src\\public\\uploads\\logo.png"
-          )
+          password: await encryptPassword(password)
         };
         await pool.query("INSERT INTO CLIENTE set ?", [newCliente]);
         res.status(201).json({message: "Usuario agregado correctamente", usuario: newCliente});

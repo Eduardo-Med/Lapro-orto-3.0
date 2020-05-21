@@ -3,13 +3,14 @@ import { useCookies } from 'react-cookie';
 import {getUsersById} from  "../../../api/Usuario";
 import * as menu from './MenuVerticalD'
 import {Link} from 'react-router-dom'
+import foto from '../../../images/logo.png'
 
 /**
  *Componente funcional que renderiza el header de la pagina
  *
  * @constructor
  * 
- * @returns Codigo HTML
+ * @returns Codigo HTML 
  */
 function SideBar() {
     const [isLoading, setIsLoading] = useState(true);
@@ -39,7 +40,7 @@ function SideBar() {
             return (
                 <center>
                 <img src=""  alt=""/>
-                <img className="profile_image" src={`data:image/png;base64,${Buffer.from(cliente.fotoPerfil).toString("base64")}`} alt="perfil"/>
+                <img className="profile_image" src={foto} alt="perfil"/>
                 <h4>{cliente.nombre}</h4>
                </center>
             )
@@ -55,7 +56,7 @@ function SideBar() {
 
     function renderOpciones(){
         if(cookies.tipoUsuario === 'Admin'){
-            return(
+            return( 
                 menu.menuDataAdmin.map((opciones,index) =>(
                     <Link to={opciones.url} key={index}><i className={`fas fa-${opciones.icono}`}></i><span>{opciones.label}</span></Link>
                 ))
@@ -63,7 +64,10 @@ function SideBar() {
         }else if(cookies.tipoUsuario === 'Dentista'){
             return(
                 menu.menuDataDentista.map((opciones,index) =>(
-                    <Link key={index} to={opciones.url}><i className={`fas fa-${opciones.icono}`}></i><span>{opciones.label}</span></Link>
+                    opciones.icono === "tooth" ?
+                    <Link to={opciones.url} key={index}><i className={`fas fa-${opciones.icono}`}></i><span>{opciones.label}</span></Link>
+                    :
+                    <Link key={index} to={`/${cookies.userId}${opciones.url}`}><i className={`fas fa-${opciones.icono}`}></i><span>{opciones.label}</span></Link>
                 ))
             )
         }else{

@@ -1,17 +1,19 @@
 import {crearNotificacion} from '../api/Notificacion'
 import * as Estado from '../consts/estados'
-export function notificacionNuevaOrden(){
+
+
+export async function notificacionNuevaOrden(){
     const data={
         idCliente:1,
         detalles:"Se a creado una nueva orden de trabajo",
         enlace:'www.google.com'
     }
 
-    crearNotificacion(data)
+    await crearNotificacion(data)
 }
 
 
-export function notificacionActualizacionOrden(idCliente,precio,estado){
+export async function notificacionActualizacionOrden(idCliente,precio,estado){
     let data,data2;
     switch (estado) {
         case Estado.ESTADO_ORDEN_PENDIENTE:
@@ -64,8 +66,8 @@ export function notificacionActualizacionOrden(idCliente,precio,estado){
         default:
           break;
       }
-    crearNotificacion(data)
+    await crearNotificacion(data)
     if(estado === Estado.ESTADO_ORDEN_PROCESO){
-        crearNotificacion(data2)
+        await crearNotificacion(data2)
     }
 }

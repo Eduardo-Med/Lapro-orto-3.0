@@ -1,5 +1,5 @@
 import React from 'react'
-import foto from './default.jpg'
+import foto from '../../images/logo.png'
 import './styles.css'
 
 
@@ -14,7 +14,7 @@ import './styles.css'
  */
 function infoPerfil({usuario}) {
     return (
-        <div className="perfil-container row mb-5">
+        <div className="perfil-container row mb-2">
         <div className="perfil-image-container">
             <img className="perfil-image" src={foto} alt="profile"/>
         </div>

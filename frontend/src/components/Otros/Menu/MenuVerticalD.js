@@ -3,12 +3,12 @@ const urlBase = ""
 export const menuData = [
   {
     label: "Inicio",
-    url: `${urlBase}/`,
+    url: `/`,
     icono: 'home'
   },
   {
     label: "Aparatos",
-    url: `${urlBase}/aparatos`,
+    url: `$/aparatos`,
     icono: 'tooth'
   },
 ];
@@ -16,22 +16,22 @@ export const menuData = [
 export const menuDataDentista = [
   {
     label: "Perfil",
-    url: `${urlBase}/11/perfil`,
+    url: `/perfil`,
     icono: 'user'
   },
   {
     label: "Aparatos",
-    url: `${urlBase}/aparatos`,
+    url: `/aparatos`,
     icono: 'tooth'
   },
   {
     label: "Hacer Orden",
-    url: `${urlBase}/11/orden`,
+    url: `/orden`,
     icono: 'clipboard-list'
   },
   {
     label: "Imprimir Ticket",
-    url: `${urlBase}/11/ticket`,
+    url: `/ticket`,
     icono: 'dollar-sign'
 
   },

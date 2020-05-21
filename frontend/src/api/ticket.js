@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { saveAs } from 'file-saver';
 
-const baseUrl = process.env.REACT_APP_BASE_URL
+const baseUrl = 'https://backend-lapro-orto.herokuapp.com/api/v1'
 
 
 export async function crearPDF(){

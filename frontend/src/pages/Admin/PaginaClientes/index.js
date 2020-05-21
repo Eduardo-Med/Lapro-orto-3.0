@@ -9,6 +9,7 @@ import { useCookies } from 'react-cookie';
 import { getUsers, addUsers, deleteUsers,updateUser }   from "../../../api/Usuario";
 import { enviarCorreoConfirmacion }   from "../../../api/SendEmail";
 import {accessControlAdmin} from '../../../helpers/accessControlAdmin'
+import {AlertaConfirmacion} from '../../../helpers/AlertaEspera'
 import VentanaCargaInformacion from "../../../components/Otros/VentanaCargaInformacion";
 
 
@@ -40,23 +41,31 @@ function PaginaClientes(){
     loadUsuarios();
   }, []);
 
+
   /**
   *Funcion para eliminar usuario
   * @param {Integer} id id del usuario a eliminar
   */
-  function handleDeleteCliente(id) {
-    deleteUsers(id,cookies.token);
-    window.location.reload(false);
+  async function handleDeleteCliente(id) {
+    const response = await deleteUsers(id,cookies.token);
+    AlertaConfirmacion(response.status, "Eliminando Usuario" )
+    if(response.status === 200 || response.status ===201){
+      window.location.reload(false);
+    }
   }
 
   /**
   *Funcion para enviar los datos del formulario al servidor
   * @param {Object} datos objecto que contiene los datos del formulario
   */
-  function enviarDatosFormulario(datos) {
-    addUsers(datos,cookies.token);
-    window.location.reload(false);
-    enviarCorreoConfirmacion(datos)
+  async function enviarDatosFormulario(datos) { 
+    const response = await addUsers(datos,cookies.token);
+    AlertaConfirmacion(response.status, "Enviando Inforamacion" )
+    if(response.status === 200 || response.status ===201){
+     await enviarCorreoConfirmacion(datos)
+      window.location.reload(false);
+    }
+
   }
 
 
@@ -69,8 +78,11 @@ function PaginaClientes(){
   * @param {Object} data objecto que contiene los datos del formulario de edicion
   */
   async function editarPer(data){
-    await updateUser(data,cookies.token)
-    window.location.reload(false);
+    const response = await updateUser(data,cookies.token)
+    AlertaConfirmacion(response.status, "Actualizando Inforamacion" )
+    if(response.status === 200 || response.status ===201){
+      window.location.reload(false);
+    }
   }
 
   const renderClientes = () => {
