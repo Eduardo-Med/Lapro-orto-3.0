@@ -27,13 +27,48 @@ box-shadow: 17px 16px 28px -16px rgba(0,0,0,0.75);
 
 
 
-.division .nav a:hover{
+.division .nav .pendite:hover{
     background-color: #17a2b8!important;
     transition: 0.9s;
     transition-property: background;
 
 }
 
+.division .nav .aceptada:hover{
+    background-color: #c5ec19!important;
+    transition: 0.9s;
+    transition-property: background;
+
+}
+
+.division .nav .proceso:hover{
+    background-color: #f5be3e!important;
+    transition: 0.9s;
+    transition-property: background;
+
+}
+
+.division .nav .terminada:hover{
+    background-color: #34c771!important;
+    transition: 0.9s;
+    transition-property: background;
+
+}
+
+.division .nav .pagada:hover{
+    background-color: #ebebeb!important;
+    transition: 0.9s;
+    color:black!important;
+    transition-property: background;
+
+}
+
+.division .nav .cancelada:hover{
+    background-color: #d43c3c!important;
+    transition: 0.9s;
+    transition-property: background;
+
+}
 .fondo2{
     background: url(https://responsivemart.com/wp-content/uploads/form-header.svg) no-repeat;
     background-size: cover;

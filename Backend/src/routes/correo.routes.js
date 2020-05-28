@@ -1,7 +1,7 @@
 const { Router } = require("express");
 const router = Router();
-const {SendEmail} = require('../controllers/index');
-const {enviarCorreo,correoConfirmacion} = new SendEmail();
+const {CorreoControlador} = require('../controllers/index');
+const {enviarCorreo,correoConfirmacion} = new CorreoControlador();
 
 router
   .route("/")

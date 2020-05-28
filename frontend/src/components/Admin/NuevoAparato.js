@@ -25,6 +25,7 @@ function NuevoAparato( {enviar} ) {
 
     const onSubmit =(data)=>{
       setIsLoading(true)
+      setTimeout(function(){ setIsLoading(false) },5000)
       enviar(data,imagen)
     }
 
@@ -56,26 +57,33 @@ function NuevoAparato( {enviar} ) {
                <form action=""  autocomplete="off" onSubmit={handleSubmit(onSubmit)} className="registration-form">
                {errors.titulo 
                        ? <label className="registration-label text-danger" style={{fontSize:"22px"}}>{errors.titulo.message}</label> 
-                       : <label className="registration-label">Titulo</label>}
+                       : <label className="registration-label">Titulo *</label>}
              <input type="text" id="titulo" name="titulo"
-             ref={register({required: {value:true,message:'Este campo es obligatorio'}})} 
+             ref={register({required: {value:true,message:'Este campo es obligatorio'}, 
+             maxLength : {value: 74,message: 'caracteres maximo 74'},
+             minLength : {value: 3,message: 'Caracteres minmos  3'  } })} 
              className="registration-input"  placeholder="Titulo" />
  
              {errors.descripcion 
                        ? <label className="registration-label text-danger" style={{fontSize:"22px"}}>{errors.descripcion.message}</label> 
-                       : <label className="registration-label">Descrpicion</label>}
+                       : <label className="registration-label">Descrpicion *</label>}
              <textarea type="text" id="descripcion" name="descripcion" 
-             ref={register({required: {value:true,message:'Este campo es obligatorio'}})} 
+             ref={register({required: {value:true,message:'Este campo es obligatorio'}, 
+                            maxLength : {value: 650,message: 'caracteres maximo 120'},
+                            minLength : {value: 8,message: 'Caracteres minmos  8'  } })} 
+                            
              className="registration-input"  placeholder="Descripcion" />
              
-             <label className="registration-label">Adjuntar Foto</label>
-	  		     <input type="file" id="imagen" name="imagen" className="registration-input" placeholder="Imagen" onChange={handleInputImagenChange}/>
+             {errors.imagen 
+                       ? <label className="registration-label text-danger" style={{fontSize:"22px"}}>{errors.imagen.message}</label> 
+                       : <label className="registration-label">Adjuntar Foto *</label>}
+	  		     <input type="file" id="imagen" accept=".jpg,.png,.jpng" name="imagen"  ref={register({required: {value:true,message:'Este campo es obligatorio'}})}  className="registration-input" placeholder="Imagen" onChange={handleInputImagenChange}/>
  
                   {renderBotonEnviar()}
                    </form>
              </div>
            </div>
-          </div>
+          </div> 
        </div>
       </div>
      </div>

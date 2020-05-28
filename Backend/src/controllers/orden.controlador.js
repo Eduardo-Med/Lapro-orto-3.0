@@ -56,14 +56,14 @@ class OrdenControlador{
             console.log(req.file)
             if(req.file){
               const {path} = req.file
-             imagenSubida = path
+             imagenSubida = fs.readFileSync(path)
             }else{
               imagenSubida = null
             }
-
+ 
             const newOrden = {
                 clinica, 
-                paciente, 
+                paciente,  
                 fechaSalida,
                 doctor,
                 fechaEntrada,
@@ -87,7 +87,7 @@ class OrdenControlador{
 
 
     //funcion para actualizar una orden
-    async updateOrden (req,res){
+    async cambiarEstado (req,res){
         try {
             const {idOrden,estado} = req.params
             await pool.query(`UPDATE ORDEN SET estado = ${estado} WHERE (idOrden = ${idOrden})`);

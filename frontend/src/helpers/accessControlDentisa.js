@@ -17,3 +17,19 @@ export const accessControlDentisa = (WrappepComponent) =>{
     }
     return SecuredControl
 }
+
+export const accessControlDentisaAdmin = (WrappepComponent) =>{
+    const SecuredControl = ({...props})=>{ 
+        const [cookies] = useCookies(['cookie-name']);
+        if(!cookies.token){
+            return <PaginaPermiso></PaginaPermiso>
+        }else{
+            if(cookies.tipoUsuario === 'Dentista' || cookies.tipoUsuario === 'Admin'){
+                return <div><WrappepComponent {...props} /></div>
+            }else{
+                return <PaginaPermiso></PaginaPermiso>
+            }   
+        }
+    }
+    return SecuredControl
+}

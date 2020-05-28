@@ -72,6 +72,11 @@ p {
     text-align: right;
 }
 
+.botones-salida{
+    margin-top: 10px;
+    text-align: center;
+}
+
 .boton {
     background-color:#5c87d1;
 	border-radius:28px;

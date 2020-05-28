@@ -38,13 +38,12 @@ const [cookies] = useCookies(['cookie-name']);
           <Route path={`/${cookies.userId}/orden`} exact component={HacerOrden} />
           <Route path={`/admin/aparatos`} exact render={() => <Aparatos needNuevaAparato={true}/>} />
           <Route path={`/admin/clientes`} exact component={Clientes} />
-          <Route path={`/admin/ordenes`} exact component={Ordenes} />
+          <Route path={`/admin/ordenes`} exact render={() => <Perfil cookies={cookies}/>} />/>
           <Route path={`/${cookies.userId}/ticket`} exact component={PaginaPago} />
           <Route path={`/dentista/ticket/imprimir`} exact  render={() => <Ticket usuario={cookies}/>} />
           <Route path='*' component={PaginaError} />
         </Switch>
       </Router>
-  )   
-        
+  )      
 }
 export default withCookies(App);

@@ -43,7 +43,7 @@ function Ordenes({ordenesPend,ordenesProc,ordenesT,ordenesC,ordenesPag,ordenesA,
     }
     const result = await updateEstado(idOrden, estadoCambiado);
     AlertaEspera(result.status)
-    if(result.status === 201 ){
+    if(result.status === 201 ||  result.status === 200){
       await notificacionActualizacionOrden(idCliente,precio,estadoCambiado)  
       window.location.reload(false);
     }
@@ -163,12 +163,12 @@ function Ordenes({ordenesPend,ordenesProc,ordenesT,ordenesC,ordenesPag,ordenesA,
     <div className="row mt-5">
       <div className="col-md-2 col-sm-12 division bbbb ">
         <div className="text-white nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-          <a className="text-white nav-link active" id="v-pills-pendientes-tab" data-toggle="pill" href="#v-pills-pendientes" role="tab" aria-controls="v-pills-pendientes" aria-selected="true">Pendientes</a>
-          <a className="text-white nav-link" id="v-pills-aceptadas-tab" data-toggle="pill" href="#v-pills-aceptadas" role="tab" aria-controls="v-pills-aceptadas" aria-selected="false">Aceptadas</a>
-          <a className="text-white nav-link" id="v-pills-proceso-tab" data-toggle="pill" href="#v-pills-proceso" role="tab" aria-controls="v-pills-proceso" aria-selected="false">Proceso</a>
-          <a className="text-white nav-link" id="v-pills-terminadas-tab" data-toggle="pill" href="#v-pills-terminadas" role="tab" aria-controls="v-pills-terminadas" aria-selected="false">Terminadas</a>
-          <a className="text-white nav-link" id="v-pills-pagadas-tab" data-toggle="pill" href="#v-pills-pagadas" role="tab" aria-controls="v-pills-pagadas" aria-selected="false">Pagadas</a>
-          <a className="text-white nav-link" id="v-pills-canceladas-tab" data-toggle="pill" href="#v-pills-canceladas" role="tab" aria-controls="v-pills-canceladas" aria-selected="false">Canceladas</a>
+          <a className="text-white nav-link active pendite"  id="v-pills-pendientes-tab" data-toggle="pill" href="#v-pills-pendientes" role="tab" aria-controls="v-pills-pendientes" aria-selected="true">Pendientes</a>
+          <a className="text-white nav-link aceptada" id="v-pills-aceptadas-tab" data-toggle="pill" href="#v-pills-aceptadas" role="tab" aria-controls="v-pills-aceptadas" aria-selected="false">Aceptadas</a>
+          <a className="text-white nav-link proceso" id="v-pills-proceso-tab" data-toggle="pill" href="#v-pills-proceso" role="tab" aria-controls="v-pills-proceso" aria-selected="false">Proceso</a>
+          <a className="text-white nav-link terminada" id="v-pills-terminadas-tab" data-toggle="pill" href="#v-pills-terminadas" role="tab" aria-controls="v-pills-terminadas" aria-selected="false">Terminadas</a>
+          <a className="text-white nav-link pagada" id="v-pills-pagadas-tab" data-toggle="pill" href="#v-pills-pagadas" role="tab" aria-controls="v-pills-pagadas" aria-selected="false">Pagadas</a>
+          <a className="text-white nav-link cancelada" id="v-pills-canceladas-tab" data-toggle="pill" href="#v-pills-canceladas" role="tab" aria-controls="v-pills-canceladas" aria-selected="false">Canceladas</a>
         </div>
       </div>
       <div className="col-md-10 col-sm-12 division fondo2">

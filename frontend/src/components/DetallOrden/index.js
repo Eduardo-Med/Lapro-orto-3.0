@@ -1,6 +1,6 @@
 import React from 'react'
 import './styles.css'
-
+import Imagen from '../../images/sin-imagen.png'
 
 
 /**
@@ -45,7 +45,13 @@ function DetallaOrden({orden}) {
             </div>
 
             <div>
-                <img id="imagen-orden"  src={`data:image/png;base64,${Buffer.from(orden.imagen).toString("base64")}`} alt="Card"/>
+                {
+                    orden.imagen ?
+                    <img id="imagen-orden"  src={`data:image/png;base64,${Buffer.from(orden.imagen).toString("base64")}`} alt="Card"/>
+                    :
+                    <img className="card-img-top h-100" src={Imagen} alt="Card" />
+                }
+               
             </div>
         </div>
 

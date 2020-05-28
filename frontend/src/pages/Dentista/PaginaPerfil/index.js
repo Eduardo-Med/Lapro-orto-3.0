@@ -8,7 +8,7 @@ import OrdenesFiltradas from "../../../components/Admin/Ordenes";
 import './styles.css';
 import {getUsersById, updateUser} from "../../../api/Usuario";
 import {getOrdenesById} from "../../../api/Orden";
-import { accessControlDentisa } from "../../../helpers/accessControlDentisa";
+import { accessControlDentisaAdmin } from "../../../helpers/accessControlDentisa";
 import {AlertaConfirmacion} from '../../../helpers/AlertaEspera';
 import VentanaCargaInformacion from "../../../components/Otros/VentanaCargaInformacion";
 
@@ -106,4 +106,4 @@ const PaginaPerfil = () => {
   );
 };
 
-export default accessControlDentisa(PaginaPerfil);
+export default accessControlDentisaAdmin(PaginaPerfil);

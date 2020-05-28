@@ -32,7 +32,7 @@ const PaginaAparatos = ({needNuevaAparato}) => {
             setIsLoading(false);
           }
         }
-        loadAparatos();
+        loadAparatos(); 
       }, []);
 
 

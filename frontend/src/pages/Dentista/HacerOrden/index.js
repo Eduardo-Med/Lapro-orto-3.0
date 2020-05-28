@@ -41,7 +41,7 @@ function HacerOrden(){
     AlertaConfirmacion(response.status, "Enviando Inforamacion" )
     if(response.status === 200 || response.status ===201){
       notificacionNuevaOrden()
-      window.location.reload(false);
+      window.location.href = `/${cookies.userId}/perfil`
     }
 
   }

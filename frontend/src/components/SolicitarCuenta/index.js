@@ -52,7 +52,6 @@ function SolicitarCuenta() {
                     <div className="col">
                         <h3 className="solcitarTitulo">Solicitar Cuenta</h3>
                     </div>
-                  
                 </div>
                 <div className="row">
                     <form action=""  autoComplete="off" onSubmit={handleSubmit(onSubmit)} className="w-100">
@@ -60,7 +59,8 @@ function SolicitarCuenta() {
                 	  	? <label className="solictarLabel text-danger" style={{fontSize:"22px"}}>{errors.nameContactanos.message}</label> 
                 	  	: <label className="solictarLabel">Nombre*</label>}
 						<input type="text" id="nameContactanos" name="nameContactanos" 
-						ref={register({required: {value:true,message:'Este campo es obligatorio'},pattern: {value: /^[a-zA-Z ]*$/, message:'Solo letras'} })} 
+                        ref={register({required: {value:true,message:'Este campo es obligatorio'},pattern: {value: /^[a-zA-Z ]*$/, message:'Solo letras'},
+                        minLength : {value: 13,message: 'Favor de poner Nombre, Apellido Paterno y Materno'}})} 
 						className="solicitarInput"  placeholder="Nombre" />
 				        
                         {errors.correo 
@@ -74,14 +74,17 @@ function SolicitarCuenta() {
                 	  	? <label className="solictarLabel text-danger" style={{fontSize:"22px"}}>{errors.direccion.message}</label> 
                 	  	: <label className="solictarLabel">Direccion*</label>}
 						<input type="text" id="direccion" name="direccion" 
-						ref={register({required: {value:true,message:'Este campo es obligatorio'} })}  
+                        ref={register({required: {value:true,message:'Este campo es obligatorio'},
+                        minLength : {value: 16,message: 'Direccion completa'} })} 
 						className="solicitarInput"  placeholder="Direccion " />
 
                         {errors.telefono 
                 	  	? <label className="solictarLabel text-danger" style={{fontSize:"22px"}}>{errors.telefono.message}</label> 
                 	  	: <label className="solictarLabel">Telefono*</label>}
-						<input type="number" id="telefono" name="telefono" 
-						ref={register({required: {value:true,message:'Este campo es obligatorio'},pattern: {value: /^[0-9 ]*$/, message:'Solo numeros'} })} 
+						<input maxLength="13" type="number" id="telefono" name="telefono" 
+                        ref={register({required: {value:true,message:'Este campo es obligatorio'},pattern: {value: /^[0-9 ]*$/, message:'Solo numeros'},
+                        maxLength : {value: 13,message: 'Ingrese Numero Valido Maximo 13 digitos'},
+                        minLength : {value: 10,message: 'Ingrese Numero Valido Minimo 10 Digitos'  } })}  
 						className="solicitarInput" placeholder="Telefono" />
 
                         <label className="solictarLabel">Informacion extra</label>

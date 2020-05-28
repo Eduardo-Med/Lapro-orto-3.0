@@ -8,7 +8,7 @@ export const menuData = [
   },
   {
     label: "Aparatos",
-    url: `$/aparatos`,
+    url: `/aparatos`,
     icono: 'tooth'
   },
 ];

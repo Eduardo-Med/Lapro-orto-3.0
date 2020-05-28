@@ -6,7 +6,7 @@
     margin-left: 0px;
     position: relative;
     left: 140px;
-    bottom: 30px;
+    bottom: 10px;
 }
 .show{
     display: flex !important;
@@ -30,7 +30,7 @@
     border-radius: 30px;
     border: 1px solid black;
     font-family: 'Montserrat', sans-serif;
-    height: 500px;
+    height: 560px;
     width: 350px;
     align-items: center;
     display: inline-flex;
@@ -39,6 +39,10 @@
     justify-content: center;
 }
 
+.letraborde{
+    -webkit-text-stroke: 0.8px black;
+    font-size: 29px!important;
+}
 /*Login side*/
 
 .input-container {

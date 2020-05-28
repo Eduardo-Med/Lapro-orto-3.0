@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./styles.css";
 import {getOrdenesTerminadas} from  "../../../api/Orden";
-import {crearPDF} from  "../../../api/Ticket";
 import { useCookies } from 'react-cookie';
 import VentanaCargaInformacion from "../../Otros/VentanaCargaInformacion";
+import Imagen from '../../../images/sin-imagen.png'
 
 
 /**
@@ -16,8 +16,6 @@ import VentanaCargaInformacion from "../../Otros/VentanaCargaInformacion";
 function Ventas() {
   const [ordenesTerminadas, setOrdenesTerminadas] = useState([]);
   const [isLoading, setisLoading] = useState(true);
-  const [cargaBoton, setCargaBoton] = useState(false);
-  const [mensaje, setMensaje] = useState('Espere un momento, descargando PDF');
   const [precioTotal, setPrecioTotal] = useState(0);
   const [cookies] = useCookies(['cookie-name']);
   
@@ -34,55 +32,44 @@ function Ventas() {
       if (responseOrdenes.status === 200) {
         setOrdenesTerminadas(responseOrdenes.data.ordenes[0]);
         setPrecioTotal(responseOrdenes.data.total);
+        console.log(responseOrdenes.data.ordenes[0].length)
         setisLoading(false);
       }
     }
     loadOrdenes();
   }, [cookies]);
 
-  const imprimirPDF = async ()=>{
-    setCargaBoton(true)
-    var result = await crearPDF();
-
-    if(result.status === 200){  
-      setMensaje('PDF Descargado correctamente')
-    }else{
-      setMensaje('A ocurrido un error al descargar el PDF, Intentelo de nuevo mas tarde')
-    }
-
-  }
 
   const renderBotonEnviar=()=>{
-    if(!cargaBoton){
         return (
-          <button className="boton" onClick={()=>imprimirPDF()}>Imprimir recibo</button>
+          <button className="boton" onClick={()=>window.location.href = "/dentista/ticket/imprimir"}>Ir A Imprimir Recibo</button>
         )
-    }
-    return(
-        <div class="alert alert-info" role="alert">
-              {mensaje}
-        </div>
-    )
   }
   
 
   function renderOrdenesTerminadas() {
     if (!isLoading) {
+      if(ordenesTerminadas.length !== 0){
       return (
-        <div className="items-list">
+        <div className="items-list mb-5">
           {ordenesTerminadas.map((orden, index) => (
-            <div className="row mb-5 item-container ">
+            <div key={index} className="row mb-5 item-container ">
               <div className="container">
                 <div className="row ">
                   <div className="col-lg-4 col-xs-12  col-sm-12 col-md-12">
                      <div className="item-image-container producto-image">
-                        <img
-                          className="producto-image"
-                          src={`data:image/png;base64,${Buffer.from(
-                            orden.imagen
-                          ).toString("base64")}`}
-                          alt="productos"
-                        />
+                       {orden.imagen ? 
+                       <img
+                       className="producto-image"
+                       src={`data:image/png;base64,${Buffer.from(
+                         orden.imagen
+                       ).toString("base64")}`}
+                       alt="productos"
+                     />
+                     :
+                     <img className="card-img-top h-100" src={Imagen} alt="Card" />
+                       }
+                        
                       </div>
                   </div>
                   <div className="col-lg-8 col-xs-12  col-sm-12  col-md-12">
@@ -127,6 +114,13 @@ function Ventas() {
           </div>
         </div>
       );
+    
+    
+    }else{
+      return (<h1 className="ml-5">No cuenta con ordenes terminadas</h1>)
+    }
+    
+    
     } else {
       return <VentanaCargaInformacion/>;
     }

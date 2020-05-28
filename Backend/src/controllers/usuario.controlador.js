@@ -6,8 +6,6 @@ const encryptPassword = require("../helpers/EncryptPassword");
 const bcrypt = require("bcrypt")
 const fs = require("fs");
 
-
-
 class UsuarioControlador {
 
   //Funcion para la obtencion de todos los usuarios de la base de datos
@@ -66,8 +64,6 @@ class UsuarioControlador {
       }
     }
 
-
-
     //Funcion para actualizar un usuario
     async cambiarContrasena(req,res){
       try {
@@ -91,11 +87,7 @@ class UsuarioControlador {
           res.status(400).json({message: "A ocurrido un error", error})
       }
     }
-
-
-
 }
-
 module.exports = UsuarioControlador
 
 

@@ -26,7 +26,7 @@ export async function notificacionActualizacionOrden(idCliente,precio,estado){
         case Estado.ESTADO_ORDEN_ACEPTADA:
          data={
             idCliente,
-            detalles:`La orden de tranbajo a sido aceptada con un precio de $${precio} favor de revisar`,
+            detalles:`La orden de trabajo a sido aceptada con un precio de $${precio} favor de revisar`,
             enlace:'www.google.com'
         }
           break;

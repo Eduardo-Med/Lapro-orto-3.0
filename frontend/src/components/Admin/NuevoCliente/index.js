@@ -54,44 +54,56 @@ function NuevoCliente({enviar}) {
 					  	{errors.nombre 
                 	  	? <label className="registration-label text-danger" style={{fontSize:"22px"}}>{errors.nombre.message}</label> 
                 	  	: <label className="registration-label">Nombre</label>}
-						<input type="text" id="name" name="nombre" 
-						ref={register({required: {value:true,message:'Este campo es obligatorio'},pattern: {value: /^[a-zA-Z ]*$/, message:'Solo letras'} })} 
+						<input type="text" maxlength="35" minlength="2" id="name" name="nombre" 
+						ref={register({required: {value:true,message:'Este campo es obligatorio'},pattern: {value: /^[a-zA-Z ]*$/, message:'Solo letras'},
+						maxLength : {value: 35,message: 'Maximo 35 Caracteres'},
+                        minLength : {value: 2,message: 'Minimo 2 Caracteres'  } })}  
 						className="registration-input"  placeholder="Nombre" />
 
 						{errors.apellidoPaterno 
                 	  	? <label className="registration-label text-danger" style={{fontSize:"22px"}}>{errors.apellidoPaterno.message}</label> 
                 	  	: <label className="registration-label">Apellido Paterno</label>}
-						<input type="text" id="apellidoPaterno" name="apellidoPaterno" 
-						ref={register({required: {value:true,message:'Este campo es obligatorio'},pattern: {value: /^[a-zA-Z ]*$/, message:'Solo letras'} })} 
+						<input type="text" id="apellidoPaterno" maxlength="35" minlength="2" name="apellidoPaterno" 
+						ref={register({required: {value:true,message:'Este campo es obligatorio'},pattern: {value: /^[a-zA-Z ]*$/, message:'Solo letras'},
+						maxLength : {value: 35,message: 'Maximo 35 Caracteres'},
+                        minLength : {value: 3,message: 'Minimo 3 Caracteres'  } })}   
 						className="registration-input"  placeholder="Apellido Paterno" />
 						
 						{errors.apellidoMaterno 
                 	  	? <label className="registration-label text-danger" style={{fontSize:"22px"}}>{errors.apellidoMaterno.message}</label> 
                 	  	: <label className="registration-label">Apellido Materno</label>}
-						<input type="text" id="apellidoMaterno" name="apellidoMaterno" 
-						ref={register({required: {value:true,message:'Este campo es obligatorio'},pattern: {value: /^[a-zA-Z ]*$/, message:'Solo letras'} })} 
+						<input type="text" maxLength="35" minLength="2" id="apellidoMaterno" name="apellidoMaterno" 
+						ref={register({required: {value:true,message:'Este campo es obligatorio'},pattern: {value: /^[a-zA-Z ]*$/, message:'Solo letras'},
+						maxLength : {value: 35,message: 'Maximo 35 Caracteres'},
+                        minLength : {value: 3,message: 'Minimo 3 Caracteres'  } })}   
 						className="registration-input" placeholder="Apellido Materno" />
 
 
 						{errors.direccion 
                 	  	? <label className="registration-label text-danger" style={{fontSize:"22px"}}>{errors.direccion.message}</label> 
                 	  	: <label className="registration-label">Direccion</label>}
-						<input type="text" id="direccion" name="direccion"
-						ref={register({required: {value:true,message:'Este campo es obligatorio'} })}  
+						<input type="text" maxlength="160" minlength="8" id="direccion" name="direccion"
+						ref={register({required: {value:true,message:'Este campo es obligatorio'},
+						maxLength : {value: 160,message: 'Maximo 160 Caracteres'},
+                        minLength : {value: 3,message: 'Minimo 8 Caracteres'  } })}   
 						className="registration-input" placeholder="Direccion" />
 						
 						{errors.correo 
                 	  	? <label className="registration-label text-danger" style={{fontSize:"22px"}}>{errors.correo.message}</label> 
                 	  	: <label className="registration-label">Correo</label>}
 						<input type="text" id="correo" name="correo" 
-						ref={register({required: {value:true,message:'Este campo es obligatorio'},pattern: {value: /[a-z0-9_.-]+@[a-z0-9]+\.[a-z]{2,}/, message:'Correo invalido'} })} 
+						ref={register({required: {value:true,message:'Este campo es obligatorio'},pattern: {value: /[a-z0-9_.-]+@[a-z0-9]+\.[a-z]{2,}/, message:'Correo invalido'},
+						maxLength : {value: 35,message: 'Maximo 160 Caracteres'},
+                        minLength : {value: 6,message: 'Minimo 6 Caracteres'  } })}   
 						className="registration-input" placeholder="Correo" />
 						
 						{errors.telefono 
                 	  	? <label className="registration-label text-danger" style={{fontSize:"22px"}}>{errors.telefono.message}</label> 
                 	  	: <label className="registration-label">Telefono</label>}
-						<input type="number" id="telefono" name="telefono" 
-						ref={register({required: {value:true,message:'Este campo es obligatorio'},pattern: {value: /^[0-9 ]*$/, message:'Solo numeros'} })} 
+						<input type="number" id="telefono" maxlength="10"   name="telefono" 
+						ref={register({required: {value:true,message:'Este campo es obligatorio'},pattern: {value: /^[0-9 ]*$/, message:'Solo numeros'}, 
+                        maxLength : {value: 13,message: 'Ingrese Numero Valido Maximo 13 digitos'},
+                        minLength : {value: 10,message: 'Ingrese Numero Valido Minimo 10 Digitos'  } })}  
 						className="registration-input" placeholder="Telefono" />
 
 						{errors.password 

@@ -36,6 +36,7 @@ class AparatoControlador{
       await pool.query("INSERT INTO APARATO set ?", [newAparato]);
       res.status(201).json({message: "Aparato agregado correctamente", aparato: newAparato});
     } catch (e) {
+      console.log(e)
       res.status(400).json({code: e.code,message: e.sqlMessage});
     }
   }
@@ -73,7 +74,4 @@ class AparatoControlador{
 
   }
 }
-
-
-
 module.exports = AparatoControlador;

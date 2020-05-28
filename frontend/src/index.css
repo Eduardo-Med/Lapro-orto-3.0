@@ -104,19 +104,6 @@ box-shadow: 10px 19px 5px -16px rgba(0,0,0,0.59);
 
 
 
-#check:checked ~ .contenido .sidebar{
-  left: -190px;
-}
-
-#check:checked ~ .contenido .sidebar a span{
-  display:none;
-}
-
-#check:checked ~ .contenido .sidebar a{
-  font-size: 20px;
-  margin-left: 170px;
-  width: 80px;
-}
 
 /* endregion */
 

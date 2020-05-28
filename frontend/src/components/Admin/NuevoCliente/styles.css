@@ -265,3 +265,10 @@
     box-shadow: -11px -9px 5px 0px rgba(0,0,0,0.75);
   }
   
+  .registration .registration-form .registration-label2{
+    font-size: 12px;
+    font-weight: 200;
+    display: inline-block;
+    margin-bottom: 7px;
+  }
+  

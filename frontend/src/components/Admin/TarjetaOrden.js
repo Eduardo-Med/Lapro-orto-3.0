@@ -22,7 +22,13 @@ function TarjetaOrden({orden, tipoOrden,usuario, cambiarEstado, obtenerDetallerO
   const [datosForm, setDatosForm] = useState({});
   const [idPendiente, setIdPendiente] = useState("");
   const [cookies] = useCookies(["cookie-name"]);
+  const [activado, setActivado] = useState(true);
   const handleInputChange = (event) => {
+      if(event.target.value !== ""){
+        setActivado(false)
+      }else{
+        setActivado(true)
+      }
       event.persist();
       setDatosForm({...datosForm, [event.target.name]: event.target.value});
   }
@@ -38,7 +44,6 @@ function TarjetaOrden({orden, tipoOrden,usuario, cambiarEstado, obtenerDetallerO
     AlertaEspera(result.status)
     if(result.status === 201 || result.status === 200){
       cambiarEstado(id, Estado.ESTADO_ORDEN_ACEPTADA,precio,idCliente)
-      window.location.reload(false);
     }
   }
 
@@ -100,7 +105,11 @@ function TarjetaOrden({orden, tipoOrden,usuario, cambiarEstado, obtenerDetallerO
             if(usuario === 'Admin'){
                 return(<div></div>)
             }else{
-                return(<div></div>)
+              return(
+                <div className="card-body">
+                        <button style={{marginLeft: '80px'}}  onClick={()=>EliminarOrden(orden.idOrden)} className="btn btn-danger">Eliminar</button>
+                </div>
+                )
             }
         }else if(tipoOrden === Estado.ESTADO_ORDEN_CANCELADA){
           if(usuario === 'Admin'){
@@ -151,16 +160,18 @@ function TarjetaOrden({orden, tipoOrden,usuario, cambiarEstado, obtenerDetallerO
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+      <form autoComplete="off" onSubmit={()=>agregarPrecio(idPendiente,datosForm.precio,orden.idCliente)} >
       <div className="modal-body">
           <div className="form-group">
             <label htmlFor="recipient-name" className="col-form-label">Precio:</label>
-            <input type="text" className="form-control" name="precio" onChange={handleInputChange}/>
+            <input type="tel" min="0" max="12000" maxLength="5" minLength="5" pattern="[0-9]+" className="form-control" name="precio" onChange={handleInputChange}/>
           </div>
       </div>
       <div className="modal-footer">
         <button type="button" className="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="button" className="btn btn-primary" onClick={()=>agregarPrecio(idPendiente,datosForm.precio,orden.idCliente)}>Aceptar</button>
+        <button type="submit" className="btn btn-primary" disabled={activado}>Aceptar</button>
       </div>
+      </form>
     </div>
   </div>
 </div>

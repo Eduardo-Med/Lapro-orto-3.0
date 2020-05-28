@@ -12,8 +12,6 @@ class VentaControlador{
     }
   }
   
-  
-  
   async createVenta(req, res){
     try {
       const {precioTotal, idOrden} = req.body
@@ -29,7 +27,4 @@ class VentaControlador{
     }
   }
 }
-
-
-
 module.exports = VentaControlador;

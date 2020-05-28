@@ -3,6 +3,8 @@ import React, { useState, useCallback } from "react";
 import "./styles.css";
 import {iniciarSesion} from "../../api/Autentificacion";
 import { useCookies } from "react-cookie";
+import {useForm} from "react-hook-form";
+
 import logo from "./tooth.png";
 
 
@@ -18,7 +20,7 @@ import logo from "./tooth.png";
 function Login() {
   const [informacion, serInformacion] = useState({});
   const [, setCookie, ] = useCookies(["cookie-name"]);
-
+  const {register, handleSubmit,errors} = useForm({mode: "onChange"})
   const [mensajeError, setMensajeError] = useState('')
   const [isLoading, setIsLoading] = useState(false)
 
@@ -39,7 +41,7 @@ function Login() {
    *
    * @returns{string} Mensaje de resultado
    */
-  async function iniciar() {
+  const onSubmit = async (data)=>{
     const response = await iniciarSesion(informacion);
     if (response.status === 200) {
       setIsLoading(true)
@@ -62,7 +64,7 @@ function Login() {
   const renderBotonEnviar=()=>{
     if(!isLoading){
         return (
-          <button type="button" onClick={()=>iniciar()} className="btn btn-dark float-left mt-5">
+          <button type="submit" className="btn btn-dark float-left mt-5">
           Iniciar Sesion
           </button>
         )
@@ -78,10 +80,13 @@ function Login() {
     <div className="modal fade" id="myModal1">
     <div className="modal-dialog">
       <div className="modal-content">
-      <form  autocomplete="off" className="login-container">
+      <form  autocomplete="off" className="login-container" onSubmit={handleSubmit(onSubmit)}>
       <button type="button" className="close cerrar" data-dismiss="modal">×</button>
         <img className="logo" src={logo} alt="logo" />
         <h4 className="mt-5 text-danger">{mensajeError}</h4>
+        {errors.correo 
+            ? <label className="registration-label text-danger letraborde" style={{fontSize:"22px"}}>{errors.correo.message}</label> 
+            : <label className="registration-label"></label>}
         <div className="input-container">
           <i className="fas fa-user mr-2 text-white"></i>
           <input
@@ -90,6 +95,10 @@ function Login() {
             placeholder="Correo electronico"
             id="correo"
             name="correo"
+            required
+            ref={register({required: {value:true,message:'Este campo es obligatorio'},pattern: {value: /^[a-zA-Z0-9@._-]*$/, message:'Formato No valido'} 
+                                                                                                                
+          })} 
             onChange={handleInputChange}
           />
         </div>
@@ -101,6 +110,7 @@ function Login() {
             type="password"
             placeholder="Contraseña"
             id="password"
+            ref={register({required: {value:true,message:'Este campo es obligatorio'}})}
             name="password"
             variant="filled"
             onChange={handleInputChange}

@@ -11,7 +11,7 @@ var now= new Date();
 class NotifiacionControlador{
     async getNotificacion(req,res){
         try {
-          const notificacion = await pool.query(`SELECT * FROM NOTIFICACION WHERE idCliente = ${req.params.idUsuario} AND visto = false`);
+          const notificacion = await pool.query(`SELECT * FROM NOTIFICACION WHERE idCliente = ${req.params.idUsuario} AND visto = false order by fecha desc`);
           res.status("200").json({notificacion});
         } catch (error) {
           res.status("204").json({message:"A ocurrido un error" , error});
@@ -44,9 +44,5 @@ class NotifiacionControlador{
         }
   
     }
-
-
 }
-
-
 module.exports = NotifiacionControlador;

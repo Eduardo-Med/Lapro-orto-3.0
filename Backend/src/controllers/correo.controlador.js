@@ -2,18 +2,21 @@
 * Controlador para enviar un correo electronico
 */
 const nodemailer = require('nodemailer')
+const pool = require("../models/database");
 
-
-class SendEmail{
+class CorreoControlador{
   //funcion para enviar un correo electronico
+  
   async correoConfirmacion(req, res){
     try {
+
+        const user = await pool.query(`SELECT * FROM ClIENTE WHERE idCliente = 1`);
         const {nombre,correo,password} = req.body
         const transporter = nodemailer.createTransport({
             service: 'gmail',
             auth:{
-                user: process.env.CORREO,
-                pass: process.env.PASSWORD
+                user: user[0].correo,
+                pass: user[0].contraCorreo
             }
         })
     
@@ -50,12 +53,14 @@ class SendEmail{
 
   async enviarCorreo(req, res){
     try {
+      const user = await pool.query(`SELECT * FROM ClIENTE WHERE idCliente = 1`);
+      console.log(user)
         const {nameContactanos,correo,direccion,telefono,descripcion} = req.body
         const transporter = nodemailer.createTransport({
             service: 'gmail',
             auth:{
-                user: process.env.CORREO,
-                pass: process.env.PASSWORD
+              user: user[0].correo,
+              pass: user[0].contraCorreo
             }
         })
     
@@ -84,6 +89,7 @@ class SendEmail{
       console.log("enviado")
       res.send('recivido')
     } catch (error) {
+      console.log(error)
       res.status(500).json({message: 'A ocurrido un error con el envio del mensaje', error })
     }
   }
@@ -91,4 +97,4 @@ class SendEmail{
 }
 
 
-module.exports = SendEmail;
+module.exports = CorreoControlador;
