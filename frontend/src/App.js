@@ -5,7 +5,7 @@ import { withCookies } from 'react-cookie';
 
 import Clientes from './pages/Admin/PaginaClientes'
 import Aparatos from './pages/Admin/PaginaAparatos'
-import Ordenes from './pages/Admin/PaginaOrdenes'
+
 import HacerOrden from './pages/Dentista/HacerOrden'
 import Perfil from './pages/Dentista/PaginaPerfil'
 import Home from './pages/Home'
