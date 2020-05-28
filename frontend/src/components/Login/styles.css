@@ -23,7 +23,7 @@
 .login-container {
     background: #7F7FD5;
     /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #138EA1, #1D6794);
+ 
     /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #138EA1, #1D6794);
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -86,7 +86,6 @@
 	display:inline-block;
 	cursor:pointer;
 	color:#ffffff;
-	font-family:Arial;
 	font-size:17px;
 	padding:16px 31px;
 	text-decoration:none;
