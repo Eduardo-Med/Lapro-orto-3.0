@@ -23,9 +23,17 @@ function TarjetaOrden({orden, tipoOrden,usuario, cambiarEstado, obtenerDetallerO
   const [idPendiente, setIdPendiente] = useState("");
   const [cookies] = useCookies(["cookie-name"]);
   const [activado, setActivado] = useState(true);
+  const [mensaje, setMensaje] = useState("")
   const handleInputChange = (event) => {
+    var numbers = new RegExp('^[0-9]+$');
       if(event.target.value !== ""){
-        setActivado(false)
+        if (numbers.test(event.target.value)) {
+          setActivado(false)
+          setMensaje("")
+        } else {
+          setMensaje("Solo numeros")
+          setActivado(true)
+        }
       }else{
         setActivado(true)
       }
@@ -160,16 +168,17 @@ function TarjetaOrden({orden, tipoOrden,usuario, cambiarEstado, obtenerDetallerO
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form autoComplete="off" onSubmit={()=>agregarPrecio(idPendiente,datosForm.precio,orden.idCliente)} >
+      <form autoComplete="off" >
       <div className="modal-body">
           <div className="form-group">
+            <label style={{color:"red"}}>{mensaje}</label> <br/>
             <label htmlFor="recipient-name" className="col-form-label">Precio:</label>
-            <input type="tel" min="0" max="12000" maxLength="5" minLength="5" pattern="[0-9]+" className="form-control" name="precio" onChange={handleInputChange}/>
+            <input type="tel" min="0" max="12000" maxLength="5"  pattern="[0-9]+" className="form-control" name="precio" onChange={handleInputChange}/>
           </div>
       </div>
       <div className="modal-footer">
         <button type="button" className="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="submit" className="btn btn-primary" disabled={activado}>Aceptar</button>
+        <button type="button" className="btn btn-primary" disabled={activado} onClick={()=>agregarPrecio(idPendiente,datosForm.precio,orden.idCliente)}>Aceptar</button>
       </div>
       </form>
     </div>

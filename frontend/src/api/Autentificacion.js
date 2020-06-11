@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-const baseUrl = 'http://localhost:4000/api/v1'
-//const baseUrl = 'https://backend-lapro-orto.herokuapp.com/api/v1'
+//const baseUrl = 'http://localhost:4000/api/v1'
+const baseUrl = 'https://backend-lapro-orto.herokuapp.com/api/v1'
 /**
  *Clase Autentificacion en donde se encuentran las peticiones al servidor
  *

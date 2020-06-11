@@ -37,15 +37,19 @@ function Ordenes({ordenesPend,ordenesProc,ordenesT,ordenesC,ordenesPag,ordenesA,
    */
   async function cambiarEstado(idOrden, estadoCambiado,precio,idCliente) {
     if(estadoCambiado === Estado.ESTADO_ORDEN_PAGADA){
-      await addVentas(idOrden,precio)
-      await notificacionActualizacionOrden(idCliente,precio,estadoCambiado)
-      window.location.reload(false);
+      const result1 = await addVentas(idOrden,precio)
+      AlertaEspera(result1.status)
+      if(result1.status === 201 ||  result1.status === 200){
+        await notificacionActualizacionOrden(idCliente,precio,estadoCambiado)
+        setTimeout(function(){window.location.reload(false)}, 2900); 
+      }
+
     }
     const result = await updateEstado(idOrden, estadoCambiado);
     AlertaEspera(result.status)
     if(result.status === 201 ||  result.status === 200){
       await notificacionActualizacionOrden(idCliente,precio,estadoCambiado)  
-      window.location.reload(false);
+      setTimeout(function(){window.location.reload(false)}, 2900); 
     }
     
   }

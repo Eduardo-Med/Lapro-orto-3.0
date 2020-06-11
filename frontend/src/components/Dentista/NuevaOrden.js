@@ -23,6 +23,9 @@ function NuevaOrden({enviar}) {
       }
       
       const onSubmit =(data)=>{
+        if(data.observaciones.length === 0){
+          data.observaciones = "Ninguna"
+        }
         setIsLoading(true)
         setTimeout(function(){ setIsLoading(false) },5000)
         enviar(data,imagen)
@@ -153,9 +156,9 @@ function NuevaOrden({enviar}) {
 
                 {errors.observaciones 
                 ? <label className="registration-label text-danger" style={{fontSize:"28px"}}>{errors.observaciones.message}</label> 
-                : <label className="registration-label">Observaciones*</label>}
+                : <label className="registration-label">Observaciones</label>}
                 <input type="text" id="observaciones" name="observaciones" 
-                 ref={register({required: {value:true,message:'Este campo es obligatorio'},
+                 ref={register({required: {value:false},
                  maxLength : {value: 40,message: 'caracteres maximo 40'},
                  minLength : {value: 2,message: 'Caracteres minmos  2'  } })}  
                 className="registration-input" placeholder="Observaciones" />

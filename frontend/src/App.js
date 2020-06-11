@@ -8,6 +8,7 @@ import Aparatos from './pages/Admin/PaginaAparatos'
 
 import HacerOrden from './pages/Dentista/HacerOrden'
 import Perfil from './pages/Dentista/PaginaPerfil'
+import PerfilAdmin from './pages/Admin/PaginaOrdenes'
 import Home from './pages/Home'
 import PaginaError from './pages/PaginaError'
 import PaginaPago from './pages/Dentista/PaginaPagos'
@@ -38,7 +39,7 @@ const [cookies] = useCookies(['cookie-name']);
           <Route path={`/${cookies.userId}/orden`} exact component={HacerOrden} />
           <Route path={`/admin/aparatos`} exact render={() => <Aparatos needNuevaAparato={true}/>} />
           <Route path={`/admin/clientes`} exact component={Clientes} />
-          <Route path={`/admin/ordenes`} exact render={() => <Perfil cookies={cookies}/>} />/>
+          <Route path={`/admin/ordenes`} exact render={() => <PerfilAdmin cookies={cookies}/>} />/>
           <Route path={`/${cookies.userId}/ticket`} exact component={PaginaPago} />
           <Route path={`/dentista/ticket/imprimir`} exact  render={() => <Ticket usuario={cookies}/>} />
           <Route path='*' component={PaginaError} />

@@ -14,7 +14,7 @@ router
   .get(getOrdenById)
   .delete(verifyToken,deleteOrden);
 
-router
+router 
   .route("/terminada/:idUsuario")
   .get(getOrdenesTerminadasById)
 

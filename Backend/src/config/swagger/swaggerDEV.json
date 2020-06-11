@@ -1,12 +1,12 @@
 {
   "swagger": "2.0",
   "info": {
-    "description": "Backend ::ShareYourIdea:: App",
+    "description": "Documentacion BackEnd Lapro-Orto",
     "version": "1.0.0",
-    "title": "Swagger ShareYourIdea"
+    "title": "Proyecto Lapro-Orto Backend"
   },
-  "host": "localhost:4000",
-  "basePath": "/api/v1",
+  "host": "",
+  "basePath": "http://backend-lapro-orto.herokuapp.com/api-docs/",
   "tags": [
     {
       "name": "Usuario",
@@ -31,6 +31,10 @@
     {
       "name": "Ticket",
       "description": "Funciones que se realizan con la ruta de ticket"
+    },
+    {
+      "name": "Notificacion",
+      "description": "Funciones que se realizan con la ruta de notificacion"
     },
     {
       "name": "Venta",
@@ -137,6 +141,81 @@
         }
       }
     },
+    "/": {
+      "post": {
+        "tags": ["Notificacion"],
+        "summary": "Crear notificacion",
+        "description": "Peticion post para crear notificacion",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Notificacion creada correctamente",
+            "content": "application/json",
+            "examples":{
+              "application/json": {
+                "message": "Notificacion creada correctamente"
+              }
+            }
+          },
+          "400": {
+            "description": "A ocurrido un error",
+            "examples":{
+              "application/json":{"message": "A ocurrido un error", "error": "Informacion sobre el error"}
+            }
+          }
+        }
+      }
+    },
+    "/usuario/{idUsuario}": {
+      "get": {
+        "tags": ["Notificacion"],
+        "summary": "Obtener notificacion de usuario",
+        "description": "Obtiene todas las notificaciones de un usuario",
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "Notificaciones desplagadas correctamente",
+            "examples":{
+              "application/json": {
+                "Usuario": {
+                  "$ref":"#/definitions/Notificacion"
+                }
+              }
+            }
+            }
+          },
+          "400": {
+            "description": "Ocurrio un error",
+            "examples":{
+              "application/json":{"error": "Informacion sobre el error"}
+            }
+          }
+        }
+      },
+      "/{idNotificacion}": {
+        "put": {
+          "tags": ["Notificacion"],
+          "summary": "Marcar la notificacion como vista",
+          "description": "Marca la notificacion seleccionada como vista",
+          "produces": ["application/json"],
+          "responses": {
+            "201": {
+              "description": "Notificacion Actualizado Correctamente",
+              "examples":{
+                "application/json": {
+                  "message": "Notificacion Actualizado correctamente"
+                }
+              }
+              }
+            },
+            "400": {
+              "description": "Ocurrio un error",
+              "examples":{
+                "application/json":{"error": "Informacion sobre el error"}
+              }
+            }
+          }
+        },
     "/authenticate/login": {
       "post": {
         "tags": ["Autentificacion"],
@@ -251,12 +330,21 @@
         }
       }
     },
-    "/aparato/{idOrden}": {
+    "/{idOrden}": {
       "get": {
         "tags": ["Orden"],
         "summary": "Obtener una sola orden",
         "description": "Obtener una orden por su id",
         "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "idOrden",
+            "in": "path",
+            "type": "string",
+            "description": "Id de la orden",
+            "required": true
+          }
+        ],
         "responses": {
           "200": {
             "description": "Orden obtenida correctamente",
@@ -321,12 +409,68 @@
         "summary": "Agregar precio a la orden",
         "description": "peticion put para agregar el precio a la orden",
         "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "idOrden",
+            "in": "path",
+            "type": "string",
+            "description": "Id de la orden",
+            "required": true
+          },
+          {
+            "in": "header",
+            "name": "Precio",
+            "description": "Precio de la orden",
+            "required": true,
+            "type": "string"
+          }
+        ],
         "responses": {
           "200": {
             "description": "Precio agregado correctamente",
             "examples":{
               "application/json": {
                 "message": "Precio Agregado"
+              }
+            }
+          },
+          "400": {
+            "description": "Ocurrio un error",
+            "examples":{
+              "application/json":{"message": "A ocurrido un error", "error": "Informacion sobre el error"}
+            }
+          }
+        }
+      }
+    },
+    "/{idOrden}/{estado}": {
+      "put": {
+        "tags": ["Orden"],
+        "summary": "Cambiar el estado de la orden",
+        "description": "Peticion put para cambiar el estado de la orden donde el estado es el estado al que se va a cambiar",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "idOrden",
+            "in": "path",
+            "type": "string",
+            "description": "Id de la orden",
+            "required": true
+          },
+          {
+            "in": "header",
+            "name": "estado",
+            "description": "Estado de la orden a la que se va a cambiar",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Orden Actualizada Correctamente",
+            "examples":{
+              "application/json": {
+                "message": "Orden Actualizada Correctamente"
               }
             }
           },
@@ -750,6 +894,29 @@
         "imagen": {
           "type": "blob",
           "format": "longblob"
+        }
+      }
+    },
+    "Notificacion": {
+      "type": "object",
+      "properties": {
+        "idNotificacion": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "detalles": {
+          "type": "string",
+          "format": "varchar(200)"
+        },
+        "visto": {
+          "type": "bool"
+        },
+        "fecha": {
+          "type": "date"
+        },
+        "idCliente": {
+          "type": "integer",
+          "format": "int64"
         }
       }
     }

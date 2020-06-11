@@ -21,16 +21,23 @@ class CorreoControlador{
         })
     
         const mailOptions = {
-            from: "Equipo Lapro-Orto",
+            from: "Equipo Lapro-Ortho",
             to: `${correo}`,
-            subject: "Enviado desde lapro-orto",
+            subject: "Enviado desde lapro-ortho",
             html: `<div> 
                       <p>Gracias por registrarse en LAPRO-ORTO sr/sra ${nombre}</p> 
                       <p>Sus datos para ingresar a su cuenta son los siguientes: </p> 
                       <p><h1>Correo: </h1><span>${correo}</span></p> 
                       <p><h1>Contraseña: </h1><span>${password}</span></p> 
-                      <p>Una vez ingresado en su cuenta favor de editar su perfil con sus datos personales</p> 
-                   </div> `
+                      <p>Una vez ingresado en su cuenta favor de editar su perfil con sus datos personales</p>
+                      <h1>Pagina: </h1>
+                      <a href="www.lapro-orto.top.mx">Lapro ortho</a>
+                      <br/>
+                      <br/>
+                      <h1>Intrucciones de uso de la pagina</h1>
+                      <p>En el siguiente video encontrara un manual de como funciona la pagina</p>
+                      <a href="https://www.youtube.com/watch?v=YeXBny-2lRM&feature=youtu.be">Clic aqui para ir al video</a> 
+                   </div>`
         }
   
       transporter.sendMail(mailOptions, (error, info)=>{
@@ -49,7 +56,7 @@ class CorreoControlador{
     }
   }
 
-
+ 
 
   async enviarCorreo(req, res){
     try {
@@ -66,7 +73,7 @@ class CorreoControlador{
     
         const mailOptions = {
             from: `${nameContactanos}`,
-            to: process.env.CORREO,
+            to: user[0].correo,
             subject: "Solicitud de cuenta",
             html: `<div> 
             <p>La siguiente persona esta soliciatando registrarse en la pagina: ${nameContactanos}</p> 
