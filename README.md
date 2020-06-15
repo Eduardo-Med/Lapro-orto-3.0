@@ -7,6 +7,10 @@
 #Version 3.0 Version Final del sistema. 
 <a href="http://www.lapro-orto.top.mx">Enlace hacia a la pagina</a>
 
+<h3>Descripcion</h3>
+
+<p>Lapro-Orto es un sistema hecho para un ortodoncista si principal funcion es para la gestion de ordenes y ver el seguimiento de estas</p>
+
 <br/>
 
 <h1>Imagenes Del Sistema</h1>
@@ -30,6 +34,15 @@
 
 ![Inicio de la pagina](../master/myFolder/Ticket.png)
 
+<h1>Menu<h1>
+
+<h4>Cerrado</h4>
+
+![Inicio de la pagina](../master/myFolder/menuC.png)
+
+<h4>Abierto</h4>
+
+![Inicio de la pagina](../master/myFolder/menuA.png)
 
 <h2>Responsividad</h2>
 
