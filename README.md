@@ -10,4 +10,5 @@
 <br/>
 
 <h1>Imagenes Del Sistema</h1>
+
 ![Optional Text](../master/myFolder/inicio.png)
