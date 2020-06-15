@@ -10,4 +10,4 @@
 <br/>
 
 <h1>Imagenes Del Sistema</h1>
-![Screenshot](inicio.png)
+![Optional Text](../master/myFolder/inicio.png)
