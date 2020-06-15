@@ -11,4 +11,32 @@
 
 <h1>Imagenes Del Sistema</h1>
 
-![Optional Text](../master/myFolder/inicio.png)
+![Inicio de la pagina](../master/myFolder/inicio.png)
+
+<h4>Formulario de usuarios</h4>
+
+![Inicio de la pagina](../master/myFolder/FormularioUsuarios.png)
+
+<h4>Lista Ordenes</h4>
+<p>Lista de ordenes que puedes cambiar dependiendo del usuario</p>
+
+![Inicio de la pagina](../master/myFolder/ordenes.png)
+
+<h4>Formulario de usuarios</h4>
+
+![Inicio de la pagina](../master/myFolder/inicio.png)
+
+<h4>Ticket</h4>
+
+![Inicio de la pagina](../master/myFolder/Ticket.png)
+
+
+<h2>Responsividad</h2>
+
+<h4>Inicio</h4>
+
+![Inicio de la pagina](../master/myFolder/InicioResponsivo.png)
+
+<h4>Ticket</h4>
+
+![Inicio de la pagina](../master/myFolder/ticketResponsivo.png)
