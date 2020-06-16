@@ -80,7 +80,7 @@ const PaginaAparatos = ({needNuevaAparato}) => {
                                 <div className="cardd ">
                                     <div className="cardd-info-container">
                                         <h2>{aparato.titulo}</h2>
-                                        <p>
+                                        <p className="descp">
                                             {aparato.descripcion}
                                         </p>
 

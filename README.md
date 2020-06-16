@@ -11,6 +11,8 @@
 
 <p>Lapro-Orto es un sistema hecho para un ortodoncista si principal funcion es para la gestion de ordenes y ver el seguimiento de estas</p>
 
+<p>El sistema esta hecho con: Nodejs, Reactjs y MySQL</p>
+
 <br/>
 
 <h1>Imagenes Del Sistema</h1>

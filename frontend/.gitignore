@@ -25,5 +25,4 @@ yarn-error.log*
 
 docs
 Gruntfile.js
-src/serviceWorker.js
 .env

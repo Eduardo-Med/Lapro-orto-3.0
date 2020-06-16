@@ -4,6 +4,10 @@
     align-items: center;
 }
 
+
+.descp{
+    font-size: 24px !important;
+}
 /*cardd*/
 .cardd {
     border: 1px solid black;
